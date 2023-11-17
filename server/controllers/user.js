@@ -9,9 +9,9 @@ async function register(
 	firstName,
 	lastName,
 	email,
+	imageUrl,
 	login,
 	password,
-	picturePath
 ) {
 	if (!password) {
 		throw new Error('Password is empty')
@@ -23,9 +23,9 @@ async function register(
 		firstName,
 		lastName,
 		email,
+    imageUrl,
 		login,
 		password: passwordHash,
-    picturePath,
 	})
 	const token = generate({ id: user.id })
 

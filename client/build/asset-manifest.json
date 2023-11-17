@@ -1,20 +1,19 @@
 {
   "files": {
-    "main.css": "/static/css/main.6f3ee60c.css",
-    "main.js": "/static/js/main.acac1eca.js",
+    "main.css": "/static/css/main.15a5cda1.css",
+    "main.js": "/static/js/main.a470e229.js",
     "static/media/gold.jpg": "/static/media/gold.cc64ca003ea6dc01c516.jpg",
-    "static/media/news.gif": "/static/media/news.7789895b4a0d8d8a8554.gif",
-    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.6878d55e3615ccf40c38.svg",
     "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
     "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
     "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
     "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
     "index.html": "/index.html",
-    "main.6f3ee60c.css.map": "/static/css/main.6f3ee60c.css.map",
-    "main.acac1eca.js.map": "/static/js/main.acac1eca.js.map"
+    "main.15a5cda1.css.map": "/static/css/main.15a5cda1.css.map",
+    "main.a470e229.js.map": "/static/js/main.a470e229.js.map"
   },
   "entrypoints": [
-    "static/css/main.6f3ee60c.css",
-    "static/js/main.acac1eca.js"
+    "static/css/main.15a5cda1.css",
+    "static/js/main.a470e229.js"
   ]
 }

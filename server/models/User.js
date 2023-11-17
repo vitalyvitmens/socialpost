@@ -16,6 +16,11 @@ const UserSchema = mongoose.Schema(
 			required: true,
 			unique: true,
 		},
+    imageUrl: {
+      type: String,
+      required: true,
+      default: '',
+    },
 		login: {
 			type: String,
 			required: true,
@@ -24,10 +29,6 @@ const UserSchema = mongoose.Schema(
 		password: {
 			type: String,
 			required: true,
-		},
-		picturePath: {
-			type: String,
-			default: '',
 		},
 		role: {
 			type: Number,

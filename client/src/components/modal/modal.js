@@ -5,7 +5,7 @@ import {
 	selectModalOnCancel,
 	selectModalOnConfirm,
 	selectModalText,
-} from '../../selectors'
+} from '../../redux/selectors'
 import styled from 'styled-components'
 
 const ModalContainer = ({ className }) => {

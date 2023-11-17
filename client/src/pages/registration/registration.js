@@ -13,6 +13,42 @@ import { ROLE } from '../../constants'
 import styled from 'styled-components'
 
 const regFormSchema = yup.object().shape({
+	firstName: yup
+		.string()
+		.required('Укажите своё имя')
+		.matches(
+			/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
+			'Неверно указано имя. Допускаются только буквы'
+		)
+		.min(2, 'Неверно указано имя. Минимум 2 символа')
+		.max(15, 'Неверно указано имя. Максимум 15 символов'),
+	lastName: yup
+		.string()
+		.required('Укажите свою фамилию')
+		.matches(
+			/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
+			'Неверно указана фамилия. Допускаются только буквы'
+		)
+		.min(2, 'Неверно указана фамилия. Минимум 2 символа')
+		.max(15, 'Неверно указана фамилия. Максимум 15 символов'),
+	email: yup
+		.string()
+		.required('Заполните email')
+		.matches(
+			/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$/,
+			'Неверно заполнен email.'
+		)
+		.min(5, 'Неверно заполнен email. Минимум 5 символа')
+		.max(30, 'Неверно заполнен email. Максимум 30 символов'),
+	imageUrl: yup
+		.string()
+		.required('Укажите ссылку на Ваше фото')
+		.matches(
+			/[A-Fa-f0-9]/,
+			'Неверно заполненна ссылка на Ваше фото. Допусктимые форматы jpg, jpeg, png'
+		)
+		.min(3, 'Неверно заполненна ссылка на Ваше фото. Минимум 3 символа')
+		.max(100, 'Неверно заполненна ссылка на Ваше фото. Максимум 100 символов'),
 	login: yup
 		.string()
 		.required('Заполните логин')
@@ -45,6 +81,10 @@ const RegistrationContainer = ({ className }) => {
 		formState: { errors },
 	} = useForm({
 		defaultValues: {
+			firstName: '',
+			lastName: '',
+			email: '',
+			imageUrl: '',
 			login: '',
 			password: '',
 			passcheck: '',
@@ -60,21 +100,37 @@ const RegistrationContainer = ({ className }) => {
 
 	useResetForm(reset)
 
-	const onSubmit = ({ login, password }) => {
-		request('/register', 'POST', { login, password }).then(
-			({ error, user }) => {
-				if (error) {
-					setServerError(`Ошибка запроса: ${error}`)
-					return
-				}
-
-				dispatch(setUser(user))
-				sessionStorage.setItem('userData', JSON.stringify(user))
+	const onSubmit = ({
+		firstName,
+		lastName,
+		email,
+		imageUrl,
+		login,
+		password,
+	}) => {
+		request('/register', 'POST', {
+			firstName,
+			lastName,
+			email,
+			imageUrl,
+			login,
+			password,
+		}).then(({ error, user }) => {
+			if (error) {
+				setServerError(`Ошибка запроса: ${error}`)
+				return
 			}
-		)
+
+			dispatch(setUser(user))
+			sessionStorage.setItem('userData', JSON.stringify(user))
+		})
 	}
 
 	const formError =
+		errors?.firstName?.message ||
+		errors?.lastName?.message ||
+		errors?.email?.message ||
+		errors?.imageUrl?.message ||
 		errors?.login?.message ||
 		errors?.password?.message ||
 		errors?.passcheck?.message
@@ -88,6 +144,34 @@ const RegistrationContainer = ({ className }) => {
 		<div className={className}>
 			<H2>Регистрация</H2>
 			<form onSubmit={handleSubmit(onSubmit)}>
+				<Input
+					type="text"
+					placeholder="Имя..."
+					{...register('firstName', {
+						onChange: () => setServerError(null),
+					})}
+				/>
+				<Input
+					type="text"
+					placeholder="Фамилия..."
+					{...register('lastName', {
+						onChange: () => setServerError(null),
+					})}
+				/>
+				<Input
+					type="email"
+					placeholder="Электронная почта..."
+					{...register('email', {
+						onChange: () => setServerError(null),
+					})}
+				/>
+				<Input
+					type="text"
+					placeholder="Фото..."
+					{...register('imageUrl', {
+						onChange: () => setServerError(null),
+					})}
+				/>
 				<Input
 					type="text"
 					placeholder="Логин..."

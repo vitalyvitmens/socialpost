@@ -4,9 +4,9 @@ module.exports = function (user) {
 		firstName: user.firstName,
 		lastName: user.lastName,
 		email: user.email,
+		imageUrl: user.imageUrl,
 		login: user.login,
 		roleId: user.role,
-		imageUrl: post.picturePath,
 		registeredAt: user.createdAt,
 	}
 }
