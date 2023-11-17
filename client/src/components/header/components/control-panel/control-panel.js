@@ -3,7 +3,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Icon } from '../../../../components'
 import styled from 'styled-components'
 import { ROLE } from '../../../../constants'
-import { selectUserRole, selectUserLogin } from '../../../../redux/selectors'
+import {
+	selectUserRole,
+	selectLastName,
+	selectFirstName,
+	selectImageUrl,
+} from '../../../../redux/selectors'
 import { logout } from '../../../../redux/actions'
 import { checkAccess } from '../../../../utils'
 
@@ -22,7 +27,10 @@ const ControlPanelContainer = ({ className }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const roleId = useSelector(selectUserRole)
-	const login = useSelector(selectUserLogin)
+	const lastName = useSelector(selectLastName)
+	const firstName = useSelector(selectFirstName)
+	const avatar = useSelector(selectImageUrl)
+  console.log(avatar)
 
 	const onLogout = () => {
 		dispatch(logout())
@@ -40,7 +48,10 @@ const ControlPanelContainer = ({ className }) => {
 					</Button>
 				) : (
 					<>
-						<UserName>{login}</UserName>
+						<UserName>
+							<img src={avatar} alt={avatar} />
+							{lastName} {firstName}
+						</UserName>
 						<Icon id="fa-sign-out" margin="0 0 0 10px" onClick={onLogout} />
 					</>
 				)}

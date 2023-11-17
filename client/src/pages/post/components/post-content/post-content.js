@@ -4,16 +4,22 @@ import { useNavigate } from 'react-router-dom'
 import Moment from 'react-moment'
 import { PROP_TYPE } from '../../../../constants'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { selectImageUrl } from '../../../../redux/selectors'
 
 const PostContentContainer = ({
 	className,
 	post: { id, title, imageUrl, content, publishedAt, views },
 }) => {
 	const navigate = useNavigate()
+	const avatar = useSelector(selectImageUrl)
+	console.log(imageUrl)
+	// console.log(avatar)
 
 	return (
 		<div className={className}>
 			<img src={imageUrl} alt={title} />
+			<img src={avatar} alt={avatar} />
 			<H2>{title}</H2>
 			<SpecialPanel
 				id={id}
