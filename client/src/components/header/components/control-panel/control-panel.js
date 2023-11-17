@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Button, Icon } from '../../../../components'
 import styled from 'styled-components'
 import { ROLE } from '../../../../constants'
-import { selectUserRole, selectUserLogin } from '../../../../selectors'
-import { logout } from '../../../../actions'
+import { selectUserRole, selectUserLogin } from '../../../../redux/selectors'
+import { logout } from '../../../../redux/actions'
 import { checkAccess } from '../../../../utils'
 
 const RightAligned = styled.div`

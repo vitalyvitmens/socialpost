@@ -1,4 +1,4 @@
-import { request } from '../utils/request'
+import { request } from '../../utils/request'
 import { addComment } from './add-comment'
 
 export const addCommentAsync = (postId, content) => (dispatch) => {

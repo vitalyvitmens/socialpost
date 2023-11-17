@@ -2,9 +2,13 @@ import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from '../../../../components'
-import { CLOSE_MODAL, openModal, removePostAsync } from '../../../../actions'
+import {
+	CLOSE_MODAL,
+	openModal,
+	removePostAsync,
+} from '../../../../redux/actions'
 import { checkAccess } from '../../../../utils'
-import { selectUserRole } from '../../../../selectors'
+import { selectUserRole } from '../../../../redux/selectors'
 import { ROLE } from '../../../../constants'
 import styled from 'styled-components'
 

@@ -5,8 +5,8 @@ import {
 	CLOSE_MODAL,
 	openModal,
 	removeCommentAsync,
-} from '../../../../../../actions'
-import { selectUserRole } from '../../../../../../selectors'
+} from '../../../../../../redux/actions'
+import { selectUserRole } from '../../../../../../redux/selectors'
 import { ROLE } from '../../../../../../constants'
 import Moment from 'react-moment'
 import styled from 'styled-components'
