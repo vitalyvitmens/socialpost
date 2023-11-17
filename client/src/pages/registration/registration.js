@@ -40,7 +40,7 @@ const regFormSchema = yup.object().shape({
 		)
 		.min(5, 'Неверно заполнен email. Минимум 5 символа')
 		.max(30, 'Неверно заполнен email. Максимум 30 символов'),
-	imageUrl: yup
+	avatar: yup
 		.string()
 		.required('Укажите ссылку на Ваше фото')
 		.matches(
@@ -48,7 +48,7 @@ const regFormSchema = yup.object().shape({
 			'Неверно заполненна ссылка на Ваше фото. Допусктимые форматы jpg, jpeg, png'
 		)
 		.min(3, 'Неверно заполненна ссылка на Ваше фото. Минимум 3 символа')
-		.max(100, 'Неверно заполненна ссылка на Ваше фото. Максимум 100 символов'),
+		.max(500, 'Неверно заполненна ссылка на Ваше фото. Максимум 500 символов'),
 	login: yup
 		.string()
 		.required('Заполните логин')
@@ -84,7 +84,7 @@ const RegistrationContainer = ({ className }) => {
 			firstName: '',
 			lastName: '',
 			email: '',
-			imageUrl: '',
+			avatar: '',
 			login: '',
 			password: '',
 			passcheck: '',
@@ -104,7 +104,7 @@ const RegistrationContainer = ({ className }) => {
 		firstName,
 		lastName,
 		email,
-		imageUrl,
+		avatar,
 		login,
 		password,
 	}) => {
@@ -112,7 +112,7 @@ const RegistrationContainer = ({ className }) => {
 			firstName,
 			lastName,
 			email,
-			imageUrl,
+			avatar,
 			login,
 			password,
 		}).then(({ error, user }) => {
@@ -130,7 +130,7 @@ const RegistrationContainer = ({ className }) => {
 		errors?.firstName?.message ||
 		errors?.lastName?.message ||
 		errors?.email?.message ||
-		errors?.imageUrl?.message ||
+		errors?.avatar?.message ||
 		errors?.login?.message ||
 		errors?.password?.message ||
 		errors?.passcheck?.message
@@ -168,7 +168,7 @@ const RegistrationContainer = ({ className }) => {
 				<Input
 					type="text"
 					placeholder="Фото..."
-					{...register('imageUrl', {
+					{...register('avatar', {
 						onChange: () => setServerError(null),
 					})}
 				/>

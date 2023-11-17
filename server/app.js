@@ -57,7 +57,7 @@ app.post('/register', async (req, res) => {
 			req.body.firstName,
 			req.body.lastName,
 			req.body.email,
-			req.body.imageUrl,
+			req.body.avatar,
 			req.body.login,
 			req.body.password
 		)

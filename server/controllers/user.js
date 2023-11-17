@@ -9,7 +9,7 @@ async function register(
 	firstName,
 	lastName,
 	email,
-	imageUrl,
+	avatar,
 	login,
 	password,
 ) {
@@ -23,7 +23,7 @@ async function register(
 		firstName,
 		lastName,
 		email,
-    imageUrl,
+    avatar,
 		login,
 		password: passwordHash,
 	})

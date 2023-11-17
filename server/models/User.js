@@ -16,11 +16,16 @@ const UserSchema = mongoose.Schema(
 			required: true,
 			unique: true,
 		},
-    imageUrl: {
-      type: String,
-      required: true,
-      default: '',
-    },
+		avatar: {
+			type: String,
+			required: true,
+			default:
+				'https://github.com/vitalyvitmens/SQLite/blob/main/logo/avatar/avatar.JPG?raw=true',
+			// validate: {
+			// 	validator: validator.isURL,
+			// 	message: 'Image should be a valid url',
+			// },
+		},
 		login: {
 			type: String,
 			required: true,

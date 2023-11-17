@@ -7,7 +7,7 @@ import {
 	selectUserRole,
 	selectLastName,
 	selectFirstName,
-	selectImageUrl,
+	selectUserAvatar,
 } from '../../../../redux/selectors'
 import { logout } from '../../../../redux/actions'
 import { checkAccess } from '../../../../utils'
@@ -29,8 +29,8 @@ const ControlPanelContainer = ({ className }) => {
 	const roleId = useSelector(selectUserRole)
 	const lastName = useSelector(selectLastName)
 	const firstName = useSelector(selectFirstName)
-	const avatar = useSelector(selectImageUrl)
-  console.log(avatar)
+	const avatar = useSelector(selectUserAvatar)
+	console.log(avatar)
 
 	const onLogout = () => {
 		dispatch(logout())
