@@ -73,12 +73,12 @@ const MainContainer = ({ className }) => {
 export const Main = styled(MainContainer)`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 
 	& .post-list {
-		display: flex;
+    display: flex;
+    justify-content: end;
 		flex-wrap: wrap;
-		padding: 20px 20px 80px;
+		padding: 20px 40px 80px;
 	}
 
 	& .no-posts-found {
