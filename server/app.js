@@ -25,11 +25,28 @@ const ROLES = require('./constants/roles')
 const mapPost = require('./helpers/mapPost')
 const { addComment, deleteComment } = require('./controllers/comment')
 const mapComment = require('./helpers/mapComment')
+const multer = require('multer')
+const path = require('path')
+const { fileURLToPath } = require('url')
+
+// const __filename = fileURLToPath(require('meta.url'))
+// const __dirname = path.dirname(__filename)
 
 const PORT = process.env.PORT || 4001
 const app = express()
 
-app.use(express.static('../frontend/build'))
+app.use(express.static('../client/build'))
+app.use('/assets', express.static(path.join(__dirname, 'public/assets')))
+
+const storage = multer.diskStorage({
+	destination: function (req, file, cb) {
+		cb(null, 'public/assets')
+	},
+	filename: function (req, file, cb) {
+		cb(null, file.originalname)
+	},
+})
+const upload = multer({ storage })
 
 app.use(cookieParser())
 app.use(express.json())
