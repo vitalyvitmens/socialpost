@@ -7,10 +7,10 @@ import {
 	selectUserRole,
 	selectLastName,
 	selectFirstName,
-	selectUserAvatar,
 } from '../../../../redux/selectors'
 import { logout } from '../../../../redux/actions'
 import { checkAccess } from '../../../../utils'
+import { Avatar } from '../avatar/avatar'
 
 const RightAligned = styled.div`
 	display: flex;
@@ -29,8 +29,6 @@ const ControlPanelContainer = ({ className }) => {
 	const roleId = useSelector(selectUserRole)
 	const lastName = useSelector(selectLastName)
 	const firstName = useSelector(selectFirstName)
-	const avatar = useSelector(selectUserAvatar)
-	console.log(avatar)
 
 	const onLogout = () => {
 		dispatch(logout())
@@ -48,8 +46,8 @@ const ControlPanelContainer = ({ className }) => {
 					</Button>
 				) : (
 					<>
+						<Avatar />
 						<UserName>
-							<img src={avatar} alt={avatar} />
 							{lastName} {firstName}
 						</UserName>
 						<Icon id="fa-sign-out" margin="0 0 0 10px" onClick={onLogout} />
