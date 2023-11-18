@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux'
 import { Error } from '../error/error'
 import { selectUserRole } from '../../redux/selectors'
 import { checkAccess } from '../../utils'
-import { ERROR, PROP_TYPE } from '../../constants'
+import { ERROR, PROP_TYPE, ROLE } from '../../constants'
 
 export const PrivateContent = ({ children, access, serverError = null }) => {
 	const userRole = useSelector(selectUserRole)
+  // const isGuest = userRole === ROLE.GUEST
 
 	const accessError = checkAccess(access, userRole) ? null : ERROR.ACCESS_DENIED
 	const error = serverError || accessError

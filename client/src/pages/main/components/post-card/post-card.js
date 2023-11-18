@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Icon } from '../../../../components'
+import { Avatar, Icon } from '../../../../components'
 import Moment from 'react-moment'
 import styled from 'styled-components'
 
@@ -12,13 +12,46 @@ const PostCardContainer = ({
 	publishedAt,
 	commentsCount,
 	views,
+	author,
+	users,
 }) => {
+	console.log('author:', author)
+	console.log('users:', users)
+	// console.log(title)
+	// console.log(imageUrl)
+	// console.log(publishedAt)
+	// console.log(commentsCount)
+	// console.log(views)
+	// console.log(avatar)
+
+	function showAvatar(array, id) {
+		array.map((item) => {
+			if (item.id == id) {
+				return item.avatar
+			}
+		})
+	}
+
+	!users.length && (
+		<div className="no-posts-found">
+			<Icon
+				inactive={true}
+				id="fa fa-refresh fa-spin fa-3x fa-fw"
+				margin="0 7px 0 0"
+				size="24px"
+				aria-hidden="true"
+			/>
+			<span>Loading...</span>
+		</div>
+	)
+
 	return (
 		<div className={className}>
 			<Link to={`/post/${id}`}>
 				<img src={imageUrl} alt={title} />
 				<div className="post-card-footer">
 					<h4> {title}</h4>
+					<Avatar>{showAvatar(users, author)}</Avatar>
 					<div className="post-card-info">
 						<div className="published-at">
 							<Icon
@@ -116,6 +149,12 @@ export const PostCard = styled(PostCardContainer)`
 
 	& .comments-count {
 		display: flex;
+	}
+
+	& .no-posts-found {
+		font-size: 24px;
+		margin-top: 40px;
+		text-align: center;
 	}
 `
 

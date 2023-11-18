@@ -8,6 +8,7 @@ import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {
 	const [posts, setPosts] = useState([])
+	const [users, setUsers] = useState([])
 	const [page, setPage] = useState(1)
 	const [lastPage, setLastPage] = useState(1)
 	const [searchPhrase, setSearchPhrase] = useState('')
@@ -20,8 +21,11 @@ const MainContainer = ({ className }) => {
 			setPosts(posts)
 			setLastPage(lastPage)
 		})
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [page, shouldSearch])
+
+		request('/users').then((user) => {
+			setUsers(user.data)
+		})
+	}, [page, searchPhrase, shouldSearch])
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), [])
 
@@ -30,6 +34,9 @@ const MainContainer = ({ className }) => {
 		startDelayedSearch(!shouldSearch)
 	}
 
+	// console.log('posts:', posts)
+	// console.log('users:', users)
+
 	return (
 		<div className={className}>
 			<div className="posts-and-search">
@@ -37,7 +44,15 @@ const MainContainer = ({ className }) => {
 				{posts.length > 0 ? (
 					<div className="post-list">
 						{posts.map(
-							({ id, title, imageUrl, publishedAt, comments, views }) => (
+							({
+								id,
+								title,
+								imageUrl,
+								publishedAt,
+								comments,
+								views,
+								author,
+							}) => (
 								<PostCard
 									key={id}
 									id={id}
@@ -46,6 +61,8 @@ const MainContainer = ({ className }) => {
 									publishedAt={publishedAt}
 									commentsCount={comments.length}
 									views={views}
+                  author={author}
+									users={users}
 								/>
 							)
 						)}
@@ -75,8 +92,8 @@ export const Main = styled(MainContainer)`
 	flex-direction: column;
 
 	& .post-list {
-    display: flex;
-    justify-content: end;
+		display: flex;
+		justify-content: end;
 		flex-wrap: wrap;
 		padding: 20px 40px 80px;
 	}

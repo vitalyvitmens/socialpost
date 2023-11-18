@@ -11,7 +11,7 @@ module.exports = function (post) {
 			mongoose.isObjectIdOrHexString(comment) ? comment : mapComment(comment)
 		),
 		views: post.views,
-    author: post?.author?.login,
+    author: post.author,
 		publishedAt: post.createdAt,
 	}
 }
