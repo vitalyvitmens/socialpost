@@ -115,7 +115,7 @@ app.post('/posts/:id/comments', async (req, res) => {
 
 app.delete(
 	'/posts/:postId/comments/:commentId',
-	hasRole([ROLES.ADMIN, ROLES.MODERATOR]),
+	hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]),
 	async (req, res) => {
 		await deleteComment(req.params.postId, req.params.commentId)
 
@@ -123,27 +123,33 @@ app.delete(
 	}
 )
 
-app.post('/posts', hasRole([ROLES.ADMIN]), async (req, res) => {
-	const newPost = await addPost({
-		title: req.body.title,
-		content: req.body.content,
-		image: req.body.imageUrl,
-	})
+app.post(
+	'/posts',
+	hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]),
+	async (req, res) => {
+		const newPost = await addPost(req.params.id, {
+			title: req.body.title,
+			content: req.body.content,
+			image: req.body.imageUrl,
+      author: req.user.id,
+		})
 
-	res.send({ data: mapPost(newPost) })
-})
+		res.send({ data: mapPost(newPost) })
+	}
+)
 
-app.patch('/posts/:id', hasRole([ROLES.ADMIN]), async (req, res) => {
+app.patch('/posts/:id', hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]), async (req, res) => {
 	const updatedPost = await editPost(req.params.id, {
 		title: req.body.title,
 		content: req.body.content,
 		image: req.body.imageUrl,
+    author: req.user.id,
 	})
 
 	res.send({ data: mapPost(updatedPost) })
 })
 
-app.delete('/posts/:id', hasRole([ROLES.ADMIN]), async (req, res) => {
+app.delete('/posts/:id', hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]), async (req, res) => {
 	await deletePost(req.params.id)
 
 	res.send({ error: null })

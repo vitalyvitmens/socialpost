@@ -37,6 +37,8 @@ const SpecialPanelContainer = ({
 	}
 
 	const isAdmin = checkAccess([ROLE.ADMIN], userRole)
+	const isModerator = checkAccess([ROLE.MODERATOR], userRole)
+	const isUser = checkAccess([ROLE.USER], userRole)
 
 	return (
 		<div className={className}>
@@ -61,7 +63,7 @@ const SpecialPanelContainer = ({
 				</div>
 			</div>
 
-			{isAdmin && (
+			{(isAdmin || isModerator || isUser) && (
 				<div className="buttons">
 					{editButton}
 					{publishedAt && (

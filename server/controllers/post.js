@@ -1,8 +1,10 @@
 const Post = require('../models/Post')
 
 // add
-async function addPost(post) {
+async function addPost(postId, post) {
 	const newPost = await Post.create(post)
+
+  await Post.findByIdAndUpdate(postId)
 
 	await newPost.populate({
 		path: 'comments',

@@ -5,8 +5,6 @@ import { updateUserAsync } from '../../redux/actions'
 import { Avatar, Icon } from '../../components'
 import styled from 'styled-components'
 
-// import { toast } from 'react-toastify'
-
 const CardProfile = styled.div`
 	display: flex;
 	flex-direction: column;
@@ -52,7 +50,6 @@ const ProfilePageContainer = () => {
 	const [editUserData, setEditUserData] = useState(false)
 
 	const onSave = () => {
-		console.log('onClick={onSave}')
 		dispatch(
 			updateUserAsync(user.id, {
 				firstName: firstNameValue,
@@ -71,8 +68,6 @@ const ProfilePageContainer = () => {
 			setLoginValue('')
 			setEditUserData(!editUserData)
 		})
-
-		// toast(`Вы обновили свои данные`)
 	}
 
 	const formError =
@@ -90,8 +85,8 @@ const ProfilePageContainer = () => {
 					onClick={() => setEditUserData(!editUserData)}
 				/>
 			</FlexJustifyEnd>
-			<Icon id="fa fa-smile-o text-[300px] text-center" />
-			<div className="text-center text-2xl pt-2">
+			<Avatar>{user.avatar}</Avatar>
+			<div className="text-center">
 				{user.lastName} {user.firstName}
 			</div>
 			<div className="text-center text-lg pb-5 text-green-900">
@@ -228,4 +223,13 @@ export const ProfilePage = styled(ProfilePageContainer)`
 	& button {
 		padding: 0 30px;
 	}
+
+	& .text-center {
+		display: flex;
+		padding-top: 8px;
+		color: rgb(194 65 12);
+		font-size: 42px;
+	}
+	// text-center
+	// text-2xl
 `
