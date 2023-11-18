@@ -4,16 +4,19 @@ import { useNavigate } from 'react-router-dom'
 import Moment from 'react-moment'
 import { PROP_TYPE } from '../../../../constants'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { selectUserAvatar } from '../../../../redux/selectors'
 
 const PostContentContainer = ({
 	className,
 	post: { id, title, imageUrl, content, publishedAt, views },
 }) => {
 	const navigate = useNavigate()
+	const authUserAvatar = useSelector(selectUserAvatar)
 
 	return (
 		<>
-			<Avatar />
+			<Avatar>{authUserAvatar}</Avatar>
 			<div className={className}>
 				<img src={imageUrl} alt={title} />
 				<H2>{title}</H2>

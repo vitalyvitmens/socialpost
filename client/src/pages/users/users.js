@@ -48,21 +48,37 @@ const UsersContainer = ({ className }) => {
 				<H2>Пользователи</H2>
 				<div>
 					<TableRow>
+						<div className="last-name-column">Фамилия</div>
+						<div className="first-name-column">Имя</div>
+						<div className="avatar-column">Аватар</div>
 						<div className="login-column">Логин</div>
 						<div className="registered-at-column">Дата регистрации</div>
 						<div className="role-column">Роль</div>
 					</TableRow>
-					{users.map(({ id, login, registeredAt, roleId }) => (
-						<UserRow
-							key={id}
-							id={id}
-							login={login}
-							registeredAt={registeredAt}
-							roleId={roleId}
-							roles={roles.filter(({ id: roleId }) => roleId !== ROLE.GUEST)}
-							onUserRemove={() => onUserRemove(id)}
-						/>
-					))}
+					{users.map(
+						({
+							id,
+							lastName,
+							firstName,
+							avatar,
+							login,
+							registeredAt,
+							roleId,
+						}) => (
+							<UserRow
+								key={id}
+								id={id}
+								lastName={lastName}
+								firstName={firstName}
+								avatar={avatar}
+								login={login}
+								registeredAt={registeredAt}
+								roleId={roleId}
+								roles={roles.filter(({ id: roleId }) => roleId !== ROLE.GUEST)}
+								onUserRemove={() => onUserRemove(id)}
+							/>
+						)
+					)}
 				</div>
 			</div>
 		</PrivateContent>

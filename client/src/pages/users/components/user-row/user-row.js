@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { Icon } from '../../../../components'
+import { Avatar, Icon } from '../../../../components'
 import { TableRow } from '../table-row/table-row'
 import { PROP_TYPE } from '../../../../constants'
 import { request } from '../../../../utils/request'
@@ -10,6 +10,9 @@ import styled from 'styled-components'
 const UserRowContainer = ({
 	className,
 	id,
+	lastName,
+	firstName,
+	avatar,
 	login,
 	registeredAt,
 	roleId: userRoleId,
@@ -34,6 +37,11 @@ const UserRowContainer = ({
 	return (
 		<div className={className}>
 			<TableRow border={true}>
+				<div className="last-name-column">{lastName}</div>
+				<div className="first-name-column">{firstName}</div>
+				<div className="avatar-column">
+					<Avatar>{avatar}</Avatar>
+				</div>
 				<div className="login-column">{login}</div>
 				<div className="registered-at-column">
 					{<Moment date={registeredAt} format="DD-MM-YYYYг HH:mm" />}
@@ -54,7 +62,7 @@ const UserRowContainer = ({
 					/>
 				</div>
 			</TableRow>
-			<Icon id="fa-trash-o" margin="0 0 0 10px" onClick={onUserRemove} />
+			<Icon id="fa-trash-o" margin="25px 0 0 10px" onClick={onUserRemove} />
 		</div>
 	)
 }

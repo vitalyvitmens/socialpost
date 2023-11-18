@@ -15,12 +15,24 @@ export const TableRow = styled(TableRowContainer)`
 		display: flex;
 	}
 
+	& .last-name-column {
+		width: 120px;
+	}
+
+	& .first-name-column {
+		width: 120px;
+	}
+
+	& .avatar-column {
+		width: 120px;
+	}
+
 	& .login-column {
-		width: 172px;
+		width: 120px;
 	}
 
 	& .registered-at-column {
-		width: 213px;
+		width: 180px;
 	}
 
 	& .role-column {
