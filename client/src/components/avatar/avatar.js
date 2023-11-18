@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
-const AvatarContainer = ({ className, children }) => (
-	<img className={className} src={children} alt={children} />
+const AvatarContainer = ({ className, children, ...props }) => (
+	<img className={className} {...props} src={children} alt={children} />
 )
 
 export const Avatar = styled(AvatarContainer)`

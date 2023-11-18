@@ -161,6 +161,26 @@ app.get('/users/roles', hasRole([ROLES.ADMIN]), async (req, res) => {
 	res.send({ data: roles })
 })
 
+app.put(
+	'/users/:id',
+	hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]),
+	async (req, res) => {
+		try {
+			const newUser = await updateUser(req.params.id, {
+				firstName: req.body.firstName,
+				lastName: req.body.lastName,
+				email: req.body.email,
+				avatar: req.body.avatar,
+				login: req.body.login,
+			})
+
+			res.send({ data: mapUser(newUser) })
+		} catch (error) {
+			console.error('Something went wrong!', error)
+		}
+	}
+)
+
 app.patch('/users/:id', hasRole([ROLES.ADMIN]), async (req, res) => {
 	const newUser = await updateUser(req.params.id, {
 		role: req.body.roleId,

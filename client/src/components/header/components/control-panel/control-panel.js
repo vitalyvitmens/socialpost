@@ -17,6 +17,11 @@ const RightAligned = styled.div`
 	justify-content: flex-end;
 	align-items: start;
 `
+const LeftAligned = styled.div`
+	display: flex;
+	justify-content: flex-start;
+	align-items: start;
+`
 
 const UserName = styled.div`
 	font-size: 18px;
@@ -47,9 +52,12 @@ const ControlPanelContainer = ({ className }) => {
 					</Button>
 				) : (
 					<>
-						<Avatar>{authUserAvatar}</Avatar>
+						<Avatar onClick={() => navigate('/profile')}>
+							{authUserAvatar}
+						</Avatar>
 						<UserName>
-							{lastName} {firstName}
+							<LeftAligned>{lastName}</LeftAligned>
+							<LeftAligned>{firstName}</LeftAligned>
 						</UserName>
 						<Icon id="fa-sign-out" margin="0 0 0 10px" onClick={onLogout} />
 					</>
