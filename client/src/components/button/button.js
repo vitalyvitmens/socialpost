@@ -20,6 +20,7 @@ export const Button = styled(ButtonContainer)`
 	border-radius: 7px;
 	box-shadow: -3px 5px 5px #333;
 	background-color: bisque;
+  margin-bottom: 50px;
 
 	&:hover {
 		opacity: 0.8;

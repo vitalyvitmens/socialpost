@@ -19,7 +19,9 @@ const AvatarContainer = ({ className }) => {
 
 export const Avatar = styled(AvatarContainer)`
 	display: flex;
-	width: 100px;
+	width: 80px;
+	height: 80px;
+  object-fit: cover;
 	border-radius: 50%;
 	margin-right: 10px;
 
