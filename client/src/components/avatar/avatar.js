@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { useSelector } from 'react-redux'
-import { selectUserAvatar } from '../../../../redux/selectors'
+import { selectUserAvatar } from '../../redux/selectors'
 import { useNavigate } from 'react-router-dom'
 
 const AvatarContainer = ({ className }) => {
@@ -21,7 +21,7 @@ export const Avatar = styled(AvatarContainer)`
 	display: flex;
 	width: 100px;
 	border-radius: 50%;
-  margin-right: 10px;
+	margin-right: 10px;
 
 	&:hover {
 		opacity: 0.8;

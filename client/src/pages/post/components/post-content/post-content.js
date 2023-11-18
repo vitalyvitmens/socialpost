@@ -1,7 +1,6 @@
-import { H2, Icon } from '../../../../components'
+import { H2, Icon, Avatar } from '../../../../components'
 import { SpecialPanel } from '../special-panel/special-panel'
 import { useNavigate } from 'react-router-dom'
-import { Avatar } from '../../../../components/header/components'
 import Moment from 'react-moment'
 import { PROP_TYPE } from '../../../../constants'
 import styled from 'styled-components'

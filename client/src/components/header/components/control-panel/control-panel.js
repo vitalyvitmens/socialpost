@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Icon } from '../../../../components'
+import { Button, Icon, Avatar } from '../../../../components'
 import styled from 'styled-components'
 import { ROLE } from '../../../../constants'
 import {
@@ -10,7 +10,6 @@ import {
 } from '../../../../redux/selectors'
 import { logout } from '../../../../redux/actions'
 import { checkAccess } from '../../../../utils'
-import { Avatar } from '../avatar/avatar'
 
 const RightAligned = styled.div`
 	display: flex;
