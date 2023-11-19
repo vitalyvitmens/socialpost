@@ -4,9 +4,6 @@ import { Avatar, Icon } from '../../../../components'
 import Moment from 'react-moment'
 import styled from 'styled-components'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { loadPostAsync, loadUserAsync } from '../../../../redux/actions'
-import { selectUser } from '../../../../redux/selectors'
 import { request } from '../../../../utils'
 
 const Row = styled.div`
@@ -43,18 +40,18 @@ const PostCardContainer = ({
 		})
 	}, [])
 
-	// !users.length && (
-	// 	<div className="no-posts-found">
-	// 		<Icon
-	// 			inactive={true}
-	// 			id="fa fa-refresh fa-spin fa-3x fa-fw"
-	// 			margin="0 7px 0 0"
-	// 			size="24px"
-	// 			aria-hidden="true"
-	// 		/>
-	// 		<span>Loading...</span>
-	// 	</div>
-	// )
+	!users.length && (
+		<div className="no-posts-found">
+			<Icon
+				inactive={true}
+				id="fa fa-refresh fa-spin fa-3x fa-fw"
+				margin="0 7px 0 0"
+				size="24px"
+				aria-hidden="true"
+			/>
+			<span>Loading...</span>
+		</div>
+	)
 
 	return (
 		<div className={className}>
