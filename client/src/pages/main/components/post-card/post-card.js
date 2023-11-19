@@ -173,7 +173,7 @@ export const PostCard = styled(PostCardContainer)`
 	& h4 {
 		padding: 20px 0;
 		margin: 0;
-		color: gray;
+		color: #4C2F26;
 		font-size: 1.25rem;
 
 		&:hover {
