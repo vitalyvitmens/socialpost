@@ -85,7 +85,7 @@ const UserProfileSectionContainer = ({ className }) => {
 						<Row>
 							{user.lastName} {user.firstName}
 						</Row>
-						<TextLight>{2} друзей</TextLight>
+						<TextLight>{3} друзей</TextLight>
 					</Column>
 					<Down>
 						<Icon id="fa-cog fa-x" onClick={() => navigate('/profile')} />

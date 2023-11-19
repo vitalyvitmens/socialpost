@@ -162,7 +162,7 @@ app.delete('/posts/:id', hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]), as
 	res.send({ error: null })
 })
 
-app.get('/users', hasRole([ROLES.ADMIN]), async (req, res) => {
+app.get('/users', async (req, res) => {
 	const users = await getUsers()
 
 	res.send({ data: users.map(mapUser) })
