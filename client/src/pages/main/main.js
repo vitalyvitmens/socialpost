@@ -3,7 +3,7 @@ import { Pagination, PostCard, Search } from './components'
 import { PAGINATION_LIMIT } from '../../constants'
 import { debounce } from './utils'
 import { request } from '../../utils'
-import { Icon, UserProfileSection } from '../../components'
+import { FriendsSection, Icon, UserProfileSection } from '../../components'
 import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {
@@ -41,7 +41,10 @@ const MainContainer = ({ className }) => {
 		<div className={className}>
 			<Search searchPhrase={searchPhrase} onChange={onSearch} />
 			<div className="posts-and-user-profile-section">
-				<UserProfileSection />
+				<div>
+					<UserProfileSection />
+					<FriendsSection />
+				</div>
 				{posts.length > 0 ? (
 					<div className="post-list">
 						{posts.map(
@@ -94,15 +97,15 @@ export const Main = styled(MainContainer)`
 
 	& .posts-and-user-profile-section {
 		display: flex;
-    justify-content: space-around;
-    padding: 20px;
+		justify-content: space-around;
+		padding: 20px;
 	}
 
 	& .post-list {
 		display: flex;
 		justify-content: end;
 		flex-wrap: wrap;
-    padding-bottom: 80px;
+		padding-bottom: 80px;
 	}
 
 	& .no-posts-found {

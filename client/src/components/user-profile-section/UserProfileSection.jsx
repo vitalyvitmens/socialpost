@@ -45,7 +45,6 @@ const Column = styled.div`
 
 const FlexJustifyEnd = styled.div`
 	display: flex;
-	// justify-content: space-around;
 `
 
 const Down = styled.div`
@@ -56,12 +55,20 @@ const TextLight = styled.div`
 	display: flex;
 	padding-left: 20px;
 	color: gray;
-  align-items: center;
+	align-items: center;
 `
 
 const Divider = styled.div`
 	margin: 20px;
 	border-top: 3px solid gray;
+`
+
+const TextDark = styled.div`
+	display: flex;
+	color: black;
+	font-size: 1.5rem;
+	font-weight: bold;
+	padding-bottom: 40px;
 `
 
 const UserProfileSectionContainer = ({ className }) => {
@@ -71,6 +78,7 @@ const UserProfileSectionContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<CardProfile>
+				<TextDark>Мой профиль</TextDark>
 				<FlexJustifyEnd>
 					<Avatar>{user.avatar}</Avatar>
 					<Column>

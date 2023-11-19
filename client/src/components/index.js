@@ -10,4 +10,4 @@ export * from './modal/modal'
 export * from './error/error'
 export * from './avatar/avatar'
 export * from './user-profile-section/UserProfileSection'
-
+export * from './friends-section/FriendsSection'

@@ -150,7 +150,7 @@ export const PostCard = styled(PostCardContainer)`
 	}
 
 	& img {
-		border-radius: 10px 10px 0 0;
+		border-radius: 10px;
 		display: block;
 		width: 100%;
 	}
@@ -176,13 +176,12 @@ export const PostCard = styled(PostCardContainer)`
 
 	& .post-card-footer {
 		padding: 5px;
-		border-top: 1px solid #000;
 	}
 
 	& h4 {
 		padding: 20px 0;
 		margin: 0;
-		color: #004d99;
+		color: gray;
     font-size: 1.25rem;
 
 		&:hover {

@@ -103,11 +103,11 @@ app.get('/posts/:id', async (req, res) => {
 	res.send({ data: mapPost(post) })
 })
 
-app.get('/users/:id', async (req, res) => {
-	const user = await getUser(req.params.id)
+// app.get('/users/:id', async (req, res) => {
+// 	const user = await getUser(req.params.id)
 
-	res.send({ data: mapUser(user) })
-})
+// 	res.send({ data: mapUser(user) })
+// })
 
 app.use(authenticated)
 
