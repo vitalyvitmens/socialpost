@@ -3,7 +3,7 @@ import { selectUser } from '../../redux/selectors'
 import { Icon } from '../icon/icon'
 import { Avatar } from '../avatar/avatar'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 const CardProfile = styled.div`
 	display: flex;
@@ -47,9 +47,21 @@ const FlexJustifyEnd = styled.div`
 	display: flex;
 	// justify-content: space-around;
 `
+
 const Down = styled.div`
 	display: flex;
 	align-items: end;
+`
+const TextLight = styled.div`
+	display: flex;
+	padding-left: 20px;
+	color: gray;
+  align-items: center;
+`
+
+const Divider = styled.div`
+	margin: 20px;
+	border-top: 3px solid gray;
 `
 
 const UserProfileSectionContainer = ({ className }) => {
@@ -65,13 +77,13 @@ const UserProfileSectionContainer = ({ className }) => {
 						<Row>
 							{user.lastName} {user.firstName}
 						</Row>
-						<Row>{2} друзей</Row>
+						<TextLight>{2} друзей</TextLight>
 					</Column>
 					<Down>
 						<Icon id="fa-cog fa-x" onClick={() => navigate('/profile')} />
 					</Down>
 				</FlexJustifyEnd>
-				<div className="divider"></div>
+				<Divider />
 				<FlexJustifyEnd>
 					<Column>
 						<Row>
@@ -79,51 +91,69 @@ const UserProfileSectionContainer = ({ className }) => {
 								id="fa-map-marker fa-x"
 								// onClick={onSave}
 							/>
-							<div className='padding-left'>Беларусь</div>
+							<TextLight>Беларусь</TextLight>
 						</Row>
 						<Row>
 							<Icon
 								id="fa fa-briefcase fa-x"
 								// onClick={onSave}
 							/>
-							<div className='padding-left'>ReactJS Developer</div>
+							<TextLight>ReactJS Developer</TextLight>
 						</Row>
 					</Column>
 				</FlexJustifyEnd>
-				<div className="divider"></div>
+				<Divider />
 				<FlexJustifyEnd>
 					<Column>
 						<Row>
-							<div>Просмотры профиля {4394}</div>
+							<TextLight>Просмотры профиля</TextLight>
+							<div>
+								{`: `}
+								{4394}
+							</div>
 						</Row>
 						<Row>
-							<div>Показы поста {9394}</div>
+							<TextLight>Показы поста</TextLight>
+							<div>
+								{`: `}
+								{9927}
+							</div>
 						</Row>
 					</Column>
 				</FlexJustifyEnd>
-				<div className="divider"></div>
+				<Divider />
 				<FlexJustifyEnd>
 					<Column>
 						<Row>
-							<div>Просмотры профиля {4394}</div>
+							<Link to={'https://vk.com/id194055771'}>
+								<img
+									src={
+										'https://github.com/vitalyvitmens/SQLite/blob/main/logo/vk_logo.png?raw=true'
+									}
+									alt={'VK'}
+								/>
+							</Link>
+							<TextLight>ВКОНТАКТЕ</TextLight>
 						</Row>
 						<Row>
-							<div>Показы поста {9394}</div>
+							<Link to={'https://github.com/vitalyvitmens'}>
+								<img
+									src={
+										'https://github.com/vitalyvitmens/SQLite/blob/main/logo/GitHub_logo.png?raw=true'
+									}
+									alt={'GitHub'}
+								/>
+							</Link>
+							<TextLight>GitHub</TextLight>
 						</Row>
 					</Column>
 				</FlexJustifyEnd>
-				<div className="divider"></div>
 			</CardProfile>
 		</div>
 	)
 }
 export const UserProfileSection = styled(UserProfileSectionContainer)`
-	& .divider {
-		margin: 20px;
-		border-top: 3px solid gray;
+	& .padding-left {
+		padding-left: 30px;
 	}
-
-  & .padding-left {
-    padding-left: 30px;
-  }
 `
