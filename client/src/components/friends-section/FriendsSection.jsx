@@ -76,12 +76,25 @@ const FriendsSectionContainer = ({ className }) => {
 		})
 	}, [])
 
+  !users.length && (
+		<div className="no-posts-found">
+			<Icon
+				inactive={true}
+				id="fa fa-refresh fa-spin fa-3x fa-fw"
+				margin="0 7px 0 0"
+				size="24px"
+				aria-hidden="true"
+			/>
+			<span>Loading...</span>
+		</div>
+	)
+
 	return (
 		<div className={className}>
 			<CardProfile>
 				<TextDark>Мои друзья</TextDark>
 				{users.map((user) => (
-					<FlexJustifyEnd>
+					<FlexJustifyEnd key={user.id}>
 						<Avatar>{user.avatar}</Avatar>
 						<Column>
 							<Row>

@@ -75,6 +75,19 @@ const UserProfileSectionContainer = ({ className }) => {
 	const navigate = useNavigate()
 	const user = useSelector(selectUser)
 
+	!user && (
+		<div className="no-posts-found">
+			<Icon
+				inactive={true}
+				id="fa fa-refresh fa-spin fa-3x fa-fw"
+				margin="0 7px 0 0"
+				size="24px"
+				aria-hidden="true"
+			/>
+			<span>Loading...</span>
+		</div>
+	)
+
 	return (
 		<div className={className}>
 			<CardProfile>

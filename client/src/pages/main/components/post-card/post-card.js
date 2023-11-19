@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { Avatar, Icon } from '../../../../components'
 import Moment from 'react-moment'
 import styled from 'styled-components'
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { request } from '../../../../utils'
 
 const Row = styled.div`
@@ -56,7 +56,7 @@ const PostCardContainer = ({
 	return (
 		<div className={className}>
 			{users.map((user) => (
-				<>
+				<React.Fragment key={user.id}>
 					{user.id.includes(author) ? (
 						<Row>
 							<Avatar className="avatar">{user.avatar}</Avatar>
@@ -71,7 +71,7 @@ const PostCardContainer = ({
 							/>
 						</Row>
 					) : null}
-				</>
+				</React.Fragment>
 			))}
 
 			<Link to={`/post/${id}`}>

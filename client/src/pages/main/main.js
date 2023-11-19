@@ -34,8 +34,18 @@ const MainContainer = ({ className }) => {
 		startDelayedSearch(!shouldSearch)
 	}
 
-	// console.log('posts:', posts)
-	// console.log('users:', users)
+  !users.length && (
+		<div className="no-posts-found">
+			<Icon
+				inactive={true}
+				id="fa fa-refresh fa-spin fa-3x fa-fw"
+				margin="0 7px 0 0"
+				size="24px"
+				aria-hidden="true"
+			/>
+			<span>Loading...</span>
+		</div>
+	)
 
 	return (
 		<div className={className}>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { PrivateContent, H2 } from '../../components'
+import { PrivateContent, H2, Icon } from '../../components'
 import { UserRow, TableRow } from './components'
 import { selectUserRole } from '../../redux/selectors'
 import { checkAccess } from '../../utils'
@@ -41,6 +41,19 @@ const UsersContainer = ({ className }) => {
 			setShouldUpdateUserList(!shouldUpdateUserList)
 		})
 	}
+
+  !users.length && (
+		<div className="no-posts-found">
+			<Icon
+				inactive={true}
+				id="fa fa-refresh fa-spin fa-3x fa-fw"
+				margin="0 7px 0 0"
+				size="24px"
+				aria-hidden="true"
+			/>
+			<span>Loading...</span>
+		</div>
+	)
 
 	return (
 		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
