@@ -53,7 +53,7 @@ export const Footer = styled(FooterContainer)`
 	justify-content: space-between;
 	align-items: center;
 	bottom: 0;
-	width: 1000px;
+	width: 1250px;
 	height: 120px;
 	padding: 20px 40px;
 	font-weight: bold;

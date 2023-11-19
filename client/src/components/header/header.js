@@ -25,7 +25,7 @@ export const Header = styled(HeaderContainer)`
 	position: fixed;
 	top: 0;
 	text-align: center;
-	width: 1000px;
+	width: 1250px;
 	height: 120px;
 	font-size: 21px;
 	letter-spacing: 0.015em;

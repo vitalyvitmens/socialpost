@@ -10,6 +10,7 @@ const {
 	getRoles,
 	updateUser,
 	deleteUser,
+  getUser,
 } = require('./controllers/user')
 const {
 	getPost,
@@ -100,6 +101,12 @@ app.get('/posts/:id', async (req, res) => {
 	const post = await getPost(req.params.id)
 
 	res.send({ data: mapPost(post) })
+})
+
+app.get('/users/:id', async (req, res) => {
+	const user = await getUser(req.params.id)
+
+	res.send({ data: mapUser(user) })
 })
 
 app.use(authenticated)

@@ -64,6 +64,18 @@ function getRoles() {
 	]
 }
 
+// get item
+async function getUser(id) {
+	// const user = await User.findById(id).populate({
+	// 	path: 'comments',
+	// 	populate: 'author',
+	// })
+	const user = await User.findById(id)
+
+	return user
+}
+
+
 // delete
 
 function deleteUser(id) {
@@ -82,4 +94,5 @@ module.exports = {
 	getRoles,
 	deleteUser,
 	updateUser,
+  getUser,
 }

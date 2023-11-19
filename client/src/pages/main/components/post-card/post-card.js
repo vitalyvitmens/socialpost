@@ -3,6 +3,26 @@ import { Link } from 'react-router-dom'
 import { Avatar, Icon } from '../../../../components'
 import Moment from 'react-moment'
 import styled from 'styled-components'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { loadPostAsync, loadUserAsync } from '../../../../redux/actions'
+import { selectUser } from '../../../../redux/selectors'
+
+const Row = styled.div`
+	display: flex;
+	flex-direction: row;
+	font-size: 20px;
+	font-weight: 600;
+	align-items: center;
+`
+
+const Column = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: start;
+	justify-content: space-around;
+	padding: 15px 0px;
+`
 
 const PostCardContainer = ({
 	className,
@@ -15,76 +35,96 @@ const PostCardContainer = ({
 	author,
 	users,
 }) => {
+	const user = useSelector(selectUser)
+
 	console.log('author:', author)
 	console.log('users:', users)
-	// console.log(title)
-	// console.log(imageUrl)
-	// console.log(publishedAt)
-	// console.log(commentsCount)
-	// console.log(views)
-	// console.log(avatar)
+	const dispatch = useDispatch()
 
-	function showAvatar(array, id) {
-		array.map((item) => {
-			if (item.id == id) {
-				return item.avatar
-			}
-		})
-	}
+	// useEffect(() => {
+	// 	// if (isCreating) {
+	// 	// 	setIsLoading(false)
+	// 	// 	return
+	// 	// }
 
-	!users.length && (
-		<div className="no-posts-found">
-			<Icon
-				inactive={true}
-				id="fa fa-refresh fa-spin fa-3x fa-fw"
-				margin="0 7px 0 0"
-				size="24px"
-				aria-hidden="true"
-			/>
-			<span>Loading...</span>
-		</div>
-	)
+	// 	dispatch(loadUserAsync(author)).then((user) => {
+	// 		console.log(user.avatar)
+	// 		return user.avatar
+	// 	})
+	// }, [author, dispatch])
+
+	// !users.length && (
+	// 	<div className="no-posts-found">
+	// 		<Icon
+	// 			inactive={true}
+	// 			id="fa fa-refresh fa-spin fa-3x fa-fw"
+	// 			margin="0 7px 0 0"
+	// 			size="24px"
+	// 			aria-hidden="true"
+	// 		/>
+	// 		<span>Loading...</span>
+	// 	</div>
+	// )
 
 	return (
 		<div className={className}>
+			<Row>
+				{/* <Avatar>{author}</Avatar> */}
+				<Avatar className="avatar">{user.avatar}</Avatar>
+				<Column>
+					{user.lastName} {user.firstName}
+					<div>Беларусь</div>
+				</Column>
+				<Icon
+					className="icon"
+					id="fa-user-plus fa-x"
+					// onClick={onSave}
+				/>
+			</Row>
+
 			<Link to={`/post/${id}`}>
+				<h4>{title}</h4>
 				<img src={imageUrl} alt={title} />
-				<div className="post-card-footer">
-					<h4> {title}</h4>
-					<Avatar>{showAvatar(users, author)}</Avatar>
-					<div className="post-card-info">
-						<div className="published-at">
+			</Link>
+			<div className="post-card-footer">
+				<div className="post-card-info">
+					<div className="published-at">
+						<Icon
+							inactive={true}
+							id="fa-calendar-o"
+							margin="0 7px 0 0"
+							size="18px"
+						/>
+						<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />
+					</div>
+					<div className="views-comments-block">
+						<div className="views-count">
 							<Icon
 								inactive={true}
-								id="fa-calendar-o"
+								id="fa fa-eye"
 								margin="0 7px 0 0"
 								size="18px"
 							/>
-							<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />
+							{views}
 						</div>
-						<div className="views-comments-block">
-							<div className="views-count">
-								<Icon
-									inactive={true}
-									id="fa fa-eye"
-									margin="0 7px 0 0"
-									size="18px"
-								/>
-								{views}
-							</div>
-							<div className="comments-count">
-								<Icon
-									inactive={true}
-									id="fa-comment-o"
-									margin="0 7px 0 15px"
-									size="18px"
-								/>
-								{commentsCount}
-							</div>
+						<div className="comments-count">
+							<Icon
+								inactive={true}
+								id="fa-comment-o"
+								margin="0 7px 0 15px"
+								size="18px"
+							/>
+							{commentsCount}
 						</div>
+						<Icon
+							inactive={true}
+							id="fa fa-heart-o"
+							margin="0 7px 0 15px"
+							size="18px"
+						/>
 					</div>
 				</div>
-			</Link>
+			</div>
 		</div>
 	)
 }
@@ -92,8 +132,10 @@ const PostCardContainer = ({
 export const PostCard = styled(PostCardContainer)`
 	display: flex;
 	flex-direction: column;
-	width: 515px;
+	width: 710px;
+	height: 1200px;
 	margin: 20px;
+	padding: 20px;
 	border-radius: 10px;
 	border: 1px solid #000;
 	box-shadow: -5px 7px 10px #333;
@@ -114,14 +156,35 @@ export const PostCard = styled(PostCardContainer)`
 		width: 100%;
 	}
 
+	& .avatar {
+		display: flex;
+		width: 80px;
+		height: 80px;
+		object-fit: cover;
+		border-radius: 50%;
+		margin-right: 10px;
+		padding: 2px;
+
+		&:hover {
+			opacity: 0.8;
+			cursor: pointer;
+		}
+
+		&:active {
+			opacity: 0.6;
+		}
+	}
+
 	& .post-card-footer {
 		padding: 5px;
 		border-top: 1px solid #000;
 	}
 
 	& h4 {
+		padding: 20px 0;
 		margin: 0;
 		color: #004d99;
+    font-size: 1.25rem;
 
 		&:hover {
 			text-decoration: underline;
@@ -155,6 +218,14 @@ export const PostCard = styled(PostCardContainer)`
 		font-size: 24px;
 		margin-top: 40px;
 		text-align: center;
+	}
+
+	& .icon {
+		display: flex;
+		text-align: end;
+		justify-content: end;
+		align-items: end;
+		padding-left: 350px;
 	}
 `
 

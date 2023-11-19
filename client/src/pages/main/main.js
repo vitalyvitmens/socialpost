@@ -3,7 +3,7 @@ import { Pagination, PostCard, Search } from './components'
 import { PAGINATION_LIMIT } from '../../constants'
 import { debounce } from './utils'
 import { request } from '../../utils'
-import { Icon } from '../../components'
+import { Icon, UserProfileSection } from '../../components'
 import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {
@@ -39,8 +39,9 @@ const MainContainer = ({ className }) => {
 
 	return (
 		<div className={className}>
-			<div className="posts-and-search">
-				<Search searchPhrase={searchPhrase} onChange={onSearch} />
+			<Search searchPhrase={searchPhrase} onChange={onSearch} />
+			<div className="posts-and-user-profile-section">
+				<UserProfileSection />
 				{posts.length > 0 ? (
 					<div className="post-list">
 						{posts.map(
@@ -61,7 +62,7 @@ const MainContainer = ({ className }) => {
 									publishedAt={publishedAt}
 									commentsCount={comments.length}
 									views={views}
-                  author={author}
+									author={author}
 									users={users}
 								/>
 							)
@@ -91,11 +92,17 @@ export const Main = styled(MainContainer)`
 	display: flex;
 	flex-direction: column;
 
+	& .posts-and-user-profile-section {
+		display: flex;
+    justify-content: space-around;
+    padding: 20px;
+	}
+
 	& .post-list {
 		display: flex;
 		justify-content: end;
 		flex-wrap: wrap;
-		padding: 20px 40px 80px;
+    padding-bottom: 80px;
 	}
 
 	& .no-posts-found {
