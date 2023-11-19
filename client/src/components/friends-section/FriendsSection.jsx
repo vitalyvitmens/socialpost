@@ -1,5 +1,3 @@
-import { useSelector } from 'react-redux'
-import { selectUser, selectUserRole } from '../../redux/selectors'
 import { Icon } from '../icon/icon'
 import { Avatar } from '../avatar/avatar'
 import styled from 'styled-components'

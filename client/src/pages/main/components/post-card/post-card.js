@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 import { Avatar, Icon } from '../../../../components'
 import Moment from 'react-moment'
 import styled from 'styled-components'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { loadPostAsync, loadUserAsync } from '../../../../redux/actions'
 import { selectUser } from '../../../../redux/selectors'
+import { request } from '../../../../utils'
 
 const Row = styled.div`
 	display: flex;
@@ -33,25 +34,14 @@ const PostCardContainer = ({
 	commentsCount,
 	views,
 	author,
-	users,
 }) => {
-	const user = useSelector(selectUser)
+	const [users, setUsers] = useState([])
 
-	console.log('author:', author)
-	console.log('users:', users)
-	const dispatch = useDispatch()
-
-	// useEffect(() => {
-	// 	// if (isCreating) {
-	// 	// 	setIsLoading(false)
-	// 	// 	return
-	// 	// }
-
-	// 	dispatch(loadUserAsync(author)).then((user) => {
-	// 		console.log(user.avatar)
-	// 		return user.avatar
-	// 	})
-	// }, [author, dispatch])
+	useEffect(() => {
+		request('/users').then((usersRes) => {
+			setUsers(usersRes.data)
+		})
+	}, [])
 
 	// !users.length && (
 	// 	<div className="no-posts-found">
@@ -68,19 +58,24 @@ const PostCardContainer = ({
 
 	return (
 		<div className={className}>
-			<Row>
-				{/* <Avatar>{author}</Avatar> */}
-				<Avatar className="avatar">{user.avatar}</Avatar>
-				<Column>
-					{user.lastName} {user.firstName}
-					<div>Беларусь</div>
-				</Column>
-				<Icon
-					className="icon"
-					id="fa-user-plus fa-x"
-					// onClick={onSave}
-				/>
-			</Row>
+			{users.map((user) => (
+				<>
+					{user.id.includes(author) ? (
+						<Row>
+							<Avatar className="avatar">{user.avatar}</Avatar>
+							<Column>
+								{user.lastName} {user.firstName}
+								<div>Беларусь</div>
+							</Column>
+							<Icon
+								className="icon"
+								id="fa-user-plus fa-x"
+								// onClick={onSave}
+							/>
+						</Row>
+					) : null}
+				</>
+			))}
 
 			<Link to={`/post/${id}`}>
 				<h4>{title}</h4>
@@ -182,7 +177,7 @@ export const PostCard = styled(PostCardContainer)`
 		padding: 20px 0;
 		margin: 0;
 		color: gray;
-    font-size: 1.25rem;
+		font-size: 1.25rem;
 
 		&:hover {
 			text-decoration: underline;
