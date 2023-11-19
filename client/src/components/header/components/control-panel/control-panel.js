@@ -1,13 +1,12 @@
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Icon, Avatar } from '../../../../components'
+import { Button, Icon } from '../../../../components'
 import styled from 'styled-components'
 import { ROLE } from '../../../../constants'
 import {
 	selectUserRole,
 	selectLastName,
 	selectFirstName,
-	selectUserAvatar,
 } from '../../../../redux/selectors'
 import { logout } from '../../../../redux/actions'
 import { checkAccess } from '../../../../utils'
@@ -26,6 +25,20 @@ const LeftAligned = styled.div`
 const UserName = styled.div`
 	font-size: 18px;
 	font-weight: bold;
+  border: 1px solid gray;
+  border-radius: 10px;
+  padding: 3px 50px;
+  background-color: #ffd4c4;
+  margin-bottom: 40px;
+
+	&:hover {
+		opacity: 0.8;
+		cursor: pointer;
+	}
+
+	&:active {
+		opacity: 0.6;
+	}
 `
 
 const ControlPanelContainer = ({ className }) => {
@@ -34,7 +47,6 @@ const ControlPanelContainer = ({ className }) => {
 	const roleId = useSelector(selectUserRole)
 	const lastName = useSelector(selectLastName)
 	const firstName = useSelector(selectFirstName)
-	const authUserAvatar = useSelector(selectUserAvatar)
 
 	const onLogout = () => {
 		dispatch(logout())
@@ -52,14 +64,11 @@ const ControlPanelContainer = ({ className }) => {
 					</Button>
 				) : (
 					<>
-						<Avatar onClick={() => navigate('/profile')}>
-							{authUserAvatar}
-						</Avatar>
-						<UserName>
+						<UserName onClick={() => navigate('/profile')}>
 							<LeftAligned>{lastName}</LeftAligned>
 							<LeftAligned>{firstName}</LeftAligned>
 						</UserName>
-						<Icon id="fa-sign-out" margin="0 0 0 10px" onClick={onLogout} />
+						<Icon id="fa-sign-out fa-2x" margin="0 0 0 10px" onClick={onLogout} />
 					</>
 				)}
 			</RightAligned>
