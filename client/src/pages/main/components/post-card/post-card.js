@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import { Avatar, Icon } from '../../../../components'
 import { request } from '../../../../utils'
 import Moment from 'react-moment'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { selectUser } from '../../../../redux/selectors'
 
 const Row = styled.div`
 	display: flex;
@@ -34,6 +36,9 @@ const PostCardContainer = ({
 }) => {
 	const [users, setUsers] = useState([])
 	const navigate = useNavigate()
+	const authUser = useSelector(selectUser)
+	console.log(authUser.id)
+	console.log(author)
 
 	useEffect(() => {
 		request('/users').then((usersRes) => {
@@ -103,7 +108,9 @@ const PostCardContainer = ({
 							id="fa-pencil-square-o fa-2x"
 							margin="0 7px 0 0"
 							size="18px"
-							onClick={() => navigate(`/post/${id}`)}
+							inactive={authUser.id !== author}
+							disabled={authUser.id !== author}
+							onClick={() => authUser.id === author && navigate(`/post/${id}`)}
 						/>
 					</div>
 				</div>
