@@ -11,7 +11,7 @@ import styled from 'styled-components'
 
 const PostFormContainer = ({
 	className,
-	post: { id, imageUrl, title, content, publishedAt, views, author },
+	post: { id, imageUrl, title, content, publishedAt, views },
 }) => {
 	const [imageUrlValue, setImageUrlValue] = useState(imageUrl)
 	const [titleValue, setTitleValue] = useState(title)

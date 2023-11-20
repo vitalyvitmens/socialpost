@@ -26,7 +26,7 @@ const SpecialPanelContainer = ({
 	const onPostRemove = (id) => {
 		dispatch(
 			openModal({
-				text: 'Удалить статью?',
+				text: 'Удалить данный пост?',
 				onConfirm: () => {
 					dispatch(removePostAsync(id)).then(() => navigate('/main'))
 					dispatch(CLOSE_MODAL)

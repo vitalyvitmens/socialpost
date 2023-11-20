@@ -1,8 +1,10 @@
 import { useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { selectUser } from '../../../../redux/selectors'
+import { selectPost, selectUser } from '../../../../redux/selectors'
 import { Icon, Avatar, Button, Input } from '../../../../components'
+import { savePostAsync } from '../../../../redux/actions'
+import Moment from 'react-moment'
 import styled from 'styled-components'
 
 const CardProfile = styled.div`
@@ -60,9 +62,25 @@ const Divider = styled.div`
 
 const CreateUserPostSectionContainer = ({ className }) => {
 	const [titleValue, setTitleValue] = useState('')
+	const [imageUrlValue, setImageUrlValue] = useState('')
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const user = useSelector(selectUser)
+	const { id } = useSelector(selectPost)
 
+	const onSave = () => {
+		dispatch(
+			savePostAsync(id, {
+				imageUrl: imageUrlValue
+					? imageUrlValue
+					: 'https://github.com/vitalyvitmens/news-blog/blob/main/frontend/src/img/001.jpg?raw=true',
+				title: titleValue ? titleValue : 'Заполните название статьи!',
+				content: `Автор поста: ${user.lastName} ${user.firstName}`,
+			})
+		).then(({ id }) => navigate(`/post/${id}`))
+	}
+
+	const onImageChange = ({ target }) => setImageUrlValue(target.value)
 	const onTitleChange = ({ target }) => setTitleValue(target.value)
 	console.log(titleValue)
 
@@ -87,9 +105,19 @@ const CreateUserPostSectionContainer = ({ className }) => {
 							<Input
 								// value={imageUrlValue}
 								width="575px"
-								height="80px"
+								height="40px"
 								placeholder="Напишите о чём Вы думаете..."
 								onChange={onTitleChange}
+							/>
+						</Row>
+						<Row>
+							<Input
+								// value={imageUrlValue}
+								width="575px"
+								height="40px"
+								margin="-30px 0 10px 90px"
+								placeholder="Интернет ссылка на фото..."
+								onChange={onImageChange}
 							/>
 						</Row>
 					</Column>
@@ -106,7 +134,9 @@ const CreateUserPostSectionContainer = ({ className }) => {
 							<TextLight>файл</TextLight>
 							<Icon id="fa-file-audio-o" onClick={() => navigate('/profile')} />
 							<TextLight>аудио</TextLight>
-							<Button margin="0 0 0 0">Запостить</Button>
+							<Button margin="0 0 0 0" onClick={onSave}>
+								Запостить
+							</Button>
 						</Row>
 					</Column>
 				</FlexJustifyEnd>
