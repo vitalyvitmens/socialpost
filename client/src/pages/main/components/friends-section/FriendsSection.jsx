@@ -1,8 +1,10 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Icon, Avatar } from '../../../../components'
 import { request } from '../../../../utils'
 import styled from 'styled-components'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../../../redux/selectors'
 
 const CardProfile = styled.div`
 	display: flex;
@@ -70,48 +72,58 @@ const TextDark = styled.div`
 const FriendsSectionContainer = ({ className }) => {
 	const [users, setUsers] = useState([])
 	const navigate = useNavigate()
+	const authUser = useSelector(selectUser)
 
 	useEffect(() => {
 		request('/users').then((usersRes) => {
 			setUsers(usersRes.data)
 		})
-	}, [users])
+	}, [])
 
-	!users && (
-		<div className="no-posts-found">
-			<Icon
-				inactive={true}
-				id="fa fa-refresh fa-spin fa-3x fa-fw"
-				margin="0 7px 0 0"
-				size="24px"
-				aria-hidden="true"
-			/>
-			<span>Loading...</span>
-		</div>
-	)
+	!authUser ||
+		(!users && (
+			<div className="no-posts-found">
+				<Icon
+					inactive={true}
+					id="fa fa-refresh fa-spin fa-3x fa-fw"
+					margin="0 7px 0 0"
+					size="24px"
+					aria-hidden="true"
+				/>
+				<span>Loading...</span>
+			</div>
+		))
 
-	return !users ? (
+	return !authUser || !users ? (
 		navigate('/')
 	) : (
 		<div className={className}>
 			<CardProfile>
 				<TextDark>Мои друзья</TextDark>
 				{users.map((user) => (
-					<FlexJustifyEnd key={user.id}>
-						<Avatar>{user.avatar}</Avatar>
-						<Column>
-							<Row>
-								{user.lastName} {user.firstName}
-							</Row>
-							<TextLight>{user.email}</TextLight>
-						</Column>
-						<Down>
-							<Icon
-								id="fa fa-user-times fa-x"
-								onClick={() => console.log('Вы удалили друга')}
-							/>
-						</Down>
-					</FlexJustifyEnd>
+					<React.Fragment key={user.id}>
+						{user.id.includes(authUser.id) ? null : (
+							<FlexJustifyEnd>
+								<Avatar>{user.avatar}</Avatar>
+								<Column>
+									<Row>
+										{user.lastName} {user.firstName}
+									</Row>
+									<TextLight>{user.email}</TextLight>
+								</Column>
+								<Down>
+									<Icon
+										id="fa fa-user-times fa-x"
+										onClick={() =>
+											console.log(
+												`Вы удалили друга: ${user.lastName} ${user.firstName}`
+											)
+										}
+									/>
+								</Down>
+							</FlexJustifyEnd>
+						)}
+					</React.Fragment>
 				))}
 			</CardProfile>
 		</div>
