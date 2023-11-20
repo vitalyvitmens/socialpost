@@ -1,15 +1,15 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../../redux/selectors'
-import { Icon, Avatar, Button } from '../../../../components'
+import { Icon, Avatar, Button, Input } from '../../../../components'
 import styled from 'styled-components'
+import { useState } from 'react'
 
 const CardProfile = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 710px;
 	margin: 20px;
-	padding: 20px;
 	border-radius: 10px;
 	border: 1px solid #000;
 	box-shadow: -5px 7px 10px #333;
@@ -39,40 +39,32 @@ const Column = styled.div`
 	flex-direction: column;
 	align-items: start;
 	justify-content: space-around;
-	padding: 15px 0px;
+	padding: 20px 0px;
 `
 
 const FlexJustifyEnd = styled.div`
 	display: flex;
 `
 
-const Down = styled.div`
-	display: flex;
-	align-items: end;
-`
 const TextLight = styled.div`
 	display: flex;
-	padding: 0 50px 0 10px;
+	padding: 0 58px 0 10px;
 	color: gray;
 	align-items: center;
 `
 
 const Divider = styled.div`
-	margin: 20px;
+	margin: -10px 25px 0 20px;
 	border-top: 3px solid gray;
 `
 
-const TextDark = styled.div`
-	display: flex;
-	color: black;
-	font-size: 1.5rem;
-	font-weight: bold;
-	padding-bottom: 40px;
-`
-
 const UserPostSectionContainer = ({ className }) => {
+	const [titleValue, setTitleValue] = useState('')
 	const navigate = useNavigate()
 	const user = useSelector(selectUser)
+
+	const onTitleChange = ({ target }) => setTitleValue(target.value)
+	console.log(titleValue)
 
 	!user && (
 		<div className="no-posts-found">
@@ -94,8 +86,19 @@ const UserPostSectionContainer = ({ className }) => {
 					<Column>
 						<Row>
 							<Avatar>{user.avatar}</Avatar>
+							<Input
+								// value={imageUrlValue}
+								width="575px"
+								height="80px"
+								placeholder="Напишите о чём Вы думаете..."
+								onChange={onTitleChange}
+							/>
 						</Row>
-						<Divider />
+					</Column>
+				</FlexJustifyEnd>
+				<Divider />
+				<FlexJustifyEnd>
+					<Column>
 						<Row>
 							<Icon id="fa-picture-o" onClick={() => navigate('/profile')} />
 							<TextLight>фото</TextLight>
@@ -105,7 +108,7 @@ const UserPostSectionContainer = ({ className }) => {
 							<TextLight>файл</TextLight>
 							<Icon id="fa-file-audio-o" onClick={() => navigate('/profile')} />
 							<TextLight>аудио</TextLight>
-							<Button>Запостить</Button>
+							<Button margin="0 0 0 0">Запостить</Button>
 						</Row>
 					</Column>
 				</FlexJustifyEnd>

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const ButtonContainer = ({ children, className, width, ...props }) => {
+const ButtonContainer = ({ children, className, width, margin, ...props }) => {
 	return (
 		<button className={className} {...props}>
 			{children}
@@ -20,7 +20,7 @@ export const Button = styled(ButtonContainer)`
 	border-radius: 7px;
 	box-shadow: -3px 5px 5px #333;
 	background-color: bisque;
-  margin-bottom: 50px;
+  margin: ${({ margin = '0 0 50px 0' }) => margin};
 
 	&:hover {
 		opacity: 0.8;
