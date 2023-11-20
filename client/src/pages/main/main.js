@@ -5,6 +5,7 @@ import {
 	Pagination,
 	PostCard,
 	Search,
+	UserPostSection,
 	UserProfileSection,
 } from './components'
 import { PAGINATION_LIMIT } from '../../constants'
@@ -55,6 +56,7 @@ const MainContainer = ({ className }) => {
 				</div>
 				{posts.length > 0 ? (
 					<div className="post-list">
+						<UserPostSection />
 						{posts.map(
 							({
 								id,
