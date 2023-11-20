@@ -1,12 +1,23 @@
 import { useMemo, useEffect, useState } from 'react'
-import { FriendsSection, Pagination, PostCard, Search, UserProfileSection } from './components'
+import { useNavigate } from 'react-router-dom'
+import {
+	FriendsSection,
+	Pagination,
+	PostCard,
+	Search,
+	UserProfileSection,
+} from './components'
 import { PAGINATION_LIMIT } from '../../constants'
 import { debounce } from './utils'
 import { request } from '../../utils'
 import { Icon } from '../../components'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../redux/selectors'
 
 const MainContainer = ({ className }) => {
+	const navigate = useNavigate()
+	const authUser = useSelector(selectUser)
 	const [posts, setPosts] = useState([])
 	const [users, setUsers] = useState([])
 	const [page, setPage] = useState(1)
@@ -34,7 +45,7 @@ const MainContainer = ({ className }) => {
 		startDelayedSearch(!shouldSearch)
 	}
 
-	return (
+	return authUser ? (
 		<div className={className}>
 			<Search searchPhrase={searchPhrase} onChange={onSearch} />
 			<div className="posts-and-user-profile-section">
@@ -85,6 +96,8 @@ const MainContainer = ({ className }) => {
 				<Pagination page={page} lastPage={lastPage} setPage={setPage} />
 			)}
 		</div>
+	) : (
+		navigate('/login')
 	)
 }
 
