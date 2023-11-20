@@ -1,14 +1,13 @@
-import { Icon } from '../icon/icon'
-import { Avatar } from '../avatar/avatar'
-import styled from 'styled-components'
 import { useEffect, useState } from 'react'
-import { request } from '../../utils'
+import { Icon, Avatar } from '../../../../components'
+import { request } from '../../../../utils'
+import styled from 'styled-components'
 
 const CardProfile = styled.div`
 	display: flex;
 	flex-direction: column;
 	width: 420px;
-	margin: 20px;
+	margin: 40px 20px;
 	padding: 20px;
 	border-radius: 10px;
 	border: 1px solid #000;

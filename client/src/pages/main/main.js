@@ -1,9 +1,9 @@
 import { useMemo, useEffect, useState } from 'react'
-import { Pagination, PostCard, Search } from './components'
+import { FriendsSection, Pagination, PostCard, Search, UserProfileSection } from './components'
 import { PAGINATION_LIMIT } from '../../constants'
 import { debounce } from './utils'
 import { request } from '../../utils'
-import { FriendsSection, Icon, UserProfileSection } from '../../components'
+import { Icon } from '../../components'
 import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {

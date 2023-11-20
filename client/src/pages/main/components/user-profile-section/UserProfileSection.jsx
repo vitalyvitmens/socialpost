@@ -1,9 +1,8 @@
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../redux/selectors'
-import { Icon } from '../icon/icon'
-import { Avatar } from '../avatar/avatar'
-import styled from 'styled-components'
 import { Link, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../../../redux/selectors'
+import { Icon, Avatar } from '../../../../components'
+import styled from 'styled-components'
 
 const CardProfile = styled.div`
 	display: flex;
