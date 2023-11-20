@@ -63,7 +63,7 @@ const AuthorizationContainer = ({ className }) => {
 	useResetForm(reset)
 
 	const onSubmit = ({ login, password }) => {
-		request('/login', 'POST', { login, password }).then(({ error, user }) => {
+		request('/', 'POST', { login, password }).then(({ error, user }) => {
 			if (error) {
 				setServerError(`Ошибка запроса: ${error}`)
 				return
@@ -78,7 +78,7 @@ const AuthorizationContainer = ({ className }) => {
 	const errorMessage = formError || serverError
 
 	if (roleId !== ROLE.GUEST) {
-		return <Navigate to="/" />
+		return <Navigate to="/main" />
 	}
 
 	return (

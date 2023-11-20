@@ -51,7 +51,7 @@ const ControlPanelContainer = ({ className }) => {
 	const onLogout = () => {
 		dispatch(logout())
 		sessionStorage.removeItem('userData')
-    navigate('/login')
+    navigate('/')
 	}
 
 	const isAdmin = checkAccess([ROLE.ADMIN], roleId)
@@ -61,7 +61,7 @@ const ControlPanelContainer = ({ className }) => {
 			<RightAligned>
 				{roleId === ROLE.GUEST ? (
 					<Button>
-						<Link to="/login">Войти</Link>
+						<Link to="/">Войти</Link>
 					</Button>
 				) : (
 					<>

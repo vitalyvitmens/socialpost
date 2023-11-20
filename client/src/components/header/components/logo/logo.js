@@ -11,7 +11,7 @@ const LargeText = styled.div`
 `
 
 const LogoContainer = ({ className }) => (
-	<Link className={className} to="/">
+	<Link className={className} to="/main">
 		<Icon id="fa fa-book" size="90px" margin="-10px 10px 0 0" />
 		<div>
 			<LargeText>Social Post</LargeText>

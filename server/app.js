@@ -71,7 +71,7 @@ app.post('/register', async (req, res) => {
 	}
 })
 
-app.post('/login', async (req, res) => {
+app.post('/', async (req, res) => {
 	try {
 		const { user, token } = await login(req.body.login, req.body.password)
 

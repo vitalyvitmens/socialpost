@@ -48,8 +48,8 @@ export const Blog = () => {
 			<Header />
 			<Page>
 				<Routes>
-					<Route path="/" element={<Main />} />
-					<Route path="/login" element={<Authorization />} />
+					<Route path="/main" element={<Main />} />
+					<Route path="/" element={<Authorization />} />
 					<Route path="/register" element={<Registration />} />
 					<Route path="/users" element={<Users />} />
 					<Route path="/profile" element={<ProfilePage />} />

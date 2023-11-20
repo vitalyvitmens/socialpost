@@ -97,7 +97,7 @@ const MainContainer = ({ className }) => {
 			)}
 		</div>
 	) : (
-		navigate('/login')
+		navigate('/')
 	)
 }
 

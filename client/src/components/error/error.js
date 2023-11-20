@@ -35,7 +35,7 @@ export const Error = ({ error }) =>
 			<Div>
 				<H2>{error}</H2>
 				<div className="error"></div>
-				<Link className="to-main" to="/">
+				<Link className="to-main" to="/main">
 					НА ГЛАВНУЮ
 				</Link>
 			</Div>
