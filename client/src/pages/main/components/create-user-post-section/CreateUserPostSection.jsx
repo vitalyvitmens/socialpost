@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom'
 import { selectPost, selectUser } from '../../../../redux/selectors'
 import { Icon, Avatar, Button, Input } from '../../../../components'
 import { savePostAsync } from '../../../../redux/actions'
-import Moment from 'react-moment'
 import styled from 'styled-components'
 
 const CardProfile = styled.div`
@@ -103,7 +102,6 @@ const CreateUserPostSectionContainer = ({ className }) => {
 						<Row>
 							<Avatar>{user.avatar}</Avatar>
 							<Input
-								// value={imageUrlValue}
 								width="575px"
 								height="40px"
 								placeholder="Напишите о чём Вы думаете..."
@@ -112,7 +110,6 @@ const CreateUserPostSectionContainer = ({ className }) => {
 						</Row>
 						<Row>
 							<Input
-								// value={imageUrlValue}
 								width="575px"
 								height="40px"
 								margin="-30px 0 10px 90px"
