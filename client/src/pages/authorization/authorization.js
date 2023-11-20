@@ -8,9 +8,9 @@ import { AuthFormError, Button, H2, Input } from '../../components'
 import { useResetForm } from '../../hooks'
 import { setUser } from '../../redux/actions'
 import { selectUserRole } from '../../redux/selectors'
-import styled from 'styled-components'
 import { ROLE } from '../../constants'
 import { request } from '../../utils/request'
+import styled from 'styled-components'
 
 const authFormSchema = yup.object().shape({
 	login: yup

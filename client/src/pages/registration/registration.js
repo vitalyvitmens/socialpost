@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate } from 'react-router-dom'
+import { Link, Navigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -45,10 +45,10 @@ const regFormSchema = yup.object().shape({
 		.required('Укажите ссылку на Ваше фото')
 		.matches(
 			/[A-Fa-f0-9]/,
-			'Неверно заполненна ссылка на Ваше фото. Допусктимые форматы jpg, jpeg, png'
+			'Неверно заполненна интернет ссылка на Ваше фото. Допусктимые форматы jpg, jpeg, png'
 		)
-		.min(3, 'Неверно заполненна ссылка на Ваше фото. Минимум 3 символа')
-		.max(500, 'Неверно заполненна ссылка на Ваше фото. Максимум 500 символов'),
+		.min(3, 'Неверно заполненна интернет ссылка на Ваше фото. Минимум 3 символа')
+		.max(500, 'Неверно заполненна интернет ссылка на Ваше фото. Максимум 500 символов'),
 	login: yup
 		.string()
 		.required('Заполните логин')
@@ -72,6 +72,13 @@ const regFormSchema = yup.object().shape({
 		.required('Заполните повтор пароля')
 		.oneOf([yup.ref('password'), null], 'Повтор пароля не совпадает'),
 })
+
+const StyledLink = styled(Link)`
+	text-align: center;
+	text-decoration: underline;
+	margin: 20px 0;
+	font-size: 18px;
+`
 
 const RegistrationContainer = ({ className }) => {
 	const {
@@ -167,7 +174,7 @@ const RegistrationContainer = ({ className }) => {
 				/>
 				<Input
 					type="text"
-					placeholder="Фото..."
+					placeholder="Интернет ссылка на фото..."
 					{...register('avatar', {
 						onChange: () => setServerError(null),
 					})}
@@ -197,6 +204,8 @@ const RegistrationContainer = ({ className }) => {
 					Зарегистрироваться
 				</Button>
 				{errorMessage && <AuthFormError>{errorMessage}</AuthFormError>}
+        <StyledLink to="/">Авторизация</StyledLink>
+
 			</form>
 		</div>
 	)

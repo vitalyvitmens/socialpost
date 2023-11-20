@@ -177,7 +177,7 @@ const ProfilePageContainer = () => {
 					</ErrorField>
 				) : null}
 				<label className="text-sm px-2" htmlFor="lastName">
-					Ссылка на Ваше фото
+        Интернет ссылка на фото
 				</label>
 				<Input>
 					<input
