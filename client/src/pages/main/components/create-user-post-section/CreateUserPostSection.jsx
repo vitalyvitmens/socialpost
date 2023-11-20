@@ -72,7 +72,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 			savePostAsync(id, {
 				imageUrl: imageUrlValue
 					? imageUrlValue
-					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/moyblog.png?raw=true',
+					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/whereposts.jpg?raw=true',
 				title: titleValue
 					? titleValue
 					: `${user.lastName} ${user.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
