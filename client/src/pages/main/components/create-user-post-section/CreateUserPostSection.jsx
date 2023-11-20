@@ -83,7 +83,6 @@ const CreateUserPostSectionContainer = ({ className }) => {
 
 	const onImageChange = ({ target }) => setImageUrlValue(target.value)
 	const onTitleChange = ({ target }) => setTitleValue(target.value)
-	console.log(titleValue)
 
 	return !user ? (
 		<div className="no-posts-found">
@@ -143,6 +142,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 		</div>
 	)
 }
+
 export const CreateUserPostSection = styled(CreateUserPostSectionContainer)`
 	& .padding-left {
 		padding-left: 30px;

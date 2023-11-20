@@ -51,8 +51,17 @@ const PostCardContainer = ({
 						<Row>
 							<Avatar className="avatar">{user.avatar}</Avatar>
 							<Column>
+								<div className="published-at">
+									<Icon
+										inactive={true}
+										id="fa-calendar-o"
+										margin="-1px 7px 0 0"
+										size="16px"
+									/>
+									<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />
+								</div>
 								{user.lastName} {user.firstName}
-								<div>Беларусь</div>
+								<div className="light-text">Беларусь</div>
 							</Column>
 							<Icon
 								className="icon"
@@ -63,22 +72,12 @@ const PostCardContainer = ({
 					) : null}
 				</React.Fragment>
 			))}
-
 			<Link to={`/post/${id}`}>
 				<h4>{title}</h4>
 				<img src={imageUrl} alt={title} />
 			</Link>
 			<div className="post-card-footer">
 				<div className="post-card-info">
-					<div className="published-at">
-						<Icon
-							inactive={true}
-							id="fa-calendar-o"
-							margin="0 7px 0 0"
-							size="18px"
-						/>
-						<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />
-					</div>
 					<div className="views-comments-block">
 						<div className="views-count">
 							<Icon
@@ -105,6 +104,15 @@ const PostCardContainer = ({
 							size="18px"
 						/>
 					</div>
+					<div className="published-at">
+						<Icon
+							inactive={true}
+							id="fa-share-alt"
+							margin="0 7px 0 0"
+							size="18px"
+						/>
+					</div>
+
 				</div>
 			</div>
 		</div>
@@ -157,8 +165,14 @@ export const PostCard = styled(PostCardContainer)`
 	}
 
 	& .post-card-footer {
-		padding: 5px;
+		padding: 20px 5px 0 5px;
+		font-size: 1.25rem;
 	}
+
+  & .light-text {
+    color: gray;
+    font-size: 1.0rem;
+  }
 
 	& h4 {
 		padding: 20px 0;
@@ -180,6 +194,8 @@ export const PostCard = styled(PostCardContainer)`
 
 	& .published-at {
 		display: flex;
+		font-size: 1rem;
+		color: gray;
 	}
 
 	& .views-comments-block {

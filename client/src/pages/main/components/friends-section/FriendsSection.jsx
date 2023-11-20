@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectUser } from '../../../../redux/selectors'
+import { useNavigate } from 'react-router-dom'
 import { Icon, Avatar } from '../../../../components'
 import { request } from '../../../../utils'
 import styled from 'styled-components'
-import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../../../redux/selectors'
 
 const CardProfile = styled.div`
 	display: flex;
@@ -129,6 +129,7 @@ const FriendsSectionContainer = ({ className }) => {
 		</div>
 	)
 }
+
 export const FriendsSection = styled(FriendsSectionContainer)`
 	& .padding-left {
 		padding-left: 30px;
