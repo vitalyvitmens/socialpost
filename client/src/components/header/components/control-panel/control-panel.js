@@ -25,10 +25,14 @@ const LeftAligned = styled.div`
 const UserName = styled.div`
 	font-size: 18px;
 	font-weight: bold;
-  border: 1px solid gray;
-  border-radius: 10px;
-  padding: 3px 50px;
-  background-color: #ffd4c4;
+	border: 1px solid gray;
+	border-radius: 10px;
+	padding: 5px 50px;
+	background-color: #ffd4c4;
+  border: 1px solid #000;
+	border-radius: 7px;
+	box-shadow: -3px 5px 5px #333;
+	background-color: bisque;
   margin-bottom: 40px;
 
 	&:hover {
@@ -38,6 +42,7 @@ const UserName = styled.div`
 
 	&:active {
 		opacity: 0.6;
+		box-shadow: none;
 	}
 `
 
@@ -51,7 +56,7 @@ const ControlPanelContainer = ({ className }) => {
 	const onLogout = () => {
 		dispatch(logout())
 		sessionStorage.removeItem('userData')
-    navigate('/')
+		navigate('/')
 	}
 
 	const isAdmin = checkAccess([ROLE.ADMIN], roleId)
@@ -69,7 +74,11 @@ const ControlPanelContainer = ({ className }) => {
 							<LeftAligned>{lastName}</LeftAligned>
 							<LeftAligned>{firstName}</LeftAligned>
 						</UserName>
-						<Icon id="fa-sign-out fa-2x" margin="0 0 0 10px" onClick={onLogout} />
+						<Icon
+							id="fa-sign-out fa-2x"
+							margin="0 0 0 10px"
+							onClick={onLogout}
+						/>
 					</>
 				)}
 			</RightAligned>
