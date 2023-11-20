@@ -76,7 +76,7 @@ const ControlPanelContainer = ({ className }) => {
 						</UserName>
 						<Icon
 							id="fa-sign-out fa-2x"
-							margin="0 0 0 10px"
+							margin="5px -5px 0 30px"
 							onClick={onLogout}
 						/>
 					</>

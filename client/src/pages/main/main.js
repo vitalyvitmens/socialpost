@@ -41,12 +41,27 @@ const MainContainer = ({ className }) => {
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), [])
 
+	if (!authUser || !posts || !users) {
+		return (
+			<div className="no-posts-found">
+				<Icon
+					inactive={true}
+					id="fa fa-refresh fa-spin fa-3x fa-fw"
+					margin="0 7px 0 0"
+					size="24px"
+					aria-hidden="true"
+				/>
+				<span>Loading...</span>
+			</div>
+		)
+	}
+
 	const onSearch = ({ target }) => {
 		setSearchPhrase(target.value)
 		startDelayedSearch(!shouldSearch)
 	}
 
-	return authUser ? (
+	return (
 		<div className={className}>
 			<Search searchPhrase={searchPhrase} onChange={onSearch} />
 			<div className="posts-and-user-profile-section">
@@ -98,8 +113,6 @@ const MainContainer = ({ className }) => {
 				<Pagination page={page} lastPage={lastPage} setPage={setPage} />
 			)}
 		</div>
-	) : (
-		navigate('/')
 	)
 }
 
