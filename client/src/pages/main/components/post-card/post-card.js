@@ -63,19 +63,13 @@ const PostCardContainer = ({
 								{user.lastName} {user.firstName}
 								<div className="light-text">Беларусь</div>
 							</Column>
-							<Icon
-								className="icon"
-								id="fa-user-plus fa-x"
-								// onClick={onSave}
-							/>
+							<Icon className="icon" id="fa-user-plus fa-x" />
 						</Row>
 					) : null}
 				</React.Fragment>
 			))}
-			<Link to={`/post/${id}`}>
-				<h4>{title}</h4>
-				<img src={imageUrl} alt={title} />
-			</Link>
+			<h4>{title}</h4>
+			<img src={imageUrl} alt={title} />
 			<div className="post-card-footer">
 				<div className="post-card-info">
 					<div className="views-comments-block">
@@ -106,13 +100,12 @@ const PostCardContainer = ({
 					</div>
 					<div className="published-at">
 						<Icon
-							inactive={true}
-							id="fa-share-alt"
+							id="fa-pencil-square-o fa-2x"
 							margin="0 7px 0 0"
 							size="18px"
+							onClick={() => navigate(`/post/${id}`)}
 						/>
 					</div>
-
 				</div>
 			</div>
 		</div>
@@ -145,6 +138,11 @@ export const PostCard = styled(PostCardContainer)`
 		width: 100%;
 	}
 
+	& .edit-plus-user-icons-row {
+		display: flex;
+		padding-top: 10px;
+	}
+
 	& .avatar {
 		display: flex;
 		width: 80px;
@@ -169,20 +167,16 @@ export const PostCard = styled(PostCardContainer)`
 		font-size: 1.25rem;
 	}
 
-  & .light-text {
-    color: gray;
-    font-size: 1.0rem;
-  }
+	& .light-text {
+		color: gray;
+		font-size: 1rem;
+	}
 
 	& h4 {
 		padding: 20px 0;
 		margin: 0;
 		color: #4c2f26;
 		font-size: 1.25rem;
-
-		&:hover {
-			text-decoration: underline;
-		}
 	}
 
 	& .post-card-info {
