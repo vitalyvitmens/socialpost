@@ -42,7 +42,7 @@ const UsersContainer = ({ className }) => {
 		})
 	}
 
-  !users.length && (
+	!users && (
 		<div className="no-posts-found">
 			<Icon
 				inactive={true}

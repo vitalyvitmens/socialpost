@@ -1,11 +1,11 @@
 import { useMemo, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
+  CreateUserPostSection,
 	FriendsSection,
 	Pagination,
 	PostCard,
 	Search,
-	UserPostSection,
 	UserProfileSection,
 } from './components'
 import { PAGINATION_LIMIT } from '../../constants'
@@ -41,7 +41,7 @@ const MainContainer = ({ className }) => {
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), [])
 
-	if (!authUser || !posts || !users) {
+	if (!posts || !users) {
 		return (
 			<div className="no-posts-found">
 				<Icon
@@ -61,7 +61,9 @@ const MainContainer = ({ className }) => {
 		startDelayedSearch(!shouldSearch)
 	}
 
-	return (
+	return !authUser ? (
+		navigate('/')
+	) : (
 		<div className={className}>
 			<Search searchPhrase={searchPhrase} onChange={onSearch} />
 			<div className="posts-and-user-profile-section">
@@ -71,7 +73,7 @@ const MainContainer = ({ className }) => {
 				</div>
 				{posts.length > 0 ? (
 					<div className="post-list">
-						<UserPostSection />
+						<CreateUserPostSection />
 						{posts.map(
 							({
 								id,

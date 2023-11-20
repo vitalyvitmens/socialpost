@@ -1,9 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { selectUser } from '../../../../redux/selectors'
 import { Icon, Avatar, Button, Input } from '../../../../components'
 import styled from 'styled-components'
-import { useState } from 'react'
 
 const CardProfile = styled.div`
 	display: flex;
@@ -58,7 +58,7 @@ const Divider = styled.div`
 	border-top: 3px solid gray;
 `
 
-const UserPostSectionContainer = ({ className }) => {
+const CreateUserPostSectionContainer = ({ className }) => {
 	const [titleValue, setTitleValue] = useState('')
 	const navigate = useNavigate()
 	const user = useSelector(selectUser)
@@ -66,7 +66,7 @@ const UserPostSectionContainer = ({ className }) => {
 	const onTitleChange = ({ target }) => setTitleValue(target.value)
 	console.log(titleValue)
 
-	!user && (
+	return !user ? (
 		<div className="no-posts-found">
 			<Icon
 				inactive={true}
@@ -77,9 +77,7 @@ const UserPostSectionContainer = ({ className }) => {
 			/>
 			<span>Loading...</span>
 		</div>
-	)
-
-	return (
+	) : (
 		<div className={className}>
 			<CardProfile>
 				<FlexJustifyEnd>
@@ -116,7 +114,7 @@ const UserPostSectionContainer = ({ className }) => {
 		</div>
 	)
 }
-export const UserPostSection = styled(UserPostSectionContainer)`
+export const CreateUserPostSection = styled(CreateUserPostSectionContainer)`
 	& .padding-left {
 		padding-left: 30px;
 	}

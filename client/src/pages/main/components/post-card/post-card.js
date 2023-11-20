@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
-import { Avatar, Icon } from '../../../../components'
-import Moment from 'react-moment'
-import styled from 'styled-components'
 import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { Avatar, Icon } from '../../../../components'
 import { request } from '../../../../utils'
+import Moment from 'react-moment'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const Row = styled.div`
 	display: flex;
@@ -33,6 +33,7 @@ const PostCardContainer = ({
 	author,
 }) => {
 	const [users, setUsers] = useState([])
+	const navigate = useNavigate()
 
 	useEffect(() => {
 		request('/users').then((usersRes) => {
@@ -40,20 +41,9 @@ const PostCardContainer = ({
 		})
 	}, [])
 
-	!users.length && (
-		<div className="no-posts-found">
-			<Icon
-				inactive={true}
-				id="fa fa-refresh fa-spin fa-3x fa-fw"
-				margin="0 7px 0 0"
-				size="24px"
-				aria-hidden="true"
-			/>
-			<span>Loading...</span>
-		</div>
-	)
-
-	return (
+	return !users ? (
+		navigate('/')
+	) : (
 		<div className={className}>
 			{users.map((user) => (
 				<React.Fragment key={user.id}>
@@ -173,7 +163,7 @@ export const PostCard = styled(PostCardContainer)`
 	& h4 {
 		padding: 20px 0;
 		margin: 0;
-		color: #4C2F26;
+		color: #4c2f26;
 		font-size: 1.25rem;
 
 		&:hover {
