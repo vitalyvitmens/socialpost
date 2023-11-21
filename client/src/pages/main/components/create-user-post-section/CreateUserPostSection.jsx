@@ -64,8 +64,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 	const [titleValue, setTitleValue] = useState('')
 
 	const user = useSelector(selectUser)
-	const { id, imageUrl, title } =
-		useSelector(selectPost)
+	const { id, imageUrl, title } = useSelector(selectPost)
 
 	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl)
@@ -87,6 +86,8 @@ const CreateUserPostSectionContainer = ({ className }) => {
 				content: `Автор поста: ${user.lastName} ${user.firstName}`,
 			})
 		).then(({ id }) => navigate(`/post/${id}`))
+
+		window.location.reload()
 	}
 
 	const onImageChange = ({ target }) => setImageUrlValue(target.value)
