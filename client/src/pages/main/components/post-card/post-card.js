@@ -78,7 +78,12 @@ const PostCardContainer = ({
 				</React.Fragment>
 			))}
 			<h4>{title}</h4>
-			<img src={imageUrl} alt={title} onClick={() => navigate(`/post/${id}`)} />
+			<img
+				id={id}
+				src={imageUrl}
+				alt={title}
+				onClick={() => navigate(`/post/${id}`)}
+			/>
 			<div className="post-card-footer">
 				<div className="post-card-info">
 					<div className="views-comments-block">
