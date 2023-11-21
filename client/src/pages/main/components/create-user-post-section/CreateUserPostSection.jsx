@@ -49,9 +49,9 @@ const FlexJustifyEnd = styled.div`
 
 const TextLight = styled.div`
 	display: flex;
-	padding: 0 58px 0 10px;
+	padding: 0 52px 0 10px;
 	color: gray;
-	align-items: center;
+	align-items: start;
 `
 
 const Divider = styled.div`
@@ -64,7 +64,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 	const [titleValue, setTitleValue] = useState('')
 	const [contentValue, setContentValue] = useState('')
 
-	const user = useSelector(selectUser)
+	const authUser = useSelector(selectUser)
 	const { id, imageUrl, title, content } = useSelector(selectPost)
 
 	useLayoutEffect(() => {
@@ -84,15 +84,17 @@ const CreateUserPostSectionContainer = ({ className }) => {
 					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/whereposts.jpg?raw=true',
 				title: titleValue
 					? titleValue
-					: `ADMIN: ${user.lastName} ${user.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
+					: `ADMIN: ${authUser.lastName} ${authUser.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
 				content: contentValue
 					? contentValue
-					: `Автор поста: ${user.lastName} ${user.firstName}`,
+					: `Автор поста: ${authUser.lastName} ${authUser.firstName}`,
 			})
-		).then(({ id }) => navigate(`/post/${id}`))
-		setImageUrlValue('')
-		setTitleValue('')
-		setContentValue('')
+		).then(({ id }) => {
+			navigate(`/post/${id}`)
+			setImageUrlValue('')
+			setTitleValue('')
+			setContentValue('')
+		})
 
 		window.location.reload()
 	}
@@ -100,7 +102,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 	const onImageChange = ({ target }) => setImageUrlValue(target.value)
 	const onTitleChange = ({ target }) => setTitleValue(target.value)
 
-	return !user ? (
+	return !authUser ? (
 		<div className="no-posts-found">
 			<Icon
 				inactive={true}
@@ -117,7 +119,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 				<FlexJustifyEnd>
 					<Column>
 						<Row>
-							<Avatar>{user.avatar}</Avatar>
+							<Avatar>{authUser.avatar}</Avatar>
 							<Input
 								width="575px"
 								height="40px"
@@ -148,7 +150,13 @@ const CreateUserPostSectionContainer = ({ className }) => {
 							<TextLight>файл</TextLight>
 							<Icon id="fa-file-audio-o" onClick={() => navigate('/profile')} />
 							<TextLight>аудио</TextLight>
-							<Button margin="0 0 0 0" onClick={onSave}>
+							<Button
+								margin="0 0 0 0"
+								width="120px"
+								height="50px"
+								disabled={!imageUrlValue || !titleValue || !authUser}
+								onClick={() => onSave()}
+							>
 								Запостить
 							</Button>
 						</Row>

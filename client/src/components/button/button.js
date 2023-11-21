@@ -1,7 +1,14 @@
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-const ButtonContainer = ({ children, className, width, margin, ...props }) => {
+const ButtonContainer = ({
+	children,
+	className,
+	width,
+	height,
+	margin,
+	...props
+}) => {
 	return (
 		<button className={className} {...props}>
 			{children}
@@ -15,12 +22,12 @@ export const Button = styled(ButtonContainer)`
 	align-items: center;
 	font-size: 18px;
 	width: ${({ width = '100%' }) => width};
-	height: 32px;
+	height: ${({ height = '32px' }) => height};
 	border: 1px solid #000;
 	border-radius: 7px;
 	box-shadow: -3px 5px 5px #333;
 	background-color: bisque;
-  margin: ${({ margin = '0 0 50px 0' }) => margin};
+	margin: ${({ margin = '0 0 50px 0' }) => margin};
 
 	&:hover {
 		opacity: 0.8;
