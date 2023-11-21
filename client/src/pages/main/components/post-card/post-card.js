@@ -1,13 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { Avatar, Icon } from '../../../../components'
-import { checkAccess, request } from '../../../../utils'
 import Moment from 'react-moment'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { selectUser, selectUserRole } from '../../../../redux/selectors'
-import { ROLE } from '../../../../constants'
 
 const Row = styled.div`
 	display: flex;
@@ -34,19 +30,9 @@ const PostCardContainer = ({
 	commentsCount,
 	views,
 	author,
+	users,
 }) => {
-	const [users, setUsers] = useState([])
 	const navigate = useNavigate()
-	const authUser = useSelector(selectUser)
-	const roleId = useSelector(selectUserRole)
-	const isAdmin = checkAccess([ROLE.ADMIN], roleId)
-	const currentPostId = useParams()
-
-	useEffect(() => {
-		request('/users').then((usersRes) => {
-			setUsers(usersRes.data)
-		})
-	}, [])
 
 	const share = () =>
 		(window.location.href = 'viber://chat?' + window.location.href)
@@ -71,7 +57,7 @@ const PostCardContainer = ({
 									<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />
 								</div>
 								{user.lastName} {user.firstName}
-								<div className="light-text">Беларусь</div>
+								<div className="light-text">{user.location}</div>
 							</Column>
 							<Icon className="icon" id="fa-user-plus fa-x" />
 						</Row>
