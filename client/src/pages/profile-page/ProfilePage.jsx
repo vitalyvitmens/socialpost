@@ -8,25 +8,15 @@ import styled from 'styled-components'
 const CardProfile = styled.div`
 	display: flex;
 	flex-direction: column;
-	width: 320px;
+	width: 500px;
 	margin: 160px auto;
-	padding: 16px 16px;
+	padding: 20px 20px;
 	border-width: 1px;
 	border-color: rgb(156 163 175);
 	border-radius: 16px;
 	box-shadow: 0 0 15px gray;
 	justify-content: flex-end;
 	align-items: center;
-`
-const Input = styled.div`
-	display: flex;
-	padding: 4px 8px;
-	border-width: 1px;
-	border-color: rgb(156 163 175);
-	border-radius: 16px;
-	box-shadow: 0 0 15px gray;
-	align-items: center;
-	background-color: #e0e9f8;
 `
 const FlexJustifyEnd = styled.div`
 	display: flex;
@@ -38,7 +28,7 @@ const ErrorField = styled.div`
 	color: rgb(194 65 12);
 	font-size: 12px;
 `
-const ProfilePageContainer = () => {
+const ProfilePageContainer = ({ className }) => {
 	const dispatch = useDispatch()
 	const user = useSelector(selectUser)
 
@@ -78,48 +68,52 @@ const ProfilePageContainer = () => {
 		!loginValue
 
 	return !editUserData ? (
-		<CardProfile>
-			<FlexJustifyEnd>
-				<Icon
-					id="fa-pencil-square-o fa-3x"
-					onClick={() => setEditUserData(!editUserData)}
-				/>
-			</FlexJustifyEnd>
-			<Avatar>{user.avatar}</Avatar>
-			<div className="text-center">
-				{user.lastName} {user.firstName}
-			</div>
-			<div className="text-center text-lg pb-5 text-green-900">
-				{user.email}
-			</div>
-		</CardProfile>
-	) : (
-		<CardProfile>
-			<FlexJustifyEnd>
-				<div className="flex flex-row w-full justify-between">
+		<div className={className}>
+			<CardProfile>
+				<FlexJustifyEnd>
 					<Icon
-						id="fa fa-arrow-left fa-3x text-blue-800"
+						id="fa-pencil-square-o fa-3x"
+						padding="10px 10px 20px 380px"
 						onClick={() => setEditUserData(!editUserData)}
 					/>
-					{formError ? (
-						<Icon id="fa fa-check-circle-o fa-3x text-gray-400" />
-					) : (
-						<Icon
-							id="fa fa-check-circle-o fa-3x text-green-800r"
-							onClick={onSave}
-						/>
-					)}
+				</FlexJustifyEnd>
+				<Avatar width="400px" height="400px">
+					{user.avatar}
+				</Avatar>
+				<div className="text-lastname-firstname">
+					{user.lastName} {user.firstName}
 				</div>
-			</FlexJustifyEnd>
-			<Avatar>{user.avatar}</Avatar>
-			<div
-				className="flex flex-col m-5 w-[260px]"
-				// onSubmit={handleSubmit(onSubmit)}
-			>
-				<label className="text-sm px-2" htmlFor="firstName">
-					Имя
-				</label>
-				<Input>
+				<div className="text-email">{user.email}</div>
+			</CardProfile>
+		</div>
+	) : (
+		<div className={className}>
+			<CardProfile>
+				<FlexJustifyEnd>
+					<div className="flex-row">
+						<Icon
+							id="fa-arrow-left fa-3x"
+							onClick={() => setEditUserData(!editUserData)}
+						/>
+						{formError ? (
+							<Icon
+								id="fa-check-circle-o fa-3x"
+								padding="10px 10px 20px 300px"
+							/>
+						) : (
+							<Icon
+								id="fa-check-circle-o"
+								padding="10px 10px 20px 300px"
+								onClick={onSave}
+							/>
+						)}
+					</div>
+				</FlexJustifyEnd>
+				<Avatar width="400px" height="400px">
+					{user.avatar}
+				</Avatar>
+				<div className="flex-col">
+					<label htmlFor="firstName">Имя</label>
 					<input
 						id="firstName"
 						value={firstNameValue}
@@ -131,14 +125,10 @@ const ProfilePageContainer = () => {
 						// 	onChange: () => setServerError(null),
 						// })}
 					/>
-				</Input>
-				{!firstNameValue ? (
-					<ErrorField>Поле не должно быть пустым</ErrorField>
-				) : null}
-				<label className="text-sm px-2" htmlFor="lastName">
-					Фамилия
-				</label>
-				<Input>
+					{!firstNameValue ? (
+						<ErrorField>Поле не должно быть пустым</ErrorField>
+					) : null}
+					<label htmlFor="lastName">Фамилия</label>
 					<input
 						id="lastName"
 						value={lastNameValue}
@@ -150,14 +140,10 @@ const ProfilePageContainer = () => {
 						// 	onChange: () => setServerError(null),
 						// })}
 					/>
-				</Input>
-				{!lastNameValue ? (
-					<ErrorField>Поле не должно быть пустым</ErrorField>
-				) : null}
-				<label className="text-sm px-2" htmlFor="registerEmail">
-					Электронная почта
-				</label>
-				<Input>
+					{!lastNameValue ? (
+						<ErrorField>Поле не должно быть пустым</ErrorField>
+					) : null}
+					<label htmlFor="registerEmail">Электронная почта</label>
 					<input
 						className="border rounded-md py-1 px-2 m-2 border-gray-400 bg-[#e0e9f8]"
 						id="registerEmail"
@@ -170,16 +156,12 @@ const ProfilePageContainer = () => {
 						// 	onChange: () => setServerError(null),
 						// })}
 					/>
-				</Input>
-				{!emailValue ? (
-					<ErrorField>
-						Почта должна соответствовать шаблону test@example.com
-					</ErrorField>
-				) : null}
-				<label className="text-sm px-2" htmlFor="lastName">
-        Интернет ссылка на фото
-				</label>
-				<Input>
+					{!emailValue ? (
+						<ErrorField>
+							Почта должна соответствовать шаблону test@example.com
+						</ErrorField>
+					) : null}
+					<label htmlFor="lastName">Интернет ссылка на фото</label>
 					<input
 						id="avatar"
 						value={avatarValue}
@@ -191,14 +173,10 @@ const ProfilePageContainer = () => {
 						// 	onChange: () => setServerError(null),
 						// })}
 					/>
-				</Input>
-				{!avatarValue ? (
-					<ErrorField>Поле не должно быть пустым</ErrorField>
-				) : null}
-				<label className="text-sm px-2" htmlFor="lastName">
-					Логин
-				</label>
-				<Input>
+					{!avatarValue ? (
+						<ErrorField>Поле не должно быть пустым</ErrorField>
+					) : null}
+					<label htmlFor="lastName">Логин</label>
 					<input
 						id="login"
 						value={loginValue}
@@ -210,12 +188,12 @@ const ProfilePageContainer = () => {
 						// 	onChange: () => setServerError(null),
 						// })}
 					/>
-				</Input>
-				{!loginValue ? (
-					<ErrorField>Поле не должно быть пустым</ErrorField>
-				) : null}
-			</div>
-		</CardProfile>
+					{!loginValue ? (
+						<ErrorField>Поле не должно быть пустым</ErrorField>
+					) : null}
+				</div>
+			</CardProfile>
+		</div>
 	)
 }
 
@@ -224,12 +202,44 @@ export const ProfilePage = styled(ProfilePageContainer)`
 		padding: 0 30px;
 	}
 
-	& .text-center {
+	& .text-lastname-firstname {
 		display: flex;
-		padding-top: 8px;
-		color: rgb(194 65 12);
-		font-size: 42px;
+		padding-top: 40px;
+		font-size: 2rem;
+		font-weight: 500;
 	}
-	// text-center
-	// text-2xl
+
+	& .text-email {
+		display: flex;
+		padding-bottom: 20px;
+		font-size: 1.75rem;
+	}
+
+	& .flex-row {
+		display: flex;
+	}
+
+	& .flex-col {
+		margin: 20px;
+		width: 400px;
+	}
+
+	& label {
+		padding: 0 0 5px 10px;
+		font-size: 1.25rem;
+		font-weight: 600;
+	}
+
+	& input {
+		display: flex;
+		padding: 4px 8px;
+		border-width: 1px;
+		border-color: rgb(156 163 175);
+		border-radius: 16px;
+		box-shadow: 0 0 15px gray;
+		align-items: center;
+		background-color: #e0e9f8;
+		width: 100%;
+		height: 40px;
+	}
 `
