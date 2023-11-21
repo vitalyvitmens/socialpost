@@ -40,15 +40,39 @@ const regFormSchema = yup.object().shape({
 		)
 		.min(5, 'Неверно заполнен email. Минимум 5 символа')
 		.max(30, 'Неверно заполнен email. Максимум 30 символов'),
+	location: yup
+		.string()
+		.required('Укажите населенный пункт в котором проживаете')
+		.matches(
+			/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
+			'Неверно указан населенный пункт. Допускаются только буквы'
+		)
+		.min(2, 'Неверно указан населенный пункт. Минимум 2 символа')
+		.max(30, 'Неверно указан населенный пункт. Максимум 30 символов'),
+	job: yup
+		.string()
+		.required('Укажите свою профессию')
+		.matches(
+			/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
+			'Неверно указана профессия. Допускаются только буквы'
+		)
+		.min(2, 'Неверно указана профессия. Минимум 2 символа')
+		.max(30, 'Неверно указана профессия. Максимум 30 символов'),
 	avatar: yup
 		.string()
-		.required('Укажите ссылку на Ваше фото')
+		.required('Укажите ссылку (URL) на Ваше фото')
 		.matches(
 			/[A-Fa-f0-9]/,
-			'Неверно заполненна интернет ссылка на Ваше фото. Допусктимые форматы jpg, jpeg, png'
+			'Неверно заполненна интернет ссылка (URL) на Ваше фото. Допусктимые форматы jpg, jpeg, png'
 		)
-		.min(3, 'Неверно заполненна интернет ссылка на Ваше фото. Минимум 3 символа')
-		.max(500, 'Неверно заполненна интернет ссылка на Ваше фото. Максимум 500 символов'),
+		.min(
+			3,
+			'Неверно заполненна интернет ссылка (URL) на Ваше фото. Минимум 3 символа'
+		)
+		.max(
+			500,
+			'Неверно заполненна интернет ссылка (URL) на Ваше фото. Максимум 500 символов'
+		),
 	login: yup
 		.string()
 		.required('Заполните логин')
@@ -91,6 +115,8 @@ const RegistrationContainer = ({ className }) => {
 			firstName: '',
 			lastName: '',
 			email: '',
+			location: '',
+			job: '',
 			avatar: '',
 			login: '',
 			password: '',
@@ -111,6 +137,8 @@ const RegistrationContainer = ({ className }) => {
 		firstName,
 		lastName,
 		email,
+		location,
+		job,
 		avatar,
 		login,
 		password,
@@ -119,6 +147,8 @@ const RegistrationContainer = ({ className }) => {
 			firstName,
 			lastName,
 			email,
+			location,
+			job,
 			avatar,
 			login,
 			password,
@@ -137,6 +167,8 @@ const RegistrationContainer = ({ className }) => {
 		errors?.firstName?.message ||
 		errors?.lastName?.message ||
 		errors?.email?.message ||
+		errors?.location?.message ||
+		errors?.job?.message ||
 		errors?.avatar?.message ||
 		errors?.login?.message ||
 		errors?.password?.message ||
@@ -174,6 +206,20 @@ const RegistrationContainer = ({ className }) => {
 				/>
 				<Input
 					type="text"
+					placeholder="Населенный пункт в котором проживаете..."
+					{...register('location', {
+						onChange: () => setServerError(null),
+					})}
+				/>
+				<Input
+					type="text"
+					placeholder="Профессия..."
+					{...register('job', {
+						onChange: () => setServerError(null),
+					})}
+				/>
+				<Input
+					type="text"
 					placeholder="Интернет ссылка на фото..."
 					{...register('avatar', {
 						onChange: () => setServerError(null),
@@ -204,8 +250,7 @@ const RegistrationContainer = ({ className }) => {
 					Зарегистрироваться
 				</Button>
 				{errorMessage && <AuthFormError>{errorMessage}</AuthFormError>}
-        <StyledLink to="/">Авторизация</StyledLink>
-
+				<StyledLink to="/">Авторизация</StyledLink>
 			</form>
 		</div>
 	)

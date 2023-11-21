@@ -10,7 +10,7 @@ const {
 	getRoles,
 	updateUser,
 	deleteUser,
-  getUser,
+	getUser,
 } = require('./controllers/user')
 const {
 	getPost,
@@ -58,6 +58,8 @@ app.post('/register', async (req, res) => {
 			req.body.firstName,
 			req.body.lastName,
 			req.body.email,
+			req.body.location,
+			req.body.job,
 			req.body.avatar,
 			req.body.login,
 			req.body.password
@@ -138,29 +140,37 @@ app.post(
 			title: req.body.title,
 			content: req.body.content,
 			image: req.body.imageUrl,
-      author: req.user.id,
+			author: req.user.id,
 		})
 
 		res.send({ data: mapPost(newPost) })
 	}
 )
 
-app.patch('/posts/:id', hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]), async (req, res) => {
-	const updatedPost = await editPost(req.params.id, {
-		title: req.body.title,
-		content: req.body.content,
-		image: req.body.imageUrl,
-    author: req.user.id,
-	})
+app.patch(
+	'/posts/:id',
+	hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]),
+	async (req, res) => {
+		const updatedPost = await editPost(req.params.id, {
+			title: req.body.title,
+			content: req.body.content,
+			image: req.body.imageUrl,
+			author: req.user.id,
+		})
 
-	res.send({ data: mapPost(updatedPost) })
-})
+		res.send({ data: mapPost(updatedPost) })
+	}
+)
 
-app.delete('/posts/:id', hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]), async (req, res) => {
-	await deletePost(req.params.id)
+app.delete(
+	'/posts/:id',
+	hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]),
+	async (req, res) => {
+		await deletePost(req.params.id)
 
-	res.send({ error: null })
-})
+		res.send({ error: null })
+	}
+)
 
 app.get('/users', async (req, res) => {
 	const users = await getUsers()
@@ -183,6 +193,8 @@ app.put(
 				firstName: req.body.firstName,
 				lastName: req.body.lastName,
 				email: req.body.email,
+				location: req.body.location,
+				job: req.body.job,
 				avatar: req.body.avatar,
 				login: req.body.login,
 			})

@@ -6,6 +6,8 @@ const initialUserState = {
 	firstName: null,
 	lastName: null,
 	email: null,
+	location: null,
+	job: '',
 	avatar: '',
 	login: null,
 	roleId: ROLE.GUEST,

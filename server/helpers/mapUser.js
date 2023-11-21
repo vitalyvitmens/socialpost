@@ -4,6 +4,8 @@ module.exports = function (user) {
 		firstName: user.firstName,
 		lastName: user.lastName,
 		email: user.email,
+		location: user.location,
+		job: user?.job,
 		avatar: user.avatar,
 		login: user.login,
 		roleId: user.role,

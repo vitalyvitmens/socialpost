@@ -16,6 +16,14 @@ const UserSchema = mongoose.Schema(
 			required: true,
 			unique: true,
 		},
+		location: {
+			type: String,
+			required: true,
+		},
+		job: {
+			type: String,
+			// required: true,
+		},
 		avatar: {
 			type: String,
 			required: true,

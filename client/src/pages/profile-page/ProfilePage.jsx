@@ -35,6 +35,8 @@ const ProfilePageContainer = ({ className }) => {
 	const [firstNameValue, setFirstNameValue] = useState('')
 	const [lastNameValue, setLastNameValue] = useState('')
 	const [emailValue, setEmailValue] = useState('')
+	const [locationValue, setLocationValue] = useState('')
+	const [jobValue, setJobValue] = useState('')
 	const [avatarValue, setAvatarValue] = useState('')
 	const [loginValue, setLoginValue] = useState('')
 	const [editUserData, setEditUserData] = useState(false)
@@ -45,6 +47,8 @@ const ProfilePageContainer = ({ className }) => {
 				firstName: firstNameValue,
 				lastName: lastNameValue,
 				email: emailValue,
+				location: locationValue,
+				job: jobValue,
 				avatar: avatarValue,
 				login: loginValue,
 			})
@@ -54,6 +58,8 @@ const ProfilePageContainer = ({ className }) => {
 			setFirstNameValue('')
 			setLastNameValue('')
 			setEmailValue('')
+			setLocationValue('')
+			setJobValue('')
 			setAvatarValue('')
 			setLoginValue('')
 			setEditUserData(!editUserData)
@@ -64,6 +70,8 @@ const ProfilePageContainer = ({ className }) => {
 		!firstNameValue ||
 		!lastNameValue ||
 		!emailValue ||
+		!locationValue ||
+		!jobValue ||
 		!avatarValue ||
 		!loginValue
 
@@ -102,7 +110,7 @@ const ProfilePageContainer = ({ className }) => {
 							/>
 						) : (
 							<Icon
-								id="fa-check-circle-o"
+								id="fa-check-circle-o fa-3x"
 								padding="10px 10px 20px 300px"
 								onClick={onSave}
 							/>
@@ -143,12 +151,12 @@ const ProfilePageContainer = ({ className }) => {
 					{!lastNameValue ? (
 						<ErrorField>Поле не должно быть пустым</ErrorField>
 					) : null}
-					<label htmlFor="registerEmail">Электронная почта</label>
+					<label htmlFor="profileEmail">Электронная почта</label>
 					<input
 						className="border rounded-md py-1 px-2 m-2 border-gray-400 bg-[#e0e9f8]"
-						id="registerEmail"
+						id="profileEmail"
 						value={emailValue}
-						name="registerEmail"
+						name="profileEmail"
 						type="email"
 						placeholder={user.email}
 						onChange={(e) => setEmailValue(e.target.value)}
@@ -160,6 +168,38 @@ const ProfilePageContainer = ({ className }) => {
 						<ErrorField>
 							Почта должна соответствовать шаблону test@example.com
 						</ErrorField>
+					) : null}
+					<label htmlFor="location">
+						Населенный пункт в котором проживаете
+					</label>
+					<input
+						id="location"
+						value={locationValue}
+						name="location"
+						type="text"
+						placeholder={user.location}
+						onChange={(e) => setLocationValue(e.target.value)}
+						// {...register('location', {
+						// 	onChange: () => setServerError(null),
+						// })}
+					/>
+					{!locationValue ? (
+						<ErrorField>Поле не должно быть пустым</ErrorField>
+					) : null}
+					<label htmlFor="job">Профессия</label>
+					<input
+						id="job"
+						value={jobValue}
+						name="job"
+						type="text"
+						placeholder={user.job}
+						onChange={(e) => setJobValue(e.target.value)}
+						// {...register('job', {
+						// 	onChange: () => setServerError(null),
+						// })}
+					/>
+					{!jobValue ? (
+						<ErrorField>Поле не должно быть пустым</ErrorField>
 					) : null}
 					<label htmlFor="lastName">Интернет ссылка на фото</label>
 					<input

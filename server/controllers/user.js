@@ -9,9 +9,11 @@ async function register(
 	firstName,
 	lastName,
 	email,
+	location,
+	job,
 	avatar,
 	login,
-	password,
+	password
 ) {
 	if (!password) {
 		throw new Error('Password is empty')
@@ -23,7 +25,9 @@ async function register(
 		firstName,
 		lastName,
 		email,
-    avatar,
+		location,
+		job,
+		avatar,
 		login,
 		password: passwordHash,
 	})
@@ -75,7 +79,6 @@ async function getUser(id) {
 	return user
 }
 
-
 // delete
 
 function deleteUser(id) {
@@ -94,5 +97,5 @@ module.exports = {
 	getRoles,
 	deleteUser,
 	updateUser,
-  getUser,
+	getUser,
 }
