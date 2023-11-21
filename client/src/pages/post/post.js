@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Comments, PostContent, PostForm } from './components'
 import { Error, PrivateContent } from '../../components'
 import { loadPostAsync, RESET_POST_DATA } from '../../redux/actions'
-import { selectPost } from '../../redux/selectors'
+import { selectPost, selectUser } from '../../redux/selectors'
 import { ROLE } from '../../constants'
 import styled from 'styled-components'
 
@@ -16,6 +16,7 @@ const PostContainer = ({ className }) => {
 	const isCreating = !!useMatch('/post')
 	const isEditing = !!useMatch('/post/:id/edit')
 	const post = useSelector(selectPost)
+	const authUser = useSelector(selectUser)
 
 	useLayoutEffect(() => {
 		dispatch(RESET_POST_DATA)
@@ -39,7 +40,10 @@ const PostContainer = ({ className }) => {
 
 	const SpecificPostPage =
 		isCreating || isEditing ? (
-			<PrivateContent access={[ROLE.ADMIN]} serverError={error}>
+			<PrivateContent
+				access={[ROLE.ADMIN, authUser.roleId]}
+				serverError={error}
+			>
 				<div className={className}>
 					<PostForm post={post} />
 				</div>

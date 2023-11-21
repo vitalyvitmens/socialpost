@@ -75,7 +75,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/whereposts.jpg?raw=true',
 				title: titleValue
 					? titleValue
-					: `${user.lastName} ${user.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
+					: `ADMIN: ${user.lastName} ${user.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
 				content: `Автор поста: ${user.lastName} ${user.firstName}`,
 			})
 		).then(({ id }) => navigate(`/post/${id}`))
