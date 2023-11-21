@@ -264,6 +264,6 @@ export const Registration = styled(RegistrationContainer)`
 	& > form {
 		display: flex;
 		flex-direction: column;
-		width: 260px;
+		width: 400px;
 	}
 `

@@ -69,7 +69,7 @@ const MainContainer = ({ className }) => {
 			<div className="posts-and-user-profile-section">
 				<div>
 					<UserProfileSection users={users} authUser={authUser} />
-					<FriendsSection users={users}/>
+					<FriendsSection users={users} />
 				</div>
 				{posts.length > 0 ? (
 					<div className="post-list">
@@ -94,6 +94,7 @@ const MainContainer = ({ className }) => {
 									views={views}
 									author={author}
 									users={users}
+									posts={posts}
 								/>
 							)
 						)}

@@ -22,7 +22,7 @@ const UserSchema = mongoose.Schema(
 		},
 		speciality: {
 			type: String,
-			required: true,
+			// required: true,
 		},
 		avatar: {
 			type: String,

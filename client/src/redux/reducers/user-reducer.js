@@ -2,16 +2,16 @@ import { ACTION_TYPE } from '../actions'
 import { ROLE } from '../../constants'
 
 const initialUserState = {
-	id: null,
-	firstName: null,
-	lastName: null,
-	email: null,
-	location: null,
-	speciality: null,
+	id: '',
+	firstName: '',
+	lastName: '',
+	email: '',
+	location: '',
+	speciality: '',
 	avatar: '',
-	login: null,
+	login: '',
 	roleId: ROLE.GUEST,
-	session: null,
+	session: '',
 }
 
 export const userReducer = (state = initialUserState, action) => {
