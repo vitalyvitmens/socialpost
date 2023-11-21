@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../../redux/selectors'
 import { useNavigate } from 'react-router-dom'
 import { Icon, Avatar } from '../../../../components'
-import { request } from '../../../../utils'
 import styled from 'styled-components'
 
 const CardProfile = styled.div`
@@ -69,16 +68,9 @@ const TextDark = styled.div`
 	padding-bottom: 40px;
 `
 
-const FriendsSectionContainer = ({ className }) => {
-	const [users, setUsers] = useState([])
+const FriendsSectionContainer = ({ className, users }) => {
 	const navigate = useNavigate()
 	const authUser = useSelector(selectUser)
-
-	useEffect(() => {
-		request('/users').then((usersRes) => {
-			setUsers(usersRes.data)
-		})
-	}, [])
 
 	!authUser ||
 		(!users && (
