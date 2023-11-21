@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { selectPost, selectUser } from '../../../../redux/selectors'
@@ -60,12 +60,20 @@ const Divider = styled.div`
 `
 
 const CreateUserPostSectionContainer = ({ className }) => {
-	const [titleValue, setTitleValue] = useState('')
 	const [imageUrlValue, setImageUrlValue] = useState('')
+	const [titleValue, setTitleValue] = useState('')
+
+	const user = useSelector(selectUser)
+	const { id, imageUrl, title } =
+		useSelector(selectPost)
+
+	useLayoutEffect(() => {
+		setImageUrlValue(imageUrl)
+		setTitleValue(title)
+	}, [imageUrl, title])
+
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const user = useSelector(selectUser)
-	const { id } = useSelector(selectPost)
 
 	const onSave = () => {
 		dispatch(
@@ -105,8 +113,8 @@ const CreateUserPostSectionContainer = ({ className }) => {
 							<Input
 								width="575px"
 								height="40px"
-								placeholder="Напишите о чём Вы думаете..."
-								onChange={onTitleChange}
+								placeholder="Интернет ссылка на фото..."
+								onChange={onImageChange}
 							/>
 						</Row>
 						<Row>
@@ -114,8 +122,8 @@ const CreateUserPostSectionContainer = ({ className }) => {
 								width="575px"
 								height="40px"
 								margin="-30px 0 10px 90px"
-								placeholder="Интернет ссылка на фото..."
-								onChange={onImageChange}
+								placeholder="Напишите о чём Вы думаете..."
+								onChange={onTitleChange}
 							/>
 						</Row>
 					</Column>
