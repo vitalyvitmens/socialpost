@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { Avatar, Icon } from '../../../../components'
 import { checkAccess, request } from '../../../../utils'
@@ -40,6 +40,7 @@ const PostCardContainer = ({
 	const authUser = useSelector(selectUser)
 	const roleId = useSelector(selectUserRole)
 	const isAdmin = checkAccess([ROLE.ADMIN], roleId)
+	const currentPostId = useParams()
 
 	useEffect(() => {
 		request('/users').then((usersRes) => {
@@ -79,7 +80,7 @@ const PostCardContainer = ({
 			))}
 			<h4>{title}</h4>
 			<img
-				id={id}
+				// id={currentPostId}
 				src={imageUrl}
 				alt={title}
 				onClick={() => navigate(`/post/${id}`)}

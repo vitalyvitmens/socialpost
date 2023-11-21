@@ -12,6 +12,7 @@ const PostContainer = ({ className }) => {
 	const [error, setError] = useState(null)
 	const dispatch = useDispatch()
 	const params = useParams()
+
 	const [isLoading, setIsLoading] = useState(true)
 	const isCreating = !!useMatch('/post')
 	const isEditing = !!useMatch('/post/:id/edit')
