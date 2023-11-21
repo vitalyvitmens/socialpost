@@ -47,6 +47,9 @@ const PostCardContainer = ({
 		})
 	}, [])
 
+	const share = () =>
+		(window.location.href = 'viber://chat?' + window.location.href)
+
 	return !users ? (
 		navigate('/')
 	) : (
@@ -75,7 +78,7 @@ const PostCardContainer = ({
 				</React.Fragment>
 			))}
 			<h4>{title}</h4>
-			<img src={imageUrl} alt={title} />
+			<img src={imageUrl} alt={title} onClick={() => navigate(`/post/${id}`)} />
 			<div className="post-card-footer">
 				<div className="post-card-info">
 					<div className="views-comments-block">
@@ -106,14 +109,10 @@ const PostCardContainer = ({
 					</div>
 					<div className="published-at">
 						<Icon
-							id="fa-pencil-square-o fa-2x"
+							id="fa-share-alt fa-2x"
 							margin="0 7px 0 0"
 							size="18px"
-							inactive={authUser.id !== author && !isAdmin}
-							disabled={authUser.id !== author && !isAdmin}
-							onClick={() =>
-								(authUser.id === author || isAdmin) && navigate(`/post/${id}`)
-							}
+							onClick={share}
 						/>
 					</div>
 				</div>
@@ -146,6 +145,7 @@ export const PostCard = styled(PostCardContainer)`
 		border-radius: 10px;
 		display: block;
 		width: 100%;
+		cursor: pointer;
 	}
 
 	& .edit-plus-user-icons-row {

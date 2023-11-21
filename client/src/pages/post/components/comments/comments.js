@@ -68,6 +68,7 @@ export const Comments = styled(CommentsContainer)`
 	margin: 0 auto;
 
 	& .new-comment {
+    padding-top: 40px;
 		display: flex;
 		width: 100%;
 		margin: 20px 0 0;
@@ -76,9 +77,11 @@ export const Comments = styled(CommentsContainer)`
 	& .new-comment textarea {
 		width: 550px;
 		height: 120px;
+    padding: 5px 10px;
 		font-size: 18px;
 		resize: none;
 		background-color: antiquewhite;
+    border-radius: 10px;
 	}
 `
 

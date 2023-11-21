@@ -62,14 +62,16 @@ const Divider = styled.div`
 const CreateUserPostSectionContainer = ({ className }) => {
 	const [imageUrlValue, setImageUrlValue] = useState('')
 	const [titleValue, setTitleValue] = useState('')
+	const [contentValue, setContentValue] = useState('')
 
 	const user = useSelector(selectUser)
-	const { id, imageUrl, title } = useSelector(selectPost)
+	const { id, imageUrl, title, content } = useSelector(selectPost)
 
 	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl)
 		setTitleValue(title)
-	}, [imageUrl, title])
+		setContentValue(content)
+	}, [content, imageUrl, title])
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -83,9 +85,14 @@ const CreateUserPostSectionContainer = ({ className }) => {
 				title: titleValue
 					? titleValue
 					: `ADMIN: ${user.lastName} ${user.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
-				content: `Автор поста: ${user.lastName} ${user.firstName}`,
+				content: contentValue
+					? contentValue
+					: `Автор поста: ${user.lastName} ${user.firstName}`,
 			})
 		).then(({ id }) => navigate(`/post/${id}`))
+		setImageUrlValue('')
+		setTitleValue('')
+		setContentValue('')
 
 		window.location.reload()
 	}

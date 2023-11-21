@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
-import { Icon } from '../../../../../../components'
+import { Avatar, Icon } from '../../../../../../components'
 import {
 	CLOSE_MODAL,
 	openModal,
@@ -10,6 +10,8 @@ import { selectUserRole } from '../../../../../../redux/selectors'
 import { ROLE } from '../../../../../../constants'
 import Moment from 'react-moment'
 import styled from 'styled-components'
+import React, { useEffect, useState } from 'react'
+import { request } from '../../../../../../utils'
 
 const CommentContainer = ({
 	className,
@@ -19,6 +21,7 @@ const CommentContainer = ({
 	publishedAt,
 	content,
 }) => {
+	const [users, setUsers] = useState([])
 	const dispatch = useDispatch()
 	const userRole = useSelector(selectUserRole)
 
@@ -37,29 +40,41 @@ const CommentContainer = ({
 
 	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole)
 
+	useEffect(() => {
+		request('/users').then((usersRes) => {
+			setUsers(usersRes.data)
+		})
+	}, [])
+
 	return (
 		<div className={className}>
 			<div className="comment">
 				<div className="information-panel">
 					<div className="author">
-						<Icon
-							inactive={true}
-							id="fa-user-circle-o"
-							size="18px"
-							margin="0 10px 0 0"
-							onClick={() => {}}
-						/>
-						{author}
+						{users.map((user) => (
+							<React.Fragment key={user.id}>
+								{user.login.includes(author) ? (
+									<>
+										<Avatar className="avatar" width="40px" height="40px">
+											{user.avatar}
+										</Avatar>
+										<div className="user-lastname-firstname">
+											{user.lastName} {user.firstName}
+										</div>
+									</>
+								) : null}
+							</React.Fragment>
+						))}
 					</div>
 					<div className="published-at">
 						<Icon
 							inactive={true}
 							id="fa-calendar-o"
-							size="18px"
-							margin="0 10px 0 0"
+							size="14px"
+							margin="0 5px 0 0"
 							onClick={() => {}}
 						/>
-              <Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />
+						<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />
 					</div>
 				</div>
 				<div className="comment-text">{content}</div>
@@ -81,10 +96,17 @@ export const Comment = styled(CommentContainer)`
 	margin-top: 10px;
 	background-color: antiquewhite;
 
+	& .user-lastname-firstname {
+		padding-top: 5px;
+		font-weight: 500;
+		font-size: 1.05rem;
+	}
+
 	& .comment {
 		border: 1px solid #000;
 		width: 550px;
 		padding: 5px 10px;
+		border-radius: 10px;
 	}
 
 	& .information-panel {
@@ -98,7 +120,14 @@ export const Comment = styled(CommentContainer)`
 
 	& .published-at {
 		display: flex;
+    color: gray;
+    font-size: 0.9rem;
 	}
+
+  & .comment-text {
+    display: flex;
+    padding-top: 10px;
+  }
 `
 
 Comment.propTypes = {
