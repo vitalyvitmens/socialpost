@@ -5,7 +5,7 @@ module.exports = function (user) {
 		lastName: user.lastName,
 		email: user.email,
 		location: user.location,
-		job: user?.job,
+		speciality: user.speciality,
 		avatar: user.avatar,
 		login: user.login,
 		roleId: user.role,

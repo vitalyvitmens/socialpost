@@ -49,15 +49,15 @@ const regFormSchema = yup.object().shape({
 		)
 		.min(2, 'Неверно указан населенный пункт. Минимум 2 символа')
 		.max(30, 'Неверно указан населенный пункт. Максимум 30 символов'),
-	job: yup
-		.string()
-		.required('Укажите свою профессию')
-		.matches(
-			/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
-			'Неверно указана профессия. Допускаются только буквы'
-		)
-		.min(2, 'Неверно указана профессия. Минимум 2 символа')
-		.max(30, 'Неверно указана профессия. Максимум 30 символов'),
+	// speciality: yup
+	// 	.string()
+	// 	.required('Укажите свою профессию')
+	// 	.matches(
+	// 		/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
+	// 		'Неверно указана профессия. Допускаются только буквы'
+	// 	)
+	// 	.min(2, 'Неверно указана профессия. Минимум 2 символа')
+	// 	.max(30, 'Неверно указана профессия. Максимум 30 символов'),
 	avatar: yup
 		.string()
 		.required('Укажите ссылку (URL) на Ваше фото')
@@ -116,7 +116,7 @@ const RegistrationContainer = ({ className }) => {
 			lastName: '',
 			email: '',
 			location: '',
-			job: '',
+			speciality: '',
 			avatar: '',
 			login: '',
 			password: '',
@@ -138,7 +138,7 @@ const RegistrationContainer = ({ className }) => {
 		lastName,
 		email,
 		location,
-		job,
+		speciality,
 		avatar,
 		login,
 		password,
@@ -148,7 +148,7 @@ const RegistrationContainer = ({ className }) => {
 			lastName,
 			email,
 			location,
-			job,
+			speciality,
 			avatar,
 			login,
 			password,
@@ -168,7 +168,7 @@ const RegistrationContainer = ({ className }) => {
 		errors?.lastName?.message ||
 		errors?.email?.message ||
 		errors?.location?.message ||
-		errors?.job?.message ||
+		// errors?.speciality?.message ||
 		errors?.avatar?.message ||
 		errors?.login?.message ||
 		errors?.password?.message ||
@@ -214,9 +214,9 @@ const RegistrationContainer = ({ className }) => {
 				<Input
 					type="text"
 					placeholder="Профессия..."
-					{...register('job', {
-						onChange: () => setServerError(null),
-					})}
+					// {...register('speciality', {
+					// 	onChange: () => setServerError(null),
+					// })}
 				/>
 				<Input
 					type="text"

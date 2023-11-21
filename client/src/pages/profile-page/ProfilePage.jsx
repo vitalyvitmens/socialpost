@@ -36,7 +36,7 @@ const ProfilePageContainer = ({ className }) => {
 	const [lastNameValue, setLastNameValue] = useState('')
 	const [emailValue, setEmailValue] = useState('')
 	const [locationValue, setLocationValue] = useState('')
-	const [jobValue, setJobValue] = useState('')
+	const [specialityValue, setSpecialityValue] = useState('')
 	const [avatarValue, setAvatarValue] = useState('')
 	const [loginValue, setLoginValue] = useState('')
 	const [editUserData, setEditUserData] = useState(false)
@@ -48,7 +48,7 @@ const ProfilePageContainer = ({ className }) => {
 				lastName: lastNameValue,
 				email: emailValue,
 				location: locationValue,
-				job: jobValue,
+				speciality: specialityValue,
 				avatar: avatarValue,
 				login: loginValue,
 			})
@@ -59,7 +59,7 @@ const ProfilePageContainer = ({ className }) => {
 			setLastNameValue('')
 			setEmailValue('')
 			setLocationValue('')
-			setJobValue('')
+			setSpecialityValue('')
 			setAvatarValue('')
 			setLoginValue('')
 			setEditUserData(!editUserData)
@@ -71,7 +71,7 @@ const ProfilePageContainer = ({ className }) => {
 		!lastNameValue ||
 		!emailValue ||
 		!locationValue ||
-		!jobValue ||
+		!specialityValue ||
 		!avatarValue ||
 		!loginValue
 
@@ -186,19 +186,19 @@ const ProfilePageContainer = ({ className }) => {
 					{!locationValue ? (
 						<ErrorField>Поле не должно быть пустым</ErrorField>
 					) : null}
-					<label htmlFor="job">Профессия</label>
+					<label htmlFor="speciality">Профессия</label>
 					<input
-						id="job"
-						value={jobValue}
-						name="job"
+						id="speciality"
+						value={specialityValue}
+						name="speciality"
 						type="text"
-						placeholder={user.job}
-						onChange={(e) => setJobValue(e.target.value)}
-						// {...register('job', {
+						placeholder={user.speciality}
+						onChange={(e) => setSpecialityValue(e.target.value)}
+						// {...register('speciality', {
 						// 	onChange: () => setServerError(null),
 						// })}
 					/>
-					{!jobValue ? (
+					{!specialityValue ? (
 						<ErrorField>Поле не должно быть пустым</ErrorField>
 					) : null}
 					<label htmlFor="lastName">Интернет ссылка на фото</label>

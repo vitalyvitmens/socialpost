@@ -10,7 +10,7 @@ async function register(
 	lastName,
 	email,
 	location,
-	job,
+	speciality,
 	avatar,
 	login,
 	password
@@ -26,7 +26,7 @@ async function register(
 		lastName,
 		email,
 		location,
-		job,
+		speciality,
 		avatar,
 		login,
 		password: passwordHash,

@@ -1,6 +1,4 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import { selectUser } from '../../../../redux/selectors'
 import { Icon, Avatar } from '../../../../components'
 import styled from 'styled-components'
 
@@ -70,23 +68,22 @@ const TextDark = styled.div`
 	padding-bottom: 40px;
 `
 
-const UserProfileSectionContainer = ({ className }) => {
+const UserProfileSectionContainer = ({ className, users, authUser }) => {
 	const navigate = useNavigate()
-	const user = useSelector(selectUser)
 
-	return !user ? (
+	return !authUser ? (
 		navigate('/')
 	) : (
 		<div className={className}>
 			<CardProfile>
 				<TextDark>Мой профиль</TextDark>
 				<FlexJustifyEnd>
-					<Avatar>{user.avatar}</Avatar>
+					<Avatar>{authUser.avatar}</Avatar>
 					<Column>
 						<Row>
-							{user.lastName} {user.firstName}
+							{authUser.lastName} {authUser.firstName}
 						</Row>
-						<TextLight>{3} друзей</TextLight>
+						<TextLight>{users.length - 1} друзей</TextLight>
 					</Column>
 					<Down>
 						<Icon id="fa-cog fa-x" onClick={() => navigate('/profile')} />
@@ -97,17 +94,17 @@ const UserProfileSectionContainer = ({ className }) => {
 					<Column>
 						<Row>
 							<Icon
-								id="fa-map-marker fa-x"
+								id="fa-map-marker fa-2x"
 								// onClick={onSave}
 							/>
-							<TextLight>Беларусь</TextLight>
+							<TextLight>{authUser.location}</TextLight>
 						</Row>
 						<Row>
 							<Icon
 								id="fa fa-briefcase fa-x"
 								// onClick={onSave}
 							/>
-							<TextLight>ReactJS Developer</TextLight>
+							<TextLight>{authUser.speciality}</TextLight>
 						</Row>
 					</Column>
 				</FlexJustifyEnd>

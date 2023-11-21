@@ -59,7 +59,7 @@ app.post('/register', async (req, res) => {
 			req.body.lastName,
 			req.body.email,
 			req.body.location,
-			req.body.job,
+			req.body.speciality,
 			req.body.avatar,
 			req.body.login,
 			req.body.password
@@ -194,7 +194,7 @@ app.put(
 				lastName: req.body.lastName,
 				email: req.body.email,
 				location: req.body.location,
-				job: req.body.job,
+				speciality: req.body.speciality,
 				avatar: req.body.avatar,
 				login: req.body.login,
 			})

@@ -1,7 +1,7 @@
 import { useMemo, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  CreateUserPostSection,
+	CreateUserPostSection,
 	FriendsSection,
 	Pagination,
 	PostCard,
@@ -68,7 +68,7 @@ const MainContainer = ({ className }) => {
 			<Search searchPhrase={searchPhrase} onChange={onSearch} />
 			<div className="posts-and-user-profile-section">
 				<div>
-					<UserProfileSection />
+					<UserProfileSection users={users} authUser={authUser} />
 					<FriendsSection />
 				</div>
 				{posts.length > 0 ? (
@@ -112,7 +112,12 @@ const MainContainer = ({ className }) => {
 				)}
 			</div>
 			{lastPage > 1 && posts.length > 0 && (
-				<Pagination page={page} lastPage={lastPage} setPage={setPage} />
+				<Pagination
+					page={page}
+					lastPage={lastPage}
+					setPage={setPage}
+					authUser={authUser}
+				/>
 			)}
 		</div>
 	)

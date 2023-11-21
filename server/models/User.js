@@ -20,9 +20,9 @@ const UserSchema = mongoose.Schema(
 			type: String,
 			required: true,
 		},
-		job: {
+		speciality: {
 			type: String,
-			// required: true,
+			required: true,
 		},
 		avatar: {
 			type: String,
