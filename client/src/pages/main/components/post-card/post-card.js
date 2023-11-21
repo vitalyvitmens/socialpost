@@ -31,7 +31,6 @@ const PostCardContainer = ({
 	views,
 	author,
 	users,
-	posts,
 }) => {
 	const navigate = useNavigate()
 
@@ -67,8 +66,6 @@ const PostCardContainer = ({
 			))}
 			<h4>{title}</h4>
 			<img
-				key={id}
-				id={posts.id}
 				src={imageUrl}
 				alt={title}
 				onClick={() => navigate(`/post/${id}`)}

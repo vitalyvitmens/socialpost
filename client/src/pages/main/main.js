@@ -94,7 +94,6 @@ const MainContainer = ({ className }) => {
 									views={views}
 									author={author}
 									users={users}
-									posts={posts}
 								/>
 							)
 						)}
