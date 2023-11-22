@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectPost, selectUser } from '../../../../redux/selectors'
+import { savePostAsync } from '../../../../redux/actions'
 import {
 	Icon,
 	Avatar,
@@ -8,7 +9,7 @@ import {
 	Input,
 	LoaderSpinner,
 } from '../../../../components'
-import { savePostAsync } from '../../../../redux/actions'
+import { isImageURL } from '../../../../utils'
 import styled from 'styled-components'
 
 const CardProfile = styled.div`
@@ -64,6 +65,13 @@ const Divider = styled.div`
 	border-top: 3px solid gray;
 `
 
+const ErrorField = styled.div`
+	display: flex;
+	margin: -15px 12px 5px 130px;
+	color: rgb(194 65 12);
+	font-size: 12px;
+`
+
 const CreateUserPostSectionContainer = ({ className }) => {
 	const [imageUrlVal, setImageUrlVal] = useState('')
 	const [titleVal, setTitleVal] = useState('')
@@ -99,6 +107,9 @@ const CreateUserPostSectionContainer = ({ className }) => {
 			<CardProfile>
 				<FlexJustifyEnd>
 					<Column>
+						{imageUrlVal.length ? (
+							<ErrorField>{isImageURL(imageUrlVal)}</ErrorField>
+						) : null}
 						<Row>
 							<Avatar>{authUser.avatar}</Avatar>
 							<Input
@@ -147,7 +158,8 @@ const CreateUserPostSectionContainer = ({ className }) => {
 							<Icon
 								id="fa-file-text-o"
 								onClick={() =>
-									(window.location.href = 'https://raw.githubusercontent.com/vitalyvitmens/SQLite/main/logo/diplomas/MSHFTC.jpg')
+									(window.location.href =
+										'https://raw.githubusercontent.com/vitalyvitmens/SQLite/main/logo/diplomas/MSHFTC.jpg')
 								}
 							/>
 							<TextLight>файл</TextLight>
@@ -162,7 +174,12 @@ const CreateUserPostSectionContainer = ({ className }) => {
 								margin="0 0 0 0"
 								width="120px"
 								height="50px"
-								disabled={!imageUrlVal || !titleVal || !authUser}
+								disabled={
+									!imageUrlVal ||
+									!titleVal ||
+									!authUser ||
+									isImageURL(imageUrlVal)
+								}
 								onClick={() => onSave()}
 							>
 								Запостить

@@ -206,7 +206,7 @@ const RegistrationContainer = ({ className }) => {
 				/>
 				<Input
 					type="text"
-					placeholder="Населенный пункт в котором проживаете..."
+					placeholder="Ваш город..."
 					{...register('location', {
 						onChange: () => setServerError(null),
 					})}

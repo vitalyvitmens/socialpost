@@ -4,6 +4,15 @@ import { selectUser } from '../../redux/selectors'
 import { updateUserAsync } from '../../redux/actions'
 import { Avatar, Icon } from '../../components'
 import styled from 'styled-components'
+import {
+	isFirstName,
+	isEmail,
+	isImageURL,
+	isLastName,
+	isLocation,
+	isLogin,
+	isSpeciality,
+} from '../../utils'
 
 const CardProfile = styled.div`
 	display: flex;
@@ -74,74 +83,6 @@ const ProfilePageContainer = ({ className }) => {
 		isSpeciality(specialityValue) ||
 		isImageURL(avatarValue) ||
 		isLogin(loginValue)
-
-	function isFirstName(value) {
-		const checkedString = /^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/g.test(
-			value
-		)
-
-		return checkedString
-			? null
-			: 'Неверно указано имя. Допускаются только буквы из них первая должна быть заглавной'
-	}
-
-	function isLastName(value) {
-		const checkedString = /^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/g.test(
-			value
-		)
-
-		return checkedString
-			? null
-			: 'Неверно указана фамилия. Допускаются только буквы из них первая должна быть заглавной'
-	}
-
-	function isEmail(value) {
-		const checkedString =
-			/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g.test(value)
-
-		return checkedString ? null : 'Неверно заполнен email'
-	}
-
-	function isLocation(value) {
-		const checkedString =
-			/^(([a-zA-Zа-яА-ЯёЁ]*(\s*)\([a-zA-Zа-яА-ЯёЁ\s]*\))|([a-zA-Zа-яА-ЯёЁ\-0-9]*)|([a-zA-Zа-яА-ЯёЁ]+[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*))$/g.test(
-				value
-			)
-
-		return checkedString
-			? null
-			: 'Неверно указан населенный пункт. Допускаются буквы, цифры, без пробелов и символов, за исключением тире'
-	}
-
-	function isSpeciality(value) {
-		const checkedString =
-			/^(([a-zA-Zа-яА-ЯёЁ]*(\s*)\([a-zA-Zа-яА-ЯёЁ\s]*\))|([a-zA-Zа-яА-ЯёЁ\-0-9]*)|([a-zA-Zа-яА-ЯёЁ]+[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*))$/g.test(
-				value
-			)
-
-		return checkedString
-			? null
-			: 'Неверно указана профессия. Допускаются только буквы, цифры, одиночные тире, пробел или нижнее подчеркивание'
-	}
-
-	function isImageURL(value) {
-		const checkedString =
-			/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$$/g.test(
-				value
-			)
-
-		return checkedString
-			? null
-			: 'Неверно заполненна интернет ссылка (URL) на Ваше фото. Допустимые форматы jpg, jpeg, png'
-	}
-
-	function isLogin(value) {
-		const checkedString = /^\w+$/g.test(value)
-
-		return checkedString
-			? null
-			: 'Неверно заполнен логин. Допускаются только буквы цифры и нижнее подчеркивание'
-	}
 
 	return !editUserData ? (
 		<div className={className}>
