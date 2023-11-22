@@ -6,7 +6,7 @@ import {
 	openModal,
 	removeCommentAsync,
 } from '../../../../../../redux/actions'
-import { selectUserRole } from '../../../../../../redux/selectors'
+import { selectUser } from '../../../../../../redux/selectors'
 import { ROLE } from '../../../../../../constants'
 import { request } from '../../../../../../utils'
 import Moment from 'react-moment'
@@ -23,7 +23,9 @@ const CommentContainer = ({
 }) => {
 	const [users, setUsers] = useState([])
 	const dispatch = useDispatch()
-	const userRole = useSelector(selectUserRole)
+	const authUser = useSelector(selectUser)
+	const userRole = authUser.roleId
+	const authorComment = author === authUser.id
 
 	const onCommentRemove = (id) => {
 		dispatch(
@@ -79,6 +81,14 @@ const CommentContainer = ({
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
+			{(isAdminOrModerator || authorComment) && (
+				<Icon
+					id="fa-trash-o"
+					size="21px"
+					margin="0 0 0 10px"
+					onClick={() => onCommentRemove(id)}
+				/>
+			)}
 		</div>
 	)
 }

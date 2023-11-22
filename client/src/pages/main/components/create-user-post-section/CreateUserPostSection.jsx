@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
 import { selectPost, selectUser } from '../../../../redux/selectors'
 import {
 	Icon,
@@ -73,7 +72,6 @@ const CreateUserPostSectionContainer = ({ className }) => {
 	const { id } = useSelector(selectPost)
 
 	const dispatch = useDispatch()
-	const navigate = useNavigate()
 
 	const onSave = () => {
 		dispatch(

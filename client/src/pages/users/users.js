@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { PrivateContent, H2, Icon, LoaderSpinner } from '../../components'
+import { PrivateContent, H2, LoaderSpinner } from '../../components'
 import { UserRow, TableRow } from './components'
 import { selectUserRole } from '../../redux/selectors'
 import { checkAccess } from '../../utils'
