@@ -7,14 +7,14 @@ const LargeText = styled.div`
 	font-size: 48px;
 	font-weight: 600;
 	line-height: 42px;
-	padding: 0 0 0 10px;
+	padding: 17px 0 0 10px;
 `
 
 const LogoContainer = ({ className }) => (
 	<Link className={className} to="/main">
 		<Icon id="fa fa-book" size="90px" margin="-10px 10px 0 0" />
 		<div>
-			<LargeText>Social Post</LargeText>
+			<LargeText>SocialPost</LargeText>
 		</div>
 	</Link>
 )

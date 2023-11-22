@@ -92,6 +92,8 @@ const ProfilePageContainer = ({ className }) => {
 					{user.lastName} {user.firstName}
 				</div>
 				<div className="text-email">{user.email}</div>
+				<div className="text-location">{user.location}</div>
+				<div className="text-speciality">{user.speciality}</div>
 			</CardProfile>
 		</div>
 	) : (
@@ -253,6 +255,25 @@ export const ProfilePage = styled(ProfilePageContainer)`
 		display: flex;
 		padding-bottom: 20px;
 		font-size: 1.75rem;
+    font-weight: 500;
+    font-style: italic;
+    color: blue;
+	}
+
+	& .text-location {
+		display: flex;
+		padding-bottom: 20px;
+		font-size: 1.75rem;
+    font-weight: 500;
+    color: red;
+	}
+
+	& .text-speciality {
+		display: flex;
+		padding-bottom: 20px;
+		font-size: 1.5rem;
+    color: green;
+    font-weight: 500;
 	}
 
 	& .flex-row {

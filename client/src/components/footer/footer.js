@@ -21,7 +21,7 @@ const FooterContainer = ({ className }) => {
 	return (
 		<div className={className}>
 			<div>
-				<div>Social Post</div>
+				<div>SocialPost</div>
 				<div>
 					©{' '}
 					{new Date().toLocaleString('ru', {

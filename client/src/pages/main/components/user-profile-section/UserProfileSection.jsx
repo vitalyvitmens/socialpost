@@ -86,7 +86,7 @@ const UserProfileSectionContainer = ({ className, users, authUser }) => {
 						<TextLight>{users.length - 1} друзей</TextLight>
 					</Column>
 					<Down>
-						<Icon id="fa-cog fa-x" onClick={() => navigate('/profile')} />
+						<Icon id="fa-cog fa-2x" onClick={() => navigate('/profile')} />
 					</Down>
 				</FlexJustifyEnd>
 				<Divider />
@@ -95,14 +95,14 @@ const UserProfileSectionContainer = ({ className, users, authUser }) => {
 						<Row>
 							<Icon
 								id="fa-map-marker fa-2x"
-								// onClick={onSave}
+								inactive={true}
 							/>
 							<TextLight>{authUser.location}</TextLight>
 						</Row>
 						<Row>
 							<Icon
 								id="fa fa-briefcase fa-x"
-								// onClick={onSave}
+								inactive={true}
 							/>
 							<TextLight>{authUser.speciality}</TextLight>
 						</Row>
