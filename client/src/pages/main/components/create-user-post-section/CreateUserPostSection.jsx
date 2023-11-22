@@ -174,6 +174,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 								margin="0 0 0 0"
 								width="120px"
 								height="50px"
+								inactive={isImageURL(imageUrlVal)}
 								disabled={
 									!imageUrlVal ||
 									!titleVal ||
