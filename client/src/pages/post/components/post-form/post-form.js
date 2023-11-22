@@ -32,7 +32,7 @@ const PostFormContainer = ({
 			savePostAsync(id, {
 				imageUrl: imageUrlValue
 					? imageUrlValue
-					: 'https://github.com/vitalyvitmens/news-blog/blob/main/frontend/src/img/001.jpg?raw=true',
+					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/whereposts.jpg?raw=true',
 				title: titleValue ? titleValue : 'Заполните название статьи!',
 				content: newContent ? newContent : 'Заполните контекст статьи!',
 			})
@@ -45,11 +45,15 @@ const PostFormContainer = ({
 	return (
 		<div className={className}>
 			<Input
+				id="imageUrlValue"
+				name="imageUrlValue"
 				value={imageUrlValue}
 				placeholder="Изображение..."
 				onChange={onImageChange}
 			/>
 			<Input
+				id="titleValue"
+				name="titleValue"
 				value={titleValue}
 				placeholder="Заголовок..."
 				onChange={onTitleChange}

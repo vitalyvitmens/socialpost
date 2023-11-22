@@ -6,6 +6,8 @@ const SearchContainer = ({ className, searchPhrase, onChange }) => {
 	return (
 		<div className={className}>
 			<Input
+				id="searchPhrase"
+				name="searchPhrase"
 				value={searchPhrase}
 				placeholder="Поиск по тексту постов..."
 				onChange={onChange}
@@ -22,9 +24,9 @@ export const Search = styled(SearchContainer)`
 	margin: 40px auto 0;
 
 	& > input {
-    padding: 10px 36px 10px 10px;
+		padding: 10px 36px 10px 10px;
 		font-size: 21px;
-    border-radius: 10px;
+		border-radius: 10px;
 	}
 
 	& > div {

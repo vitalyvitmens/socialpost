@@ -1,6 +1,6 @@
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { selectPost, selectUser } from '../../../../redux/selectors'
 import { Icon, Avatar, Button, Input } from '../../../../components'
 import { savePostAsync } from '../../../../redux/actions'
@@ -62,16 +62,9 @@ const Divider = styled.div`
 const CreateUserPostSectionContainer = ({ className }) => {
 	const [imageUrlVal, setImageUrlVal] = useState('')
 	const [titleVal, setTitleVal] = useState('')
-	const [contentVal, setContentVal] = useState('')
 
 	const authUser = useSelector(selectUser)
-	const { id, imageUrl, title, content } = useSelector(selectPost)
-
-	// useLayoutEffect(() => {
-	// 	setImageUrlVal(imageUrl)
-	// 	setTitleVal(title)
-	// 	setContentVal(content)
-	// }, [content, imageUrl, title])
+	const { id } = useSelector(selectPost)
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -85,9 +78,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 				title: titleVal
 					? titleVal
 					: `ADMIN: ${authUser.lastName} ${authUser.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
-				content: contentVal
-					? contentVal
-					: `Автор поста: ${authUser.lastName} ${authUser.firstName}`,
+				content: `Автор поста: ${authUser.lastName} ${authUser.firstName}`,
 			})
 		)
 
@@ -116,6 +107,8 @@ const CreateUserPostSectionContainer = ({ className }) => {
 						<Row>
 							<Avatar>{authUser.avatar}</Avatar>
 							<Input
+								id="imageUrlVal"
+								name="imageUrlVal"
 								value={imageUrlVal}
 								width="575px"
 								height="40px"
@@ -125,6 +118,8 @@ const CreateUserPostSectionContainer = ({ className }) => {
 						</Row>
 						<Row>
 							<Input
+								id="titleVal"
+								name="titleVal"
 								value={titleVal}
 								width="575px"
 								height="40px"
