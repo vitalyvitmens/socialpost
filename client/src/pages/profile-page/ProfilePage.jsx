@@ -201,7 +201,7 @@ const ProfilePageContainer = ({ className }) => {
 					{!specialityValue ? (
 						<ErrorField>Поле не должно быть пустым</ErrorField>
 					) : null}
-					<label htmlFor="lastName">Интернет ссылка на фото</label>
+					<label htmlFor="lastName">Интернет ссылка (URL) на фото</label>
 					<input
 						id="avatar"
 						value={avatarValue}

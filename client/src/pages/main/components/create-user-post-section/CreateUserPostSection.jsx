@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { selectPost, selectUser } from '../../../../redux/selectors'
 import {
 	Icon,
@@ -109,7 +109,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 								value={imageUrlVal}
 								width="575px"
 								height="40px"
-								placeholder="Интернет ссылка на фото..."
+								placeholder="Интернет ссылка (URL) на фото..."
 								onChange={onImageChange}
 							/>
 						</Row>
@@ -131,13 +131,34 @@ const CreateUserPostSectionContainer = ({ className }) => {
 				<FlexJustifyEnd>
 					<Column>
 						<Row>
-							<Icon id="fa-picture-o" onClick={() => navigate('/profile')} />
+							<Icon
+								id="fa-picture-o"
+								onClick={() =>
+									(window.location.href =
+										'https://yandex.by/images/search?lr=157&nl=1&rdrnd=442586&redircnt=1700658614.1&source=morda&text=%D0%91%D0%B5%D0%BB%D0%BE%D0%B5%20%D0%9C%D0%BE%D1%80%D0%B5')
+								}
+							/>
 							<TextLight>фото</TextLight>
-							<Icon id="fa-file-video-o" onClick={() => navigate('/profile')} />
+							<Icon
+								id="fa-file-video-o"
+								onClick={() =>
+									(window.location.href = 'https://www.youtube.com/')
+								}
+							/>
 							<TextLight>видео</TextLight>
-							<Icon id="fa-file-text-o" onClick={() => navigate('/profile')} />
+							<Icon
+								id="fa-file-text-o"
+								onClick={() =>
+									(window.location.href = 'https://raw.githubusercontent.com/vitalyvitmens/SQLite/main/logo/diplomas/MSHFTC.jpg')
+								}
+							/>
 							<TextLight>файл</TextLight>
-							<Icon id="fa-file-audio-o" onClick={() => navigate('/profile')} />
+							<Icon
+								id="fa-file-audio-o"
+								onClick={() =>
+									(window.location.href = 'https://dushevnoeradio.by/')
+								}
+							/>
 							<TextLight>аудио</TextLight>
 							<Button
 								margin="0 0 0 0"

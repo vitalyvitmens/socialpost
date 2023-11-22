@@ -220,7 +220,7 @@ const RegistrationContainer = ({ className }) => {
 				/>
 				<Input
 					type="text"
-					placeholder="Интернет ссылка на фото..."
+					placeholder="Интернет ссылка (URL) на фото..."
 					{...register('avatar', {
 						onChange: () => setServerError(null),
 					})}
