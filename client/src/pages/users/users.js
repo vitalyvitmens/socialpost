@@ -54,6 +54,8 @@ const UsersContainer = ({ className }) => {
 						<div className="first-name-column">Имя</div>
 						<div className="avatar-column">Аватар</div>
 						<div className="login-column">Логин</div>
+						<div className="location-column">Город</div>
+						<div className="speciality-column">Профессия</div>
 						<div className="registered-at-column">Дата регистрации</div>
 						<div className="role-column">Роль</div>
 					</TableRow>
@@ -64,6 +66,8 @@ const UsersContainer = ({ className }) => {
 							firstName,
 							avatar,
 							login,
+              location,
+              speciality,
 							registeredAt,
 							roleId,
 						}) => (
@@ -74,6 +78,8 @@ const UsersContainer = ({ className }) => {
 								firstName={firstName}
 								avatar={avatar}
 								login={login}
+								location={location}
+								speciality={speciality}
 								registeredAt={registeredAt}
 								roleId={roleId}
 								roles={roles.filter(({ id: roleId }) => roleId !== ROLE.GUEST)}

@@ -28,7 +28,15 @@ export const TableRow = styled(TableRowContainer)`
 	}
 
 	& .login-column {
-		width: 120px;
+		width: 80px;
+	}
+
+	& .location-column {
+		width: 140px;
+	}
+
+	& .speciality-column {
+		width: 180px;
 	}
 
 	& .registered-at-column {

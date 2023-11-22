@@ -109,6 +109,8 @@ const ProfilePageContainer = ({ className }) => {
 							<Icon
 								id="fa-check-circle-o fa-3x"
 								padding="10px 10px 20px 300px"
+								inactive={true}
+								disabled={formError}
 							/>
 						) : (
 							<Icon
@@ -180,6 +182,7 @@ const ProfilePageContainer = ({ className }) => {
 						name="location"
 						type="text"
 						placeholder={user.location}
+						pattern="/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/"
 						onChange={(e) => setLocationValue(e.target.value)}
 						// {...register('location', {
 						// 	onChange: () => setServerError(null),
@@ -255,25 +258,25 @@ export const ProfilePage = styled(ProfilePageContainer)`
 		display: flex;
 		padding-bottom: 20px;
 		font-size: 1.75rem;
-    font-weight: 500;
-    font-style: italic;
-    color: blue;
+		font-weight: 500;
+		font-style: italic;
+		color: blue;
 	}
 
 	& .text-location {
 		display: flex;
 		padding-bottom: 20px;
 		font-size: 1.75rem;
-    font-weight: 500;
-    color: red;
+		font-weight: 500;
+		color: red;
 	}
 
 	& .text-speciality {
 		display: flex;
 		padding-bottom: 20px;
 		font-size: 1.5rem;
-    color: green;
-    font-weight: 500;
+		color: green;
+		font-weight: 500;
 	}
 
 	& .flex-row {

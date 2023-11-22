@@ -14,6 +14,8 @@ const UserRowContainer = ({
 	firstName,
 	avatar,
 	login,
+	location,
+	speciality,
 	registeredAt,
 	roleId: userRoleId,
 	roles,
@@ -43,11 +45,18 @@ const UserRowContainer = ({
 					<Avatar>{avatar}</Avatar>
 				</div>
 				<div className="login-column">{login}</div>
+				<div className="location-column">{location}</div>
+				<div className="speciality-column">{speciality}</div>
 				<div className="registered-at-column">
 					{<Moment date={registeredAt} format="DD-MM-YYYYг HH:mm" />}
 				</div>
 				<div className="role-column">
-					<select value={selectedRoleId} onChange={onRoleChange}>
+					<select
+						id={id}
+						name="select"
+						value={selectedRoleId}
+						onChange={onRoleChange}
+					>
 						{roles.map(({ id: roleId, name: roleName }) => (
 							<option key={roleId} value={roleId}>
 								{roleName}
