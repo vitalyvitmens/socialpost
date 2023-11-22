@@ -67,13 +67,13 @@ const ProfilePageContainer = ({ className }) => {
 	}
 
 	const formError =
-		!firstNameValue ||
-		!lastNameValue ||
-		!emailValue ||
-		!locationValue ||
-		!specialityValue ||
-		!avatarValue ||
-		!loginValue
+		isFirstName(firstNameValue) ||
+		isLastName(lastNameValue) ||
+		isEmail(emailValue) ||
+		isLocation(locationValue) ||
+		isSpeciality(specialityValue) ||
+		isImageURL(avatarValue) ||
+		isLogin(loginValue)
 
 	function isFirstName(value) {
 		const checkedString = /^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/g.test(
