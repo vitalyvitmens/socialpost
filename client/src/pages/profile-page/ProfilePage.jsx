@@ -75,6 +75,49 @@ const ProfilePageContainer = ({ className }) => {
 		!avatarValue ||
 		!loginValue
 
+	function isFirstName(value) {
+		const checkedString = /^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/g.test(
+			value
+		)
+
+		return checkedString
+			? null
+			: 'Неверно указано имя. Допускаются только буквы из них первая должна быть заглавной'
+	}
+
+	function isLastName(value) {
+		const checkedString = /^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/g.test(
+			value
+		)
+
+		return checkedString
+			? null
+			: 'Неверно указана фамилия. Допускаются только буквы из них первая должна быть заглавной'
+	}
+
+	function isEmail(value) {
+		return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g.test(value)
+	}
+
+	function isLocationOrSpeciality(value) {
+		return /^(([a-zA-Zа-яА-ЯёЁ]*(\s*)\([a-zA-Zа-яА-ЯёЁ\s]*\))|([a-zA-Zа-яА-ЯёЁ\-0-9]*)|([a-zA-Zа-яА-ЯёЁ]+[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*))$/g.test(
+			value
+		)
+	}
+
+	function isImageURL(value) {
+		return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$$/g.test(
+			value
+		)
+	}
+
+	function isLogin(value) {
+		return /^\w+$/g.test(value)
+	}
+
+	// if (!isText(input.value)) {
+	// 	// введены не только цифры
+	// }
 	return !editUserData ? (
 		<div className={className}>
 			<CardProfile>
@@ -137,8 +180,8 @@ const ProfilePageContainer = ({ className }) => {
 						// 	onChange: () => setServerError(null),
 						// })}
 					/>
-					{!firstNameValue ? (
-						<ErrorField>Поле не должно быть пустым</ErrorField>
+					{firstNameValue.length ? (
+						<ErrorField>{isFirstName(firstNameValue)}</ErrorField>
 					) : null}
 					<label htmlFor="lastName">Фамилия</label>
 					<input
