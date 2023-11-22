@@ -86,24 +86,22 @@ const UserProfileSectionContainer = ({ className, users, authUser }) => {
 						<TextLight>{users.length - 1} друзей</TextLight>
 					</Column>
 					<Down>
-						<Icon id="fa-cog fa-2x" onClick={() => navigate('/profile')} />
+						<Icon
+							id="fa-cog fa-2x"
+							padding="0 0 10px 5px"
+							onClick={() => navigate('/profile')}
+						/>
 					</Down>
 				</FlexJustifyEnd>
 				<Divider />
 				<FlexJustifyEnd>
 					<Column>
 						<Row>
-							<Icon
-								id="fa-map-marker fa-2x"
-								inactive={true}
-							/>
+							<Icon id="fa-map-marker fa-2x" inactive={true} />
 							<TextLight>{authUser.location}</TextLight>
 						</Row>
 						<Row>
-							<Icon
-								id="fa fa-briefcase fa-x"
-								inactive={true}
-							/>
+							<Icon id="fa fa-briefcase fa-x" inactive={true} />
 							<TextLight>{authUser.speciality}</TextLight>
 						</Row>
 					</Column>
