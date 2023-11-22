@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { PrivateContent, H2, Icon } from '../../components'
+import { PrivateContent, H2, Icon, LoaderSpinner } from '../../components'
 import { UserRow, TableRow } from './components'
 import { selectUserRole } from '../../redux/selectors'
 import { checkAccess } from '../../utils'
@@ -42,20 +42,9 @@ const UsersContainer = ({ className }) => {
 		})
 	}
 
-	!users && (
-		<div className="no-posts-found">
-			<Icon
-				inactive={true}
-				id="fa fa-refresh fa-spin fa-3x fa-fw"
-				margin="0 7px 0 0"
-				size="24px"
-				aria-hidden="true"
-			/>
-			<span>Loading...</span>
-		</div>
-	)
-
-	return (
+	return !users ? (
+		<LoaderSpinner />
+	) : (
 		<PrivateContent access={[ROLE.ADMIN]} serverError={errorMessage}>
 			<div className={className}>
 				<H2>Пользователи</H2>
