@@ -1,4 +1,4 @@
-import PropTypes from 'prop-types'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Avatar, Icon } from '../../../../../../components'
 import {
@@ -8,10 +8,10 @@ import {
 } from '../../../../../../redux/actions'
 import { selectUserRole } from '../../../../../../redux/selectors'
 import { ROLE } from '../../../../../../constants'
-import Moment from 'react-moment'
-import styled from 'styled-components'
-import React, { useEffect, useState } from 'react'
 import { request } from '../../../../../../utils'
+import Moment from 'react-moment'
+import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 const CommentContainer = ({
 	className,

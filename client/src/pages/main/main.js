@@ -8,13 +8,13 @@ import {
 	Search,
 	UserProfileSection,
 } from './components'
-import { PAGINATION_LIMIT } from '../../constants'
-import { debounce } from './utils'
-import { request } from '../../utils'
-import { Icon } from '../../components'
-import styled from 'styled-components'
+import { LoaderSpinner } from '../../components'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../redux/selectors'
+import { debounce } from './utils'
+import { request } from '../../utils'
+import { PAGINATION_LIMIT } from '../../constants'
+import styled from 'styled-components'
 
 const MainContainer = ({ className }) => {
 	const navigate = useNavigate()
@@ -40,21 +40,6 @@ const MainContainer = ({ className }) => {
 	}, [page, searchPhrase, shouldSearch])
 
 	const startDelayedSearch = useMemo(() => debounce(setShouldSearch, 2000), [])
-
-	if (!posts || !users) {
-		return (
-			<div className="no-posts-found">
-				<Icon
-					inactive={true}
-					id="fa fa-refresh fa-spin fa-3x fa-fw"
-					margin="0 7px 0 0"
-					size="24px"
-					aria-hidden="true"
-				/>
-				<span>Loading...</span>
-			</div>
-		)
-	}
 
 	const onSearch = ({ target }) => {
 		setSearchPhrase(target.value)
@@ -99,16 +84,7 @@ const MainContainer = ({ className }) => {
 						)}
 					</div>
 				) : (
-					<div className="no-posts-found">
-						<Icon
-							inactive={true}
-							id="fa fa-refresh fa-spin fa-3x fa-fw"
-							margin="0 7px 0 0"
-							size="24px"
-							aria-hidden="true"
-						/>
-						<span>Loading...</span>
-					</div>
+					<LoaderSpinner />
 				)}
 			</div>
 			{lastPage > 1 && posts.length > 0 && (
@@ -138,11 +114,5 @@ export const Main = styled(MainContainer)`
 		justify-content: end;
 		flex-wrap: wrap;
 		padding-bottom: 80px;
-	}
-
-	& .no-posts-found {
-		font-size: 24px;
-		margin-top: 40px;
-		text-align: center;
 	}
 `

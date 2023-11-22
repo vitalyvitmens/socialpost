@@ -1,15 +1,15 @@
-import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { Icon } from '../../../../components'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	CLOSE_MODAL,
 	openModal,
 	removePostAsync,
 } from '../../../../redux/actions'
-import { checkAccess } from '../../../../utils'
 import { selectUserRole } from '../../../../redux/selectors'
+import { Icon } from '../../../../components'
+import { checkAccess } from '../../../../utils'
 import { ROLE } from '../../../../constants'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const SpecialPanelContainer = ({

@@ -205,12 +205,6 @@ export const PostCard = styled(PostCardContainer)`
 		display: flex;
 	}
 
-	& .no-posts-found {
-		font-size: 24px;
-		margin-top: 40px;
-		text-align: center;
-	}
-
 	& .icon {
 		display: flex;
 		text-align: end;

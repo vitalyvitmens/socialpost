@@ -1,8 +1,8 @@
 import { H2, Icon } from '../../../../components'
 import { SpecialPanel } from '../special-panel/special-panel'
 import { useNavigate } from 'react-router-dom'
-import Moment from 'react-moment'
 import { PROP_TYPE } from '../../../../constants'
+import Moment from 'react-moment'
 import styled from 'styled-components'
 
 const PostContentContainer = ({

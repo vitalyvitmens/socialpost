@@ -5,8 +5,8 @@ import { Icon, Input } from '../../../../components'
 import { SpecialPanel } from '../special-panel/special-panel'
 import { savePostAsync } from '../../../../redux/actions'
 import { sanitizeContent } from './utils'
-import Moment from 'react-moment'
 import { PROP_TYPE } from '../../../../constants'
+import Moment from 'react-moment'
 import styled from 'styled-components'
 
 const PostFormContainer = ({

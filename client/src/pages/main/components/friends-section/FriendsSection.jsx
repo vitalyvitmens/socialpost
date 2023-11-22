@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectUser } from '../../../../redux/selectors'
 import { useNavigate } from 'react-router-dom'
-import { Icon, Avatar } from '../../../../components'
+import { Icon, Avatar, LoaderSpinner } from '../../../../components'
 import styled from 'styled-components'
 
 const CardProfile = styled.div`
@@ -72,19 +72,7 @@ const FriendsSectionContainer = ({ className, users }) => {
 	const navigate = useNavigate()
 	const authUser = useSelector(selectUser)
 
-	!authUser ||
-		(!users && (
-			<div className="no-posts-found">
-				<Icon
-					inactive={true}
-					id="fa fa-refresh fa-spin fa-3x fa-fw"
-					margin="0 7px 0 0"
-					size="24px"
-					aria-hidden="true"
-				/>
-				<span>Loading...</span>
-			</div>
-		))
+	!authUser || (!users && <LoaderSpinner />)
 
 	return !authUser || !users ? (
 		navigate('/')

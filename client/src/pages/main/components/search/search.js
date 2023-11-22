@@ -1,6 +1,6 @@
+import { Icon, Input } from '../../../../components'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { Icon, Input } from '../../../../components'
 
 const SearchContainer = ({ className, searchPhrase, onChange }) => {
 	return (
