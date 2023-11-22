@@ -113,5 +113,6 @@ const FriendsSectionContainer = ({ className, users }) => {
 export const FriendsSection = styled(FriendsSectionContainer)`
 	& .padding-left {
 		padding-left: 30px;
+
 	}
 `

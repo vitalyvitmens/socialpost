@@ -114,5 +114,6 @@ export const Main = styled(MainContainer)`
 		justify-content: end;
 		flex-wrap: wrap;
 		padding-bottom: 80px;
+    height: 100%;
 	}
 `
