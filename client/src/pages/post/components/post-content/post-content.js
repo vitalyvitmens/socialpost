@@ -15,8 +15,9 @@ const PostContentContainer = ({
 	const userRole = useSelector(selectUserRole)
 	const authUser = useSelector(selectUser)
 	const isAdminOrModerator = [ROLE.ADMIN, ROLE.MODERATOR].includes(userRole)
+	const authorPost = author === authUser.id
 
-  return (
+	return (
 		<div className={className}>
 			<img src={imageUrl} alt={title} />
 			<H2>{title}</H2>
@@ -26,7 +27,7 @@ const PostContentContainer = ({
 				views={views}
 				margin="-20px 0 20px"
 				editButton={
-					(isAdminOrModerator || author === authUser.id) && (
+					(isAdminOrModerator || authorPost) && (
 						<Icon
 							id="fa-pencil-square-o"
 							size="21px"
