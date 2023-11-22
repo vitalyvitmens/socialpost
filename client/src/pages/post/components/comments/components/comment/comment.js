@@ -25,7 +25,7 @@ const CommentContainer = ({
 	const dispatch = useDispatch()
 	const authUser = useSelector(selectUser)
 	const userRole = authUser.roleId
-	const authorComment = author === authUser.id
+	const authorComment = author === authUser.login
 
 	const onCommentRemove = (id) => {
 		dispatch(
