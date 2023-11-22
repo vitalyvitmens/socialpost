@@ -79,14 +79,6 @@ const CommentContainer = ({
 				</div>
 				<div className="comment-text">{content}</div>
 			</div>
-			{isAdminOrModerator && (
-				<Icon
-					id="fa-trash-o"
-					size="21px"
-					margin="0 0 0 10px"
-					onClick={() => onCommentRemove(id)}
-				/>
-			)}
 		</div>
 	)
 }
@@ -120,14 +112,14 @@ export const Comment = styled(CommentContainer)`
 
 	& .published-at {
 		display: flex;
-    color: gray;
-    font-size: 0.9rem;
+		color: gray;
+		font-size: 0.9rem;
 	}
 
-  & .comment-text {
-    display: flex;
-    padding-top: 10px;
-  }
+	& .comment-text {
+		display: flex;
+		padding-top: 10px;
+	}
 `
 
 Comment.propTypes = {
