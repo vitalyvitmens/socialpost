@@ -44,25 +44,22 @@ const regFormSchema = yup.object().shape({
 		.string()
 		.required('Укажите населенный пункт в котором проживаете')
 		.matches(
-			/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
+			/^.{3,30}$/,
 			'Неверно указан населенный пункт. Допускаются только буквы'
 		)
 		.min(2, 'Неверно указан населенный пункт. Минимум 2 символа')
 		.max(30, 'Неверно указан населенный пункт. Максимум 30 символов'),
-	// speciality: yup
-	// 	.string()
-	// 	.required('Укажите свою профессию')
-	// 	.matches(
-	// 		/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/,
-	// 		'Неверно указана профессия. Допускаются только буквы'
-	// 	)
-	// 	.min(2, 'Неверно указана профессия. Минимум 2 символа')
-	// 	.max(30, 'Неверно указана профессия. Максимум 30 символов'),
+	speciality: yup
+		.string()
+		.required('Укажите свою профессию')
+		.matches(/^.{3,30}$/, 'Неверно указана профессия. Допускаются только буквы')
+		.min(2, 'Неверно указана профессия. Минимум 2 символа')
+		.max(30, 'Неверно указана профессия. Максимум 30 символов'),
 	avatar: yup
 		.string()
 		.required('Укажите ссылку (URL) на Ваше фото')
 		.matches(
-			/[A-Fa-f0-9]/,
+			/^https?:\/\/\S+(?:jpg|jpeg|png|)+(?:jpg?raw=true|jpeg?raw=true|png?raw=true|)$/,
 			'Неверно заполненна интернет ссылка (URL) на Ваше фото. Допусктимые форматы jpg, jpeg, png'
 		)
 		.min(
@@ -168,7 +165,7 @@ const RegistrationContainer = ({ className }) => {
 		errors?.lastName?.message ||
 		errors?.email?.message ||
 		errors?.location?.message ||
-		// errors?.speciality?.message ||
+		errors?.speciality?.message ||
 		errors?.avatar?.message ||
 		errors?.login?.message ||
 		errors?.password?.message ||
@@ -214,9 +211,9 @@ const RegistrationContainer = ({ className }) => {
 				<Input
 					type="text"
 					placeholder="Профессия..."
-					// {...register('speciality', {
-					// 	onChange: () => setServerError(null),
-					// })}
+					{...register('speciality', {
+						onChange: () => setServerError(null),
+					})}
 				/>
 				<Input
 					type="text"

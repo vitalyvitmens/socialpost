@@ -42,7 +42,6 @@ const PostContentContainer = ({
 		</div>
 	)
 }
-
 export const PostContent = styled(PostContentContainer)`
 	& img {
 		float: left;
