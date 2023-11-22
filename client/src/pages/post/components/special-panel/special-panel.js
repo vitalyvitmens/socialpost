@@ -5,7 +5,7 @@ import {
 	openModal,
 	removePostAsync,
 } from '../../../../redux/actions'
-import { selectUserRole } from '../../../../redux/selectors'
+import { selectUser } from '../../../../redux/selectors'
 import { Icon } from '../../../../components'
 import { checkAccess } from '../../../../utils'
 import { ROLE } from '../../../../constants'
@@ -18,10 +18,12 @@ const SpecialPanelContainer = ({
 	publishedAt,
 	editButton,
 	views,
+	author,
 }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const userRole = useSelector(selectUserRole)
+	const authUser = useSelector(selectUser)
+	const userRole = authUser.roleId
 
 	const onPostRemove = (id) => {
 		dispatch(
@@ -41,7 +43,7 @@ const SpecialPanelContainer = ({
 
 	const isAdmin = checkAccess([ROLE.ADMIN], userRole)
 	const isModerator = checkAccess([ROLE.MODERATOR], userRole)
-	const isUser = checkAccess([ROLE.USER], userRole)
+	const authorPost = author === authUser.id
 
 	return (
 		<div className={className}>
@@ -66,7 +68,7 @@ const SpecialPanelContainer = ({
 				</div>
 			</div>
 
-			{(isAdmin || isModerator || isUser) && (
+			{(isAdmin || isModerator || authorPost) && (
 				<div className="buttons">
 					{editButton}
 					{publishedAt && (

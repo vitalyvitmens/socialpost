@@ -25,6 +25,7 @@ const PostContentContainer = ({
 				id={id}
 				publishedAt={<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />}
 				views={views}
+        author={author}
 				margin="-20px 0 20px"
 				editButton={
 					(isAdminOrModerator || authorPost) && (
