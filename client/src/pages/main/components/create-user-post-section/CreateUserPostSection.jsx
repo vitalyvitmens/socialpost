@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { selectPost, selectUser } from '../../../../redux/selectors'
 import { Icon, Avatar, Button, Input } from '../../../../components'
 import { savePostAsync } from '../../../../redux/actions'
@@ -60,18 +60,18 @@ const Divider = styled.div`
 `
 
 const CreateUserPostSectionContainer = ({ className }) => {
-	const [imageUrlValue, setImageUrlValue] = useState('')
-	const [titleValue, setTitleValue] = useState('')
-	const [contentValue, setContentValue] = useState('')
+	const [imageUrlVal, setImageUrlVal] = useState('')
+	const [titleVal, setTitleVal] = useState('')
+	const [contentVal, setContentVal] = useState('')
 
 	const authUser = useSelector(selectUser)
 	const { id, imageUrl, title, content } = useSelector(selectPost)
 
-	useLayoutEffect(() => {
-		setImageUrlValue(imageUrl)
-		setTitleValue(title)
-		setContentValue(content)
-	}, [content, imageUrl, title])
+	// useLayoutEffect(() => {
+	// 	setImageUrlVal(imageUrl)
+	// 	setTitleVal(title)
+	// 	setContentVal(content)
+	// }, [content, imageUrl, title])
 
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -79,28 +79,23 @@ const CreateUserPostSectionContainer = ({ className }) => {
 	const onSave = () => {
 		dispatch(
 			savePostAsync(id, {
-				imageUrl: imageUrlValue
-					? imageUrlValue
+				imageUrl: imageUrlVal
+					? imageUrlVal
 					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/whereposts.jpg?raw=true',
-				title: titleValue
-					? titleValue
+				title: titleVal
+					? titleVal
 					: `ADMIN: ${authUser.lastName} ${authUser.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
-				content: contentValue
-					? contentValue
+				content: contentVal
+					? contentVal
 					: `Автор поста: ${authUser.lastName} ${authUser.firstName}`,
 			})
-		).then(({ id }) => {
-			navigate(`/post/${id}`)
-			setImageUrlValue('')
-			setTitleValue('')
-			setContentValue('')
-		})
+		)
 
 		window.location.reload()
 	}
 
-	const onImageChange = ({ target }) => setImageUrlValue(target.value)
-	const onTitleChange = ({ target }) => setTitleValue(target.value)
+	const onImageChange = ({ target }) => setImageUrlVal(target.value)
+	const onTitleChange = ({ target }) => setTitleVal(target.value)
 
 	return !authUser ? (
 		<div className="no-posts-found">
@@ -121,6 +116,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 						<Row>
 							<Avatar>{authUser.avatar}</Avatar>
 							<Input
+								value={imageUrlVal}
 								width="575px"
 								height="40px"
 								placeholder="Интернет ссылка на фото..."
@@ -129,6 +125,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 						</Row>
 						<Row>
 							<Input
+								value={titleVal}
 								width="575px"
 								height="40px"
 								margin="-30px 0 10px 90px"
@@ -154,7 +151,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 								margin="0 0 0 0"
 								width="120px"
 								height="50px"
-								disabled={!imageUrlValue || !titleValue || !authUser}
+								disabled={!imageUrlVal || !titleVal || !authUser}
 								onClick={() => onSave()}
 							>
 								Запостить
