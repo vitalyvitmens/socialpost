@@ -38,7 +38,7 @@ const regFormSchema = yup.object().shape({
 		.max(30, 'Неверно заполнен email. Максимум 30 символов')
 		.matches(
 			/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-			'Неверно заполнен email.'
+			'Неверно заполнен email'
 		),
 	location: yup
 		.string()

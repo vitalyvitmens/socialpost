@@ -96,28 +96,53 @@ const ProfilePageContainer = ({ className }) => {
 	}
 
 	function isEmail(value) {
-		return /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g.test(value)
+		const checkedString =
+			/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/g.test(value)
+
+		return checkedString ? null : 'Неверно заполнен email'
 	}
 
-	function isLocationOrSpeciality(value) {
-		return /^(([a-zA-Zа-яА-ЯёЁ]*(\s*)\([a-zA-Zа-яА-ЯёЁ\s]*\))|([a-zA-Zа-яА-ЯёЁ\-0-9]*)|([a-zA-Zа-яА-ЯёЁ]+[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*))$/g.test(
-			value
-		)
+	function isLocation(value) {
+		const checkedString =
+			/^(([a-zA-Zа-яА-ЯёЁ]*(\s*)\([a-zA-Zа-яА-ЯёЁ\s]*\))|([a-zA-Zа-яА-ЯёЁ\-0-9]*)|([a-zA-Zа-яА-ЯёЁ]+[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*))$/g.test(
+				value
+			)
+
+		return checkedString
+			? null
+			: 'Неверно указан населенный пункт. Допускаются буквы, цифры, без пробелов и символов, за исключением тире'
+	}
+
+	function isSpeciality(value) {
+		const checkedString =
+			/^(([a-zA-Zа-яА-ЯёЁ]*(\s*)\([a-zA-Zа-яА-ЯёЁ\s]*\))|([a-zA-Zа-яА-ЯёЁ\-0-9]*)|([a-zA-Zа-яА-ЯёЁ]+[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*[\\-|\s]?[a-zA-Zа-яА-ЯёЁ]*))$/g.test(
+				value
+			)
+
+		return checkedString
+			? null
+			: 'Неверно указана профессия. Допускаются только буквы, цифры, одиночные тире, пробел или нижнее подчеркивание'
 	}
 
 	function isImageURL(value) {
-		return /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$$/g.test(
-			value
-		)
+		const checkedString =
+			/^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$$/g.test(
+				value
+			)
+
+		return checkedString
+			? null
+			: 'Неверно заполненна интернет ссылка (URL) на Ваше фото. Допустимые форматы jpg, jpeg, png'
 	}
 
 	function isLogin(value) {
-		return /^\w+$/g.test(value)
+		const checkedString = /^\w+$/g.test(value)
+
+		return checkedString
+			? null
+			: 'Неверно заполнен логин. Допускаются только буквы цифры и нижнее подчеркивание'
 	}
 
-	// if (!isText(input.value)) {
-	// 	// введены не только цифры
-	// }
 	return !editUserData ? (
 		<div className={className}>
 			<CardProfile>
@@ -176,9 +201,6 @@ const ProfilePageContainer = ({ className }) => {
 						type="text"
 						placeholder={user.firstName}
 						onChange={(e) => setFirstNameValue(e.target.value)}
-						// {...register('firstName', {
-						// 	onChange: () => setServerError(null),
-						// })}
 					/>
 					{firstNameValue.length ? (
 						<ErrorField>{isFirstName(firstNameValue)}</ErrorField>
@@ -191,12 +213,9 @@ const ProfilePageContainer = ({ className }) => {
 						type="text"
 						placeholder={user.lastName}
 						onChange={(e) => setLastNameValue(e.target.value)}
-						// {...register('lastName', {
-						// 	onChange: () => setServerError(null),
-						// })}
 					/>
-					{!lastNameValue ? (
-						<ErrorField>Поле не должно быть пустым</ErrorField>
+					{lastNameValue.length ? (
+						<ErrorField>{isLastName(lastNameValue)}</ErrorField>
 					) : null}
 					<label htmlFor="profileEmail">Электронная почта</label>
 					<input
@@ -207,32 +226,21 @@ const ProfilePageContainer = ({ className }) => {
 						type="email"
 						placeholder={user.email}
 						onChange={(e) => setEmailValue(e.target.value)}
-						// {...register('email', {
-						// 	onChange: () => setServerError(null),
-						// })}
 					/>
-					{!emailValue ? (
-						<ErrorField>
-							Почта должна соответствовать шаблону test@example.com
-						</ErrorField>
+					{emailValue.length ? (
+						<ErrorField>{isEmail(emailValue)}</ErrorField>
 					) : null}
-					<label htmlFor="location">
-						Населенный пункт в котором проживаете
-					</label>
+					<label htmlFor="location">Ваш город</label>
 					<input
 						id="location"
 						value={locationValue}
 						name="location"
 						type="text"
 						placeholder={user.location}
-						pattern="/^([А-Я]{1}[а-яё]{1,23}|[A-Z]{1}[a-z]{1,23})$/"
 						onChange={(e) => setLocationValue(e.target.value)}
-						// {...register('location', {
-						// 	onChange: () => setServerError(null),
-						// })}
 					/>
-					{!locationValue ? (
-						<ErrorField>Поле не должно быть пустым</ErrorField>
+					{locationValue.length ? (
+						<ErrorField>{isLocation(locationValue)}</ErrorField>
 					) : null}
 					<label htmlFor="speciality">Профессия</label>
 					<input
@@ -242,12 +250,9 @@ const ProfilePageContainer = ({ className }) => {
 						type="text"
 						placeholder={user.speciality}
 						onChange={(e) => setSpecialityValue(e.target.value)}
-						// {...register('speciality', {
-						// 	onChange: () => setServerError(null),
-						// })}
 					/>
-					{!specialityValue ? (
-						<ErrorField>Поле не должно быть пустым</ErrorField>
+					{specialityValue.length ? (
+						<ErrorField>{isSpeciality(specialityValue)}</ErrorField>
 					) : null}
 					<label htmlFor="lastName">Интернет ссылка (URL) на фото</label>
 					<input
@@ -257,12 +262,9 @@ const ProfilePageContainer = ({ className }) => {
 						type="text"
 						placeholder={user.avatar}
 						onChange={(e) => setAvatarValue(e.target.value)}
-						// {...register('lastName', {
-						// 	onChange: () => setServerError(null),
-						// })}
 					/>
-					{!avatarValue ? (
-						<ErrorField>Поле не должно быть пустым</ErrorField>
+					{avatarValue.length ? (
+						<ErrorField>{isImageURL(avatarValue)}</ErrorField>
 					) : null}
 					<label htmlFor="lastName">Логин</label>
 					<input
@@ -272,12 +274,9 @@ const ProfilePageContainer = ({ className }) => {
 						type="text"
 						placeholder={user.login}
 						onChange={(e) => setLoginValue(e.target.value)}
-						// {...register('lastName', {
-						// 	onChange: () => setServerError(null),
-						// })}
 					/>
-					{!loginValue ? (
-						<ErrorField>Поле не должно быть пустым</ErrorField>
+					{loginValue.length ? (
+						<ErrorField>{isLogin(loginValue)}</ErrorField>
 					) : null}
 				</div>
 			</CardProfile>
