@@ -3,8 +3,9 @@ const mongoose = require('mongoose')
 const LikeSchema = mongoose.Schema(
 	{
 		isLike: {
-			type: String,
+			type: Boolean,
 			required: true,
+			default: true,
 		},
 		author: {
 			type: mongoose.Schema.Types.ObjectId,
