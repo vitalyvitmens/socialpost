@@ -1,11 +1,12 @@
 import { useLayoutEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { Icon, Input } from '../../../../components'
 import { SpecialPanel } from '../special-panel/special-panel'
 import { savePostAsync } from '../../../../redux/actions'
+import { selectUserRole } from '../../../../redux/selectors'
 import { sanitizeContent } from './utils'
-import { PROP_TYPE } from '../../../../constants'
+import { PROP_TYPE, ROLE } from '../../../../constants'
 import Moment from 'react-moment'
 import styled from 'styled-components'
 
@@ -16,6 +17,7 @@ const PostFormContainer = ({
 	const [imageUrlValue, setImageUrlValue] = useState(imageUrl)
 	const [titleValue, setTitleValue] = useState(title)
 	const contentRef = useRef(null)
+	const roleId = useSelector(selectUserRole)
 
 	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl)
@@ -58,21 +60,23 @@ const PostFormContainer = ({
 				placeholder="Заголовок..."
 				onChange={onTitleChange}
 			/>
-			<SpecialPanel
-				id={id}
-				publishedAt={<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />}
-				views={views}
-        author={author}
-				margin="20px 0"
-				editButton={
-					<Icon
-						id="fa-floppy-o"
-						size="21px"
-						margin="0 10px 0 0"
-						onClick={() => onSave()}
-					/>
-				}
-			/>
+			{roleId !== ROLE.GUEST && (
+				<SpecialPanel
+					id={id}
+					publishedAt={<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />}
+					views={views}
+					author={author}
+					margin="20px 0"
+					editButton={
+						<Icon
+							id="fa-floppy-o"
+							size="21px"
+							margin="0 10px 0 0"
+							onClick={() => onSave()}
+						/>
+					}
+				/>
+			)}
 			<div
 				ref={contentRef}
 				contentEditable={true}

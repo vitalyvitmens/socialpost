@@ -29,11 +29,11 @@ const UserName = styled.div`
 	border-radius: 10px;
 	padding: 5px 50px;
 	background-color: #ffd4c4;
-  border: 1px solid #000;
+	border: 1px solid #000;
 	border-radius: 7px;
 	box-shadow: -3px 5px 5px #333;
 	background-color: bisque;
-  margin-bottom: 40px;
+	margin-bottom: 40px;
 
 	&:hover {
 		opacity: 0.8;
@@ -82,23 +82,26 @@ const ControlPanelContainer = ({ className }) => {
 					</>
 				)}
 			</RightAligned>
-			<RightAligned>
-				<Icon
-					id="fa-backward"
-					margin="-30px 0 0 0"
-					onClick={() => navigate(-1)}
-				/>
-				<Link to="/post">
-					<Icon id="fa-file-text-o" margin="-30px 0 30px 16px" />
-				</Link>
-				{isAdmin && (
-					<>
-						<Link to="/users">
-							<Icon id="fa-users" margin="-30px 0 0 16px" />
-						</Link>
-					</>
-				)}
-			</RightAligned>
+			{roleId !== ROLE.GUEST && (
+				<RightAligned>
+					<Icon
+						id="fa-backward"
+						margin="-30px 0 0 0"
+						onClick={() => navigate(-1)}
+					/>
+					<Link to="/post">
+						<Icon id="fa-file-text-o" margin="-30px 0 30px 16px" />
+					</Link>
+					{isAdmin && (
+						<>
+							<Link to="/users">
+								<Icon id="fa-users" margin="-30px 0 0 16px" />
+							</Link>
+						</>
+					)}
+				</RightAligned>
+			)}
+
 			<div></div>
 		</div>
 	)
