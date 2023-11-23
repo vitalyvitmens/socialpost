@@ -25,6 +25,8 @@ const ROLES = require('./constants/roles')
 const mapPost = require('./helpers/mapPost')
 const { addComment, deleteComment } = require('./controllers/comment')
 const mapComment = require('./helpers/mapComment')
+const { addLike, deleteLike } = require('./controllers/like')
+const mapLike = require('./helpers/mapLike')
 const multer = require('multer')
 const path = require('path')
 const { fileURLToPath } = require('url')
@@ -120,6 +122,25 @@ app.delete(
 	hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]),
 	async (req, res) => {
 		await deleteComment(req.params.postId, req.params.commentId)
+
+		res.send({ error: null })
+	}
+)
+
+app.post('/posts/:id/likes', async (req, res) => {
+	const newLike = await addLike(req.params.id, {
+		isLike: req.body.isLike,
+		author: req.user.id,
+	})
+
+	res.send({ data: mapLike(newLike) })
+})
+
+app.delete(
+	'/posts/:postId/likes/:likeId',
+	hasRole([ROLES.ADMIN, ROLES.MODERATOR, ROLES.USER]),
+	async (req, res) => {
+		await deleteLike(req.params.postId, req.params.likeId)
 
 		res.send({ error: null })
 	}

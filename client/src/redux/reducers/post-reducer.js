@@ -7,8 +7,9 @@ const initialPostState = {
 	content: '',
 	publishedAt: '',
 	comments: [],
-  views: 0,
-  author: '',
+	likes: [],
+	views: 0,
+	author: '',
 }
 
 export const postReducer = (state = initialPostState, action) => {
@@ -24,6 +25,16 @@ export const postReducer = (state = initialPostState, action) => {
 				comments: state.comments.filter(
 					(comment) => comment.id !== action.payload
 				),
+			}
+		case ACTION_TYPE.ADD_LIKE:
+			return {
+				...state,
+				likes: [...state.likes, action.payload],
+			}
+		case ACTION_TYPE.REMOVE_LIKE:
+			return {
+				...state,
+				likes: state.likes.filter((like) => like.id !== action.payload),
 			}
 		case ACTION_TYPE.SET_POST_DATA:
 			return {

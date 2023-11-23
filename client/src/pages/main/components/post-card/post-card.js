@@ -65,11 +65,7 @@ const PostCardContainer = ({
 				</React.Fragment>
 			))}
 			<h4>{title}</h4>
-			<img
-				src={imageUrl}
-				alt={title}
-				onClick={() => navigate(`/post/${id}`)}
-			/>
+			<img src={imageUrl} alt={title} onClick={() => navigate(`/post/${id}`)} />
 			<div className="post-card-footer">
 				<div className="post-card-info">
 					<div className="views-comments-block">
@@ -84,16 +80,16 @@ const PostCardContainer = ({
 						</div>
 						<div className="comments-count">
 							<Icon
-								inactive={true}
 								id="fa-comment-o"
 								margin="0 7px 0 15px"
 								size="18px"
+								onClick={() => navigate(`/post/${id}`)}
 							/>
 							{commentsCount}
 						</div>
 						<Icon
 							inactive={true}
-							id="fa fa-heart-o"
+							id="fa-heart-o"
 							margin="0 7px 0 15px"
 							size="18px"
 						/>

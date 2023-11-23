@@ -25,6 +25,12 @@ const PostSchema = mongoose.Schema(
 				ref: 'Comment',
 			},
 		],
+		likes: [
+			{
+				type: mongoose.Schema.Types.ObjectId,
+				ref: 'Like',
+			},
+		],
 		views: {
 			type: Number,
 			default: 0,

@@ -7,7 +7,9 @@ async function addPost(postId, post) {
 	await Post.findByIdAndUpdate(postId)
 
 	await newPost.populate({
-		path: 'comments',
+		// path: 'comments',
+		// path: 'likes',
+		path: ['comments', 'likes'],
 		populate: 'author',
 	})
 
