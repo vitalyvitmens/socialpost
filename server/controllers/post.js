@@ -6,12 +6,16 @@ async function addPost(postId, post) {
 
 	await Post.findByIdAndUpdate(postId)
 
-	await newPost.populate({
-		path: 'comments',
-		// path: 'likes',
-		// path: ['comments', 'likes'],
-		populate: 'author',
-	})
+	await newPost.populate([
+		{
+			path: 'comments',
+			populate: 'author',
+		},
+		{
+			path: 'likes',
+			populate: 'author',
+		},
+	])
 
 	return newPost
 }
@@ -22,12 +26,16 @@ async function editPost(id, post) {
 		returnDocument: 'after',
 	})
 
-	await newPost.populate({
-		path: 'comments',
-		// path: 'likes',
-		// path: ['comments', 'likes'],
-		populate: 'author',
-	})
+	await newPost.populate([
+		{
+			path: 'comments',
+			populate: 'author',
+		},
+		{
+			path: 'likes',
+			populate: 'author',
+		},
+	])
 
 	return newPost
 }
@@ -56,12 +64,16 @@ async function getPosts(search = '', limit = 9, page = 1) {
 
 // get item
 async function getPost(id) {
-	const post = await Post.findById(id).populate({
-		path: 'comments',
-		// path: 'likes',
-		// path: ['comments', 'likes'],
-		populate: 'author',
-	})
+	const post = await Post.findById(id).populate([
+		{
+			path: 'comments',
+			populate: 'author',
+		},
+		{
+			path: 'likes',
+			populate: 'author',
+		},
+	])
 
 	post.views = post.views + 1
 	await post.save()
