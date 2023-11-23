@@ -22,17 +22,13 @@ const UserSchema = mongoose.Schema(
 		},
 		speciality: {
 			type: String,
-			// required: true,
+			required: true,
 		},
 		avatar: {
 			type: String,
 			required: true,
 			default:
 				'https://github.com/vitalyvitmens/SQLite/blob/main/logo/avatar/avatar.JPG?raw=true',
-			// validate: {
-			// 	validator: validator.isURL,
-			// 	message: 'Image should be a valid url',
-			// },
 		},
 		login: {
 			type: String,
