@@ -4,8 +4,6 @@ const LikeSchema = mongoose.Schema(
 	{
 		isLike: {
 			type: Boolean,
-			required: true,
-			default: true,
 		},
 		author: {
 			type: mongoose.Schema.Types.ObjectId,

@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
-
 import { Avatar, Icon } from '../../../../components'
 import Moment from 'react-moment'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { addLikeAsync, removeLikeAsync } from '../../../../redux/actions'
-import { selectPost, selectUser } from '../../../../redux/selectors'
 
 const Row = styled.div`
 	display: flex;
@@ -38,18 +34,8 @@ const PostCardContainer = ({
 }) => {
 	const [newLike, setNewLike] = useState(false)
 	const navigate = useNavigate()
-	const dispatch = useDispatch()
-	const post = useSelector(selectPost)
-	const postId = id
-	const likes = post.likes
 
-	const addNewLike = (postId, newLike) => {
-		dispatch(addLikeAsync(postId, setNewLike(!newLike)))
-	}
-
-	const onLikeRemove = (id) => {
-		dispatch(removeLikeAsync(postId, id))
-	}
+	const toglleLike = () => setNewLike(!newLike)
 
 	const share = () =>
 		(window.location.href = 'viber://chat?' + window.location.href)
@@ -109,16 +95,14 @@ const PostCardContainer = ({
 								id="fa-heart-o"
 								margin="0 7px 0 15px"
 								size="18px"
-								onClick={() => addNewLike(postId, newLike)}
+								onClick={() => toglleLike()}
 							/>
 						) : (
 							<Icon
 								id="fa-heart"
 								margin="0 7px 0 15px"
 								size="18px"
-								onClick={() =>
-									onLikeRemove((id = likes.map((like) => like.id)))
-								}
+								onClick={() => toglleLike()}
 							/>
 						)}
 					</div>
