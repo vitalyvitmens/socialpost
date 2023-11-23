@@ -84,6 +84,7 @@ export const UserRow = styled(UserRowContainer)`
 		padding: 0 5px;
 		font-size: 16px;
 		background-color: antiquewhite;
+    border-radius: 10px;
 	}
 `
 
