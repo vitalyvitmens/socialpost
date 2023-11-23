@@ -88,10 +88,10 @@ const PostCardContainer = ({
 							{commentsCount}
 						</div>
 						<Icon
-							inactive={true}
 							id="fa-heart-o"
 							margin="0 7px 0 15px"
 							size="18px"
+							onClick={() => {}}
 						/>
 					</div>
 					<div className="published-at">

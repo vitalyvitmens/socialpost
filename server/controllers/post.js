@@ -7,9 +7,9 @@ async function addPost(postId, post) {
 	await Post.findByIdAndUpdate(postId)
 
 	await newPost.populate({
-		// path: 'comments',
+		path: 'comments',
 		// path: 'likes',
-		path: ['comments', 'likes'],
+		// path: ['comments', 'likes'],
 		populate: 'author',
 	})
 
@@ -24,6 +24,8 @@ async function editPost(id, post) {
 
 	await newPost.populate({
 		path: 'comments',
+		// path: 'likes',
+		// path: ['comments', 'likes'],
 		populate: 'author',
 	})
 
@@ -56,6 +58,8 @@ async function getPosts(search = '', limit = 9, page = 1) {
 async function getPost(id) {
 	const post = await Post.findById(id).populate({
 		path: 'comments',
+		// path: 'likes',
+		// path: ['comments', 'likes'],
 		populate: 'author',
 	})
 
