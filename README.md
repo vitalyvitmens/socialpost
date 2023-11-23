@@ -1,3 +1,3 @@
-# news-blog
+# socialpost
 
-## http://94.241.171.187/
+## http://92.63.177.60/
