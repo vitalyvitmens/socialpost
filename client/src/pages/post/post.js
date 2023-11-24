@@ -39,7 +39,7 @@ const PostContainer = ({ className }) => {
 		return null
 	}
 
-	const SpecificPostPage =
+  const SpecificPostPage =
 		isCreating || isEditing ? (
 			<PrivateContent
 				access={[ROLE.ADMIN, authUser.roleId]}

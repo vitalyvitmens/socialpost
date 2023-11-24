@@ -43,7 +43,7 @@ const SpecialPanelContainer = ({
 
 	const isAdmin = checkAccess([ROLE.ADMIN], userRole)
 	const isModerator = checkAccess([ROLE.MODERATOR], userRole)
-	const authorPost = author === authUser.id
+	const authorPost = author ? author : author = authUser.id
 
 	return (
 		<div className={className}>
@@ -68,9 +68,9 @@ const SpecialPanelContainer = ({
 				</div>
 			</div>
 
-      {editButton}
 			{(isAdmin || isModerator || authorPost) && (
 				<div className="buttons">
+					{editButton}
 					{publishedAt && (
 						<Icon
 							id="fa-trash-o"
