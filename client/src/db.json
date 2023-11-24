@@ -1,19 +1,193 @@
-{
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
-}
+[
+	{
+		"_id": {
+			"$oid": "6557b198fe7ac18c9c881d09"
+		},
+		"firstName": "Виталий",
+		"lastName": "Меншиков",
+		"email": "otm_@tut.by",
+		"imageUrl": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/vitaly.jpg?raw=true",
+		"login": "vitaly",
+		"password": "$2b$10$0I8hkq3tFT.AMOeYOEXV7.s4gZIJNyQFIqv7wpw16.qqH9wu8DTI2",
+		"role": 0,
+		"createdAt": {
+			"$date": "2023-11-17T18:31:52.297Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T18:38:21.884Z"
+		},
+		"__v": 0,
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/vitaly.jpg?raw=true",
+		"job": "ReactJS Developer",
+		"location": "Минск ",
+		"speciality": "ReactJS Developer"
+	},
+	{
+		"_id": {
+			"$oid": "6557db7c3a44287f0e480dea"
+		},
+		"firstName": "Олеся",
+		"lastName": "Чирикова",
+		"email": "limonadovna@tut.by",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/olesy.jpg?raw=true",
+		"login": "olesy",
+		"password": "$2b$10$8uayVrlpZ50F0/Jiq86zlOcafb0THiPinULspUHwadoJW8CoFfABS",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-17T21:30:36.107Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T19:04:22.156Z"
+		},
+		"__v": 0,
+		"location": "Sloboda",
+		"speciality": "Менеджер"
+	},
+	{
+		"_id": {
+			"$oid": "655a81565059b7cbf912203e"
+		},
+		"firstName": "Егор",
+		"lastName": "Меншиков",
+		"email": "egor@tut.by",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/Egor.jpg?raw=true",
+		"login": "egor",
+		"password": "$2b$10$jGmAlYgWk27utBdnydFGwOrVthzZ/2AqYyC4a7pvWsnrNIbL9OnKG",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-19T21:42:46.059Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T19:07:09.783Z"
+		},
+		"__v": 0,
+		"location": "Mogilev",
+		"speciality": "Schoolboy"
+	},
+	{
+		"_id": {
+			"$oid": "655cfbdec4b3ff5797f47f9b"
+		},
+		"firstName": "Сергей",
+		"lastName": "Порожнюк",
+		"email": "sergey@tut.by",
+		"location": "Крыштафово",
+		"speciality": "Топ Менеджер",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/sergey.jpg?raw=true",
+		"login": "sergey",
+		"password": "$2b$10$RyVkP2EMCIqHvTHs4FDE9eoYvF2Wi68vvPlTS2ZtlYJUaHDnOTdDG",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-21T18:50:06.436Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-23T13:18:31.156Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "655d08ccbe791858134fafcf"
+		},
+		"firstName": "Андрей",
+		"lastName": "Звонко",
+		"email": "zvonko@tut.by",
+		"location": "Колодищи",
+		"speciality": "car mechanic",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/andrey.jpg?raw=true",
+		"login": "andrey",
+		"password": "$2b$10$p4sxX9k8JltYI8z1STkRe.Wh9yY0du1YHTozBavZ8.EE9oe6tQAoy",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-21T19:45:16.523Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T19:47:02.105Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "655d0a23be791858134fafdb"
+		},
+		"firstName": "Екатерина",
+		"lastName": "Кулик",
+		"email": "katy@tut.by",
+		"location": "Сухорукие",
+		"speciality": "бухгалтер",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/katy.jpg?raw=true",
+		"login": "katy",
+		"password": "$2b$10$3KMYraoJq4v8/qCwKM9M.uSawVQtJEOXPxtOQDKOfDyRpXHfHoALK",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-21T19:50:59.859Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T19:52:06.642Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "655d0b86be791858134fafe7"
+		},
+		"firstName": "Борис",
+		"lastName": "Мицура",
+		"email": "bory@tut.by",
+		"location": "Масловичи",
+		"speciality": "вч 5448",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/boris.jpg?raw=true",
+		"login": "bory",
+		"password": "$2b$10$3n6adacBaYWYCPfEFlAb6.BtUWJ89AA0VgUEwCf/F1gxLdhBw5PRe",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-21T19:56:54.142Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T20:00:14.598Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "655d0cd7be791858134fb003"
+		},
+		"firstName": "Дима",
+		"lastName": "Меншиков",
+		"email": "dima@tut.by",
+		"location": "Minsk",
+		"speciality": "ИТ-безопасность",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/dima.jpg?raw=true",
+		"login": "dima",
+		"password": "$2b$10$g6c.bu/CheERR1JrLrPd1eww/IH9UNOA7/PFgB4LXRlu1Uv6b4/9K",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-21T20:02:31.456Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T20:03:30.412Z"
+		},
+		"__v": 0
+	},
+	{
+		"_id": {
+			"$oid": "655d0ed4be791858134fb013"
+		},
+		"firstName": "Виктория",
+		"lastName": "Чечина",
+		"email": "victory@tut.by",
+		"location": "Минск",
+		"speciality": "визажист на ОНТ",
+		"avatar": "https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/avatars/vika.jpg?raw=true",
+		"login": "victory",
+		"password": "$2b$10$Xa/Vc6kLfMTtUj/EjBlVauNhfd9Gwag7GsUKBAJKYBxBiGb967qqq",
+		"role": 2,
+		"createdAt": {
+			"$date": "2023-11-21T20:11:00.305Z"
+		},
+		"updatedAt": {
+			"$date": "2023-11-21T20:12:23.223Z"
+		},
+		"__v": 0
+	}
+]
