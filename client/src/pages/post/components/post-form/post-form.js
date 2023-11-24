@@ -19,7 +19,7 @@ const PostFormContainer = ({
 	const contentRef = useRef(null)
 	const roleId = useSelector(selectUserRole)
 
-	useLayoutEffect(() => {
+  useLayoutEffect(() => {
 		setImageUrlValue(imageUrl)
 		setTitleValue(title)
 	}, [imageUrl, title])

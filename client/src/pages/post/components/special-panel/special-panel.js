@@ -68,9 +68,9 @@ const SpecialPanelContainer = ({
 				</div>
 			</div>
 
+      {editButton}
 			{(isAdmin || isModerator || authorPost) && (
 				<div className="buttons">
-					{editButton}
 					{publishedAt && (
 						<Icon
 							id="fa-trash-o"
