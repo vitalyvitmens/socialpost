@@ -9,6 +9,14 @@ import { sanitizeContent } from './utils'
 import { PROP_TYPE, ROLE } from '../../../../constants'
 import Moment from 'react-moment'
 import styled from 'styled-components'
+import { isImageURL } from '../../../../utils'
+
+const ErrorField = styled.div`
+	display: flex;
+  margin: -5px 12px 5px 12px;
+	color: rgb(194 65 12);
+	font-size: 12px;
+`
 
 const PostFormContainer = ({
 	className,
@@ -19,7 +27,7 @@ const PostFormContainer = ({
 	const contentRef = useRef(null)
 	const roleId = useSelector(selectUserRole)
 
-  useLayoutEffect(() => {
+	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl)
 		setTitleValue(title)
 	}, [imageUrl, title])
@@ -53,6 +61,10 @@ const PostFormContainer = ({
 				placeholder="Изображение..."
 				onChange={onImageChange}
 			/>
+			{imageUrlValue.length ? (
+				<ErrorField>{isImageURL(imageUrlValue)}</ErrorField>
+			) : null}
+
 			<Input
 				id="titleValue"
 				name="titleValue"
