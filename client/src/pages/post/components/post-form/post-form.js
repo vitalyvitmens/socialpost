@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import { Icon, Input } from '../../../../components'
 import { SpecialPanel } from '../special-panel/special-panel'
 import { savePostAsync } from '../../../../redux/actions'
-import { selectUserRole } from '../../../../redux/selectors'
+import { selectUser, selectUserRole } from '../../../../redux/selectors'
 import { sanitizeContent } from './utils'
 import { PROP_TYPE, ROLE } from '../../../../constants'
 import Moment from 'react-moment'
@@ -13,7 +13,7 @@ import { isImageURL } from '../../../../utils'
 
 const ErrorField = styled.div`
 	display: flex;
-  margin: -5px 12px 5px 12px;
+	margin: -5px 12px 5px 12px;
 	color: rgb(194 65 12);
 	font-size: 12px;
 `
@@ -26,6 +26,7 @@ const PostFormContainer = ({
 	const [titleValue, setTitleValue] = useState(title)
 	const contentRef = useRef(null)
 	const roleId = useSelector(selectUserRole)
+	const authUser = useSelector(selectUser)
 
 	useLayoutEffect(() => {
 		setImageUrlValue(imageUrl)
@@ -43,14 +44,20 @@ const PostFormContainer = ({
 				imageUrl: imageUrlValue
 					? imageUrlValue
 					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/whereposts.jpg?raw=true',
-				title: titleValue ? titleValue : 'Заполните название статьи!',
-				content: newContent ? newContent : 'Заполните контекст статьи!',
+				title: titleValue
+					? titleValue
+					: `ADMIN: ${authUser.lastName} ${authUser.firstName} добавь заголовок к своему посту!`,
+				content: newContent
+					? newContent
+					: `Автор поста: ${authUser.lastName} ${authUser.firstName}`,
 			})
 		).then(({ id }) => navigate(`/post/${id}`))
 	}
 
 	const onImageChange = ({ target }) => setImageUrlValue(target.value)
 	const onTitleChange = ({ target }) => setTitleValue(target.value)
+
+	const formError = isImageURL(imageUrlValue)
 
 	return (
 		<div className={className}>
@@ -72,7 +79,7 @@ const PostFormContainer = ({
 				placeholder="Заголовок..."
 				onChange={onTitleChange}
 			/>
-			{roleId !== ROLE.GUEST && (
+			{roleId !== ROLE.GUEST && !formError && (
 				<SpecialPanel
 					id={id}
 					publishedAt={<Moment date={publishedAt} format="DD-MM-YYYYг HH:mm" />}
@@ -108,11 +115,12 @@ export const PostForm = styled(PostFormContainer)`
 	}
 
 	& .post-text {
-		min-height: 80px;
+		min-height: 400px;
 		border: 1px solid #000;
 		font-size: 18px;
 		white-space: pre-line;
 		padding: 10px;
+		border-radius: 10px;
 	}
 `
 
