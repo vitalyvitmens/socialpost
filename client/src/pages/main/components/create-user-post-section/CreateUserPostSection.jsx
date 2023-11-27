@@ -89,7 +89,7 @@ const CreateUserPostSectionContainer = ({ className }) => {
 					: 'https://github.com/vitalyvitmens/socialpost/blob/main/client/public/assets/image/whereposts.jpg?raw=true',
 				title: titleVal
 					? titleVal
-					: `ADMIN: ${authUser.lastName} ${authUser.firstName} ну сколько раз нужно повторять? Говорю же, заполни контекст поста!`,
+					: `ADMIN: ${authUser.lastName} ${authUser.firstName} добавь заголовок к своему посту!`,
 				content: `Автор поста: ${authUser.lastName} ${authUser.firstName}`,
 			})
 		)
