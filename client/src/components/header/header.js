@@ -1,20 +1,9 @@
 import { ControlPanel, Logo } from './components'
 import styled from 'styled-components'
 
-// const Discription = styled.div`
-// 	font-style: italic;
-// `
-
 const HeaderContainer = ({ className }) => (
 	<header className={className}>
 		<Logo />
-		{/* <Discription>
-			Ежедневно интересные новости
-			<br />
-			Технологические прорывы
-			<br />
-			Будь в курсе основных трендов
-		</Discription> */}
 		<ControlPanel />
 	</header>
 )
